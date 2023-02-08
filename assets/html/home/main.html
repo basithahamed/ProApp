@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/homecss/main.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/webview.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/mobile.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/project.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/task.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/projectoverview.css" type="text/css" rel="stylesheet">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Full page starts here -->
+    <section class="main-page">
+        <!-- Header of this page -->
+        <header class="top-header x-axis-flex dark-theme    ">
+            <div class="hamburger-menu"><i class="fa-solid fa-bars"></i></div>
+            <h1>Task Manager</h1>
+            <div class="mini-photo"></div>
+        </header>
+
+        <!-- main body consists of navbar and other sections-->
+        <section class="main-body x-axis-flex">
+            <!-- Navbar section only visible in web view and tablet view -->
+            <section class="web-view-nav-bar y-axis-flex dark-theme">
+                <div class="nav-button">
+                    <input type="checkbox" id="projects-input">
+                    <label class="projects-button-ul" for="projects-input">
+                        <i class="fa-solid fa-bars-progress"></i> 
+                        <span>Projects</span>
+                    </label>
+                    <ul class="projects-ul">
+                        <li class="projects-button">Active</li>
+                        <li class="projects-button">Mine</li>
+                        <li class="projects-button">All</li>
+                    </ul>
+                </div>
+                <div class="nav-button">
+                    <input type="checkbox" id="tasks-input">
+                    <label class="projects-button-ul task-button-ul" for="tasks-input">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Tasks</span>
+                    </label>
+                    <ul class="projects-ul task-ul">
+                        <li class="projects-button task-button">Active</li>
+                        <li class="projects-button task-button">Mine</li>
+                        <li class="projects-button task-button">All</li>
+                    </ul>
+                </div>
+                <div class="nav-button"><i class="fa-solid fa-book"></i> Docs</div>
+            </section>
+
+            <!-- Consists of all the main contents and visble in mobile view -->
+            <section class="inner-main-body">
+                <!-- Main project section start here -->
+                <section class="project-section y-axis-flex show-main-section">
+                    <header class="project-section-header x-axis-flex">
+                        <h1 class="project-heading"><i class="fa-solid fa-bars-progress"></i> Projects</h1>
+                        <button class="add-new-project-button">New</button>
+                    </header>
+                    <!-- All project section starts here -->
+                    <section class="all-projects-section x-axis-flex">
+                        <h1 class="nothing-heading">You have no Projects</h1>
+                        <!-- <section class="single-project-section y-axis-flex">
+                            <h1 class="project-name">Testing</h1>
+                            <p class="project-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro </p>
+                            <div class="percentage-wrapper">
+                                <div class="project-percentage"></div>
+                                <span class="percentage-value">27%</span>
+                            </div>
+                            <div class="projects-date-wrapper x-axis-flex">
+                                <p>Date</p>
+                                <p class="due-data">12-2-2023</p>
+                            </div>
+                            <div class="projects-status-wrapper x-axis-flex">
+                                <p>Status</p>
+                                <span class="common-status">Yet to start</span>
+                            </div>
+                        </section> -->
+                    </section>
+                    <!-- All project section ends here -->
+
+                    <!-- Overview of the project starts here -->
+                    <section class="project-overview-outer-layer x-axis-flex">
+                        <div class="project-overview y-axis-flex">
+                            <i class="fa-solid fa-xmark project-overview-close-button"></i>
+                            <h1 class="project-overview-name">Testing</h1>
+                            <div class="project-overview-description-wrapper y-axis-flex">
+                                <h2 class="project-overview-desc-heading">Description</h2>
+                                <p class="project-overview-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. PorroLorem ipsum dolor sit amet consectetur, adipisicing elit. Porro</p>
+                            </div>
+                            <div class="project-overview-users y-axis-flex">
+                                <h2>Users</h2>
+                                <ul class="project-overview-users-ul">
+                                    <li class="project-overview-user-li x-axis-flex">
+                                        <div class="project-overview-user-image"></div>
+                                        <p class="project-overview-user-name">Vicky</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="project-overview-from  x-axis-flex">
+                                <h2>From</h2>
+                                <h2 class="project-from-date">12-09-2023</h2>
+                            </div>
+                            <div class="project-overview-deadline x-axis-flex">
+                                <h2>DeadLine</h2>
+                                <h2 class="project-deadline-date">12-09-2023</h2>
+                            </div>
+                            <div class="project-overview-created-by-wrapper x-axis-flex">
+                                <h2>Created by</h2>
+                                <h2 class="created-by-value">Checking</h2>
+                            </div>
+                            <div class="project-overview-button-wrapper x-axis-flex">
+                                <button class="view-tasks-overview-project-button">View Tasks</button>
+                                <button class="exit-project-button">Exit</button>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Overview of the project ends here -->
+
+                    <section class="full-project-adding-section">
+                        <i class="fa-solid fa-xmark project-adding-close-button"></i>
+                        <!-- Project adding section starts here -->
+                        <form class="project-adding-section y-axis-flex">
+                            <div class="project-name-input common-project-adding-input-wrapper x-axis-flex">
+                                <label for="project-name-input-id">Project Name </label>
+                                <input type="text" id="project-name-input-id" autocomplete="off" class="common-input project-heading-input" required placeholder="Project Name">
+                            </div>
+
+                            <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
+                                <label for="search-member-input-id">People </label>
+                                <div class="search-input-tag-wrapper y-axis-flex">
+                                    <input type="search" required id="search-member-input-id" autocomplete="off" class="common-input project-people-adding-input">
+                                    <ul class="people-search-ul"></ul>
+                                </div>
+                            </div>
+                            <div class="from-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
+                                <label for="from-date-input-id">From Date </label>
+                                <input type="date" required id="from-date-input-id">
+                            </div> 
+                            <div class="to-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
+                                <label for="date-input-id">To Date </label>
+                                <input type="date" required id="date-input-id">
+                            </div>  
+                            <textarea class="project-desc-input" placeholder="Description"></textarea>
+                            <div class="create-project-button-wrapper">
+                                <button type="button" class="create-project-button">Create</button>
+                            </div>
+                        </form>
+                        <!-- Project adding section ends here -->
+                        </section>
+                </section>
+                <!-- Main project section ends here -->
+
+                <!--Main task section starts here -->
+                <section class="task-section y-axis-flex">
+                    <header class="task-section-header x-axis-flex">
+                        <h1 class="task-section-heading"><i class="fa-solid fa-list-check"></i> Tasks</h1>
+                        <button class="add-new-task-button">New</button>
+                    </header>
+
+                    <!-- All tasks section starts here -->
+                    <section class="all-tasks-section x-axis-flex">
+                        <h1 class="nothing-heading">You don't have a task yet</h1>
+                        <!-- <section class="single-task-section y-axis-flex">
+                            <h1 class="task-name">Task Heading</h1>
+                            <p class="task-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro </p>
+                            <div class="percentage-wrapper">
+                                <div class="task-percentage"></div>
+                                <span class="task-percentage-value">27%</span>
+                            </div>
+                            <div class="task-date-wrapper x-axis-flex">
+                                <p>Date</p>
+                                <p class="task-due-data">12-2-2023</p>
+                            </div>
+                            <div class="task-status-wrapper x-axis-flex">
+                                <p>Status</p>
+                                <span class="common-status">Yet to start</span>
+                            </div>
+                        </section> -->
+                    </section>
+                    <!-- All tasks section ends here -->
+                </section>
+                <!--Main task section ends here -->
+
+                <!-- Task adding section starts here -->
+                <form class="task-adding-section y-axis-flex">
+                    <i class="fa-solid fa-xmark task-adding-close-button"></i>
+                    <h1 class="task-adding-heading">Task</h1>
+                    <div class="common-task-adding-input-wrapper x-axis-flex">
+                        <label for="task-name-input-id">Task Name</label>
+                        <input type="text" required id="task-name-input-id" class="common-input">
+                    </div>
+                    <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
+                        <label for="search-member-input-id">People </label>
+                        <div class="search-input-tag-wrapper y-axis-flex">
+                            <input type="search" required id="search-member-task-input-id" autocomplete="off" class="common-input task-people-adding-input">
+                            <ul class="people-search-ul people-task-search-ul"></ul>
+                        </div>
+                    </div>
+                    <div class="from-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
+                        <label for="from-task-input-date-id">From Date </label>
+                        <input type="date" required id="from-task-input-date-id">
+                    </div>
+                    <div class="to-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
+                        <label for="to-task-input-date-id">To Date </label>
+                        <input type="date" required id="to-task-input-date-id">
+                    </div>
+                    <div class="project-choosing-wrapper common-task-adding-input-wrapper x-axis-flex">
+                        <label>Project</label>
+                        <select class="project-choosing-select" name="project-option">
+                            <option class="project-choosing-option">Checking</option>
+                        </select>
+                    </div>
+                    <textarea class="task-desc-input" placeholder="Description"></textarea>
+                    <button type="button" class="add-task-button">Add task</button>
+                </form>
+                <!-- Task adding section ends here -->
+
+                <!-- Bottom section for mobile view consists of buttons that are in navbar -->
+                <section class="bottom-section">
+                    <div class="projects-button-ul mobile-bottom-buttons"><i class="fa-solid fa-bars-progress"></i></div>
+                    <div class="task-button-ul mobile-bottom-buttons"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="mobile-bottom-buttons"><i class="fa-solid fa-book"></i></div>
+                    <div class="mobile-bottom-buttons"><div class="bottom-icon-profile"></div></div>
+                </section>
+                <!-- Bottom navbar ends here -->
+            </section>
+            <!-- inner main body ends here -->
+        </section>
+        <!-- main body ends here -->
+
+        <!-- Error showing section starts here -->
+        <section class="error-message-section x-axis-flex">
+            <div class="error-message-div y-axis-flex">
+              <header class="error-top-header x-axis-flex">
+                <h1>Oops!</h1>
+              </header>
+              <div class="error-message-div-wrapper x-axis-flex">
+                <div class="sorry-image-div"></div>
+                <div class="message">
+                  <p class="error-message-para">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</p>
+                </div>
+              </div>
+              <button class="error-close-button">Close</button>
+            </div>
+        </section>
+        <!-- Error showing section ends here --> 
+    </section>
+    <!-- full page ends here -->
+</body>
+<!-- Basic script files starts here -->
+<script src="assets/js/homejs/basicscripts/basic.js"></script>
+<script src="assets/js/homejs/basicscripts/mainview.js"></script>
+<script src="assets/js/homejs/basicscripts/maincontroller.js"></script>
+<!-- Basic script files ends here -->
+
+<!-- Project section scripts starts here -->
+<script src="assets/js/homejs/projectscripts/projectview.js"></script>
+<script src="assets/js/homejs/projectscripts/projectmodel.js"></script>
+<script src="assets/js/homejs/projectscripts/projectcontroller.js"></script>
+<!-- Project section scripts ends here -->
+
+<!-- Add project section starts here -->
+<script src="assets/js/homejs/addprojectsscripts/addprojectsview.js"></script>
+<script src="assets/js/homejs/addprojectsscripts/addprojectsmodel.js"></script>
+<script src="assets/js/homejs/addprojectsscripts/addprojectscontroller.js"></script>
+<!-- Add project section ends here -->
+
+<!-- Tasks scripts starts here -->
+<script src="assets/js/homejs/tasksscripts/taskview.js"></script>
+<script src="assets/js/homejs/tasksscripts/taskmodel.js"></script>
+<script src="assets/js/homejs/tasksscripts/taskcontroller.js"></script>
+<!-- Tasks scripts starts here -->
+
+<!-- Getting all details from current user script starts here -->
+<script src="assets/js/homejs/basicscripts/getalldetails.js"></script>
+<script src="assets/js/homejs/webserverscripts/weblogic.js"></script>
+<!-- Getting all details from current user script ends here -->
+</html>

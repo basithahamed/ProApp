@@ -1,0 +1,229 @@
+/* for the small image
+"https://loginpage.vickyp2.repl.co/TODOBGimg.jpg" */
+
+/* for the big image */
+/* https://loginpage.vickyp2.repl.co/toBg.jpg */
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.x-axis-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.y-axis-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-style-image {
+    background-image: url("/ProApp/assets/images/webView.jpg");
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.login-section {
+    border-radius: 10px;
+    z-index: 20;
+    background-color: white;
+    margin: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 95%;
+}
+
+.display-section {
+    padding: 10px;
+    width: 600px;
+    margin: 10px;
+    height: 650px;
+}
+
+.computer-image {
+    width: 400px;
+    height: 450px;
+}
+
+.about-head {
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.app-icon {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.app-icon-wrapper {
+    padding: 10px;
+    width: 100%;
+}
+
+.inner-login-page {
+    justify-content: space-around;
+    width: 450px;
+    height: 530px;
+    margin: 10px;
+    box-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 10px;
+}
+
+.sign-in-heading {
+    font-family: 'Poppins', sans-serif;
+    margin: 10px;
+}
+
+.login-info-div {
+    justify-content: space-around;
+    height: 400px;
+    font-size: 18px;
+    width: 90%;
+    padding: 10px;
+}
+
+.label-tag {
+    width: 80%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.normal-input {
+    width: 90%;
+}
+
+.label-tag-normal {
+    width: 90%;
+}
+
+.common-input-wrapper {
+    width: 90%;
+    margin: 10px auto;
+}
+
+.common-input {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background-color: transparent;
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.name-input {
+    width: 80%;
+}
+
+.password-field-and-icon-wrapper {
+    border-bottom: 1px solid black;
+    width: 90%;
+}
+
+.pass-input {
+    border: none;
+    width: 85%;
+}
+
+.bi-eye-slash-fill {
+    display: none;
+}
+
+.close-eye {
+    display: none;
+}
+
+.show-eye {
+    display: block;
+}
+
+.submit-button {
+    padding: 8px 10px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: #F88D24;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.submit-button:active {
+    transform: scale(0.9);
+}
+
+.register-link {
+    text-decoration: none;
+    color: #F88D24;
+    border-bottom: 1px solid white;
+    transition: 0.5s;
+}
+
+.register-link:hover {
+    border-bottom: 1px solid #F88D24;
+}
+
+.error {
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.input-message-wrapper {
+    text-align: center;
+    height: 120px;
+    border: 1px solid #F88D24;
+    width: 90%;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+}
+
+.input-message {
+    height: 50px;
+    padding: 10px;
+}
+
+.show-message-wrapper {
+    opacity: 1;
+}
+
+@media screen and (max-width: 1150px) {
+    .display-section {
+        display: none;
+    }
+
+    .inner-login-page {
+        height: 620px;
+    }
+
+    .background-style-image {
+        background-image: url("/ProApp/assets/images/mobileView.jpg");
+    }
+
+    .login-section {
+        background-color: transparent;
+        border: none;
+    }
+
+    .input-message {
+        height: 110px;
+    }
+}

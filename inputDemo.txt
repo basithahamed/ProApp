@@ -1,0 +1,66 @@
+Create User :
+    * request = post ,
+    * url = /user/create ,
+    * userData = {"firstName":"","lastName":"","emailId":"","password":""} ,
+    * format = JSONObject ,
+    * return = none
+
+Add Project :
+    * request = post ,
+    * url = /project/add ,
+    * data = {"projectName":"","fromDate":"","toDate":"","projectDesc":"","users":["",""]} ,
+    * format = JSONObject
+    * return = pid, projectName, projectDesc, fromDate, toDate, users 
+
+Delete Project :
+    * request  = post , 
+    * url = /project/delete , 
+    * projectId = int , 
+    * format = integer , 
+    * return = string
+
+Add Task :
+    * request = post ,
+    * url = /task/add , 
+    * taskData = {"taskName":"","fromDate":"","toDate":"","description":"","users":["",""]} ,
+    * format = JSONObject
+    * return = tid, taskName, fromDate, toDate, description, pid, users
+
+Delete Task : 
+     * request = post ,
+     * url = /task/delete , 
+     * taskId = int , 
+     * format = integer , 
+     * return = string 
+     
+Get Users :
+     * request = get , 
+     * url = /user/getusers , 
+     * id = int , 
+     * format = integer , 
+     * return = users
+
+Get Users By Pid :
+    * request = get , 
+    * url = /user/getusers/project , 
+    * id = int , 
+    * format = integer , 
+    * return = userId,UserName
+
+Get Current User :
+    * request = get , 
+    * url = /user/currentuser , 
+    * id = int , 
+    * format = integer , 
+    * return = current User
+
+Get All Projects :
+    * request = get , 
+    * url = /project/getall , 
+    * return = allprojects
+    
+Get All Tasks :
+    * request = get ,
+    * url = /task/getall , 
+    * return = alltasks
+

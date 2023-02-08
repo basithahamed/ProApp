@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/basidahamed/jar_files/javax.servlet-api-4.0.1.jar",
+        "/home/basidahamed/jar_files/json-simple-1.1.jar",
+        "/home/basidahamed/jar_files/mysql-connector-java-8.0.30.jar",
+        "/home/basidahamed/jar_files/websocket-api.jar",
+        "WEB-INF/lib/javax.servlet-api-4.0.1.jar",
+        "WEB-INF/lib/json-simple-1.1.jar",
+        "WEB-INF/lib/mysql-connector-java-8.0.30.jar",
+        "WEB-INF/lib/websocket-api.jar"
+    ],
+    "liveServer.settings.port": 5501
+}

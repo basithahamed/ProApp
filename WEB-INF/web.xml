@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <display-name>db</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+    </welcome-file-list>
+    <listener>
+        <listener-class>com.databasesdriver.SetConnection</listener-class>
+    </listener>
+    
+    <!-- login -->
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.servlets.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <!-- login Action -->
+    <servlet>
+        <servlet-name>LoginAction</servlet-name>
+        <servlet-class>com.servlets.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/LoginAction</url-pattern>
+    </servlet-mapping>
+
+    <!-- for the home page servlet -->
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>com.servlets.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <!-- Redirecting to register Page -->
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.servlets.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+    <!-- insertUser -->
+    <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>com.servlets.CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/user/create</url-pattern>
+    </servlet-mapping>
+
+    <!-- project add -->
+    <servlet>
+        <servlet-name>AddProject</servlet-name>
+        <servlet-class>com.servlets.AddProject</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddProject</servlet-name>
+        <url-pattern>/project/add</url-pattern>
+    </servlet-mapping>
+
+    <!-- project Delete -->
+    <servlet>
+        <servlet-name>DeleteProject</servlet-name>
+        <servlet-class>com.servlets.DeleteProject</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteProject</servlet-name>
+        <url-pattern>/project/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- get User  -->
+    <servlet>
+        <servlet-name>GetUsers</servlet-name>
+        <servlet-class>com.servlets.GetUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUsers</servlet-name>
+        <url-pattern>/user/getusers</url-pattern>
+    </servlet-mapping>
+
+    <!-- retriveUserbypid -->
+    <servlet>
+        <servlet-name>RetrieveProjectRelation</servlet-name>
+        <servlet-class>com.servlets.RetrieveProjectRelation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RetrieveProjectRelation</servlet-name>
+        <url-pattern>/user/getusers/project</url-pattern>
+    </servlet-mapping>
+
+    <!-- taskadd -->
+    <servlet>
+        <servlet-name>AddTask</servlet-name>
+        <servlet-class>com.servlets.AddTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddTask</servlet-name>
+        <url-pattern>/task/add</url-pattern>
+    </servlet-mapping>
+
+    <!-- for deleting the task  -->
+    <servlet>
+        <servlet-name>DeleteTask</servlet-name>
+        <servlet-class>com.servlets.DeleteTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTask</servlet-name>
+        <url-pattern>/task/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- for returning the currentUser; which is only for the internal case where user is login  -->
+    <servlet>
+        <servlet-name>CurrentUser</servlet-name>
+        <servlet-class>com.servlets.GetCurrentUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CurrentUser</servlet-name>
+        <url-pattern>/user/currentuser</url-pattern>
+    </servlet-mapping>
+
+    <!-- for getting the all project regarding to the user -->
+    <servlet>
+        <servlet-name>GetAllProject</servlet-name>
+        <servlet-class>com.servlets.GetAllProjects</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllProject</servlet-name>
+        <url-pattern>/project/getall</url-pattern>
+    </servlet-mapping>
+
+    <!-- for getting the all task regarding to the user -->
+    <servlet>
+        <servlet-name>GetAllTask</servlet-name>
+        <servlet-class>com.servlets.GetAllTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllTask</servlet-name>
+        <url-pattern>/task/getall</url-pattern>
+    </servlet-mapping>
+    
+    <!-- for deleting the project associated user -->
+    <servlet>
+        <servlet-name>RemoveProjectRelation</servlet-name>
+        <servlet-class>com.servlets.RemoveProjectRelation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveProjectRelation</servlet-name>
+        <url-pattern>/project/user/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- for the login filter -->
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/LoginAction</url-pattern>
+    </filter-mapping>
+
+     <!-- for the home filter -->
+     <filter>
+        <filter-name>HomeFilter</filter-name>
+        <filter-class>com.filters.HomeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HomeFilter</filter-name>
+        <url-pattern>/home</url-pattern>
+    </filter-mapping>
+
+</web-app>

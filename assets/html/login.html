@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Login</title>
+  <link href="assets/css/indexcss.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <!--This is for the background- orange svg image -->
+  <div class="background-style-image"></div>
+
+  <!--Full login section starts here -->
+  <section class="login-section x-axis-flex">
+    <!-- This section is for displaying the computer image and heading works for large screen -->
+    <section class="display-section y-axis-flex">
+      <div class="app-icon-wrapper">
+        <img class="app-icon" src="https://lh6.ggpht.com/aiY9J8YK8Lzr7hMC7nZWlZGiBn8TF_PY7NVNy5U1i5g4zG8yEPzEZTJK2WwbWJUogg" alt="app icon">
+      </div>
+      <h2 class="about-head">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </h2>
+      <img class="computer-image" src="https://img.freepik.com/premium-vector/modern-flat-design-analysis-website-banner-vector-illustration-concept-business-analysis-market-research-product-testing-data-analysis_662353-711.jpg?w=1060" alt="computer image">
+    </section>
+    <!-- displaying computer image section ends here -->
+
+    <!-- form section starts here -->
+    <div class="inner-login-page y-axis-flex">
+      <h1 class="sign-in-heading">Sign In</h1>
+      
+      <!-- inside this div all input tags are there -->
+      <div class="login-info-div y-axis-flex">
+        <!-- This div consists of FirstName and LastName input fields -->
+<!--         <div class="common-input-wrapper name-input-wrapper x-axis-flex">
+          <div class="first-name-wrapper y-axis-flex">
+            <label for="first-name-input" class="label-tag">First name</label>
+            <input type="text" id="first-name-input" class="common-input name-input">
+          </div>
+          <div class="last-name-wrapper y-axis-flex">
+            <label for="last-name-input" class="label-tag">Last name</label>
+            <input type="text" id="last-name-input" class="common-input name-input">
+          </div>
+        </div>
+ -->
+        <!-- This div has email input field -->
+        <div class="common-input-wrapper y-axis-flex">
+          <label for="email-input" class="label-tag label-tag-normal">Email</label>
+          <input type="text" id="email-input" class="common-input normal-input">
+        </div>
+
+        <!-- This div has password input field -->
+        <div class="common-input-wrapper y-axis-flex">
+          <label for="pass-input-tag" class="label-tag label-tag-normal">Password</label>
+          <div class="password-field-and-icon-wrapper x-axis-flex">
+            <input type="password" class="common-input pass-input" id="pass-input-tag">
+            <i class="bi bi-eye-fill common-eye"></i>
+            <i class="bi bi-eye-slash-fill common-eye"></i>
+          </div>
+        </div>
+
+        <!-- This div is for displaying error message -->
+        <div class="input-message-wrapper">
+          <p class="input-message x-axis-flex">Error</p>
+        </div>
+        
+        <button class="submit-button">GO</button>
+        <a href="register" target="_blank" class="register-link"><span>Register a account</span></a>
+      </div>
+    </div>
+    <!-- form section ends here -->
+  </section>
+  <!--Full login section ends here -->
+</body>
+<script src="assets/js/homejs.js"></script> 
+</html>
