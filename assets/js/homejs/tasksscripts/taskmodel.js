@@ -20,7 +20,11 @@ let TaskModel = (function(){
         console.log(serverObject.tid, serverObject.tname, serverObject.description, serverObject.fromDate, serverObject.toDate, serverObject.projectId, serverObject.users, serverObject.createdBy);
         return new Task(serverObject.tid, serverObject.tname, serverObject.description, serverObject.fromDate, serverObject.toDate, serverObject.projectId, serverObject.users, serverObject.createdBy);
     }
-
+    let getIndexOfTask = function(id){
+        return tasksArray.findIndex(function(elem){
+            return elem.id == id;
+        });
+    }
     let getTasks = function(){
         return tasksArray.slice();
     }
@@ -39,7 +43,7 @@ let TaskModel = (function(){
         formData.append("taskData", JSON.stringify(tempObj));
         
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/ProApp/task/add");
+        xhr.open("POST", "/ProAppBackup/task/add");
         xhr.send(formData);
         xhr.onload = function(){
             let serverObject = JSON.parse(xhr.response);
@@ -54,6 +58,7 @@ let TaskModel = (function(){
         addTask : addTask,
         createTask : createTask,
         getTasks : getTasks,
-        changeServerObject : changeServerObject
+        changeServerObject : changeServerObject,
+        getIndexOfTask : getIndexOfTask
     }
 })();

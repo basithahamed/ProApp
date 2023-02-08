@@ -1,4 +1,4 @@
-.project-overview-outer-layer{
+.project-overview-outer-layer, .task-overview-outer-layer{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -10,10 +10,10 @@
     transition: 0.5s;
     align-items: center;
 }
-.show-project-overview{
+.show-project-overview, .show-task-overview{
     transform: scale(1) rotate(0deg);
 }
-.project-overview{
+.project-overview, .task-overview{
     position: relative;
     max-width: 600px;
     width: 95%;
@@ -23,15 +23,15 @@
     padding: 10px 10px;
     justify-content: space-between;
 }
-.project-overview-name{
+.project-overview-name, .task-overview-name{
     font-size: 35px;
 }
-.project-overview-description-wrapper{
+.project-overview-description-wrapper, .task-overview-description-wrapper{
     width: 100%;
     height: 20%;
     /* border: 1px solid white; */
 }
-.project-overview-description{
+.project-overview-description, .task-overview-description{
     width: 90%;
     text-align: center;
     height: 90%;
@@ -44,14 +44,17 @@
 .project-overview-description::-webkit-scrollbar{
     display: none;
 }
-.project-overview-desc-heading{
+.task-overview-description::-webkit-scrollbar{
+    display: none;
+}
+.project-overview-desc-heading, .task-overview-desc-heading{
     padding: 10px;
 }
-.project-overview-users{
+.project-overview-users, .task-overview-users{
     width: 100%;
     height: 25%; 
 }
-.project-overview-users-ul{
+.project-overview-users-ul, .task-overview-users-ul{
     max-width: 230px;
     width: 90%;
     border: 1px solid white;
@@ -63,41 +66,44 @@
 .project-overview-users-ul::-webkit-scrollbar{
     display: none;
 }
-.project-overview-user-li{
+.task-overview-users-ul::-webkit-scrollbar{
+    display: none;
+}
+.project-overview-user-li, .task-overview-user-li{
     padding: 10px;
     justify-content: space-between;
     border: 1px solid white;
 }
-.project-overview-user-image{
+.project-overview-user-image, .task-overview-user-image{
     width: 40px;
     height: 40px;
-    background-image: url("/ProApp/assets/images/user.png");
+    background-image: url("/ProAppBackup/assets/images/user.png");
     background-size: cover;
     background-position: center;
     border: 1px solid white;
     border-radius: 50%;
 }
-.project-overview-user-name{
+.project-overview-user-name, .task-overview-user-name{
     font-size: 25px;
     font-weight: 600;
 }
-.project-overview-deadline, .project-overview-from{
+.project-overview-deadline, .project-overview-from, .task-overview-from, .task-overview-deadline{
     width: 100%;
     padding: 10px;
     margin: 15px;
     justify-content: space-around;
 }
-.project-overview-created-by-wrapper{
+.project-overview-created-by-wrapper, .task-overview-created-by-wrapper{
     width: 100%;
     justify-content: space-around;
     padding: 10px;
     margin: 10px;
 }
-.project-overview-button-wrapper{
+.project-overview-button-wrapper, .task-overview-button-wrapper{
     width: 100%;
     justify-content: space-around;
 }
-.exit-project-button, .view-tasks-overview-project-button{
+.exit-project-button, .view-tasks-overview-project-button, .exit-task-button{
     padding: 10px;
     font-size: 20px;
     background-color: red;

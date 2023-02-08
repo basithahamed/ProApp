@@ -26,7 +26,16 @@ let TaskView = (function(){
         taskPercentage : "task-percentage",
         taskPercentageValue : "task-percentage-value",
         taskStatusWrapper : "task-status-wrapper",
-        commonStatus : "common-status"
+        commonStatus : "common-status",
+        fullTaskOverview : ".task-overview-outer-layer",
+        showTaskOverview : "show-task-overview",
+        overViewName : ".task-overview-name",
+        overViewDesc : ".task-overview-description",
+        overViewFromDate : ".task-from-date",
+        overViewToDate : ".task-deadline-date",
+        taskOverViewCreatedBy : ".task-created-by-value",
+        overViewUl : ".task-overview-users-ul",
+        overViewExitButton : ".exit-task-button"
     }
 
     let renderPeopleSearchResult = function(userDetails, typedText){
@@ -66,6 +75,79 @@ let TaskView = (function(){
                 _(domStrings.taskUsersUl).append(li);
             }
         });
+    }
+    //To render people in the task
+    let renderTaskParticipants = function(users){
+        //Reseting users ul
+        _(domStrings.overViewUl).innerHTML = "";
+
+        users.forEach(function(elem){
+            //Creating elements for users list
+            let liTag = document.createElement("li");
+            let divTag = document.createElement("div");
+            let paraTag = document.createElement("p");
+
+            //Adding classes to elements
+            liTag.classList.add(domStrings.overViewLi);
+            liTag.classList.add("x-axis-flex");
+            liTag.classList.add(elem.userId);
+
+            divTag.classList.add(domStrings.overViewUserImage);
+            paraTag.classList.add(domStrings.overViewUserName);
+
+            //Adding content to the elements
+            divTag.style.backgroundImage = "url(assets/images/user.png)";
+            paraTag.textContent = elem.userName;
+
+            //Inserting elements
+            liTag.append(divTag, paraTag);
+            _(domStrings.overViewUl).append(liTag);
+        });
+    }
+    //Setting values in Task overview section 
+    let setOverViewValues = function(taskId){
+        //get project by id here
+        let task = TaskModel.getTasks()[TaskModel.getIndexOfTask(taskId)];
+        _(domStrings.overViewName).innerText = task.taskName;
+        _(domStrings.overViewDesc).innerText = task.taskDescription;
+        _(domStrings.overViewFromDate).innerText = task.fromDate;
+        _(domStrings.overViewToDate).innerText = task.toDate;
+        _(domStrings.taskOverViewCreatedBy).id = task.createdBy;
+        _(domStrings.fullTaskOverview).id = taskId;
+
+        renderTaskParticipants(task.users);
+
+        //This condition is for changing the text in exit button based on createdBy
+        if(task.createdBy == USERID){
+            _(domStrings.overViewExitButton).innerText = "Delete";
+        }
+        else {
+            _(domStrings.overViewExitButton).innerText = "Exit";
+        }
+        
+        ProjectView.getUserById(task.createdBy, _(domStrings.taskOverViewCreatedBy));
+    }
+    //This is for showing the full project when we clicked a tasks
+    let showFullTask = function(event){
+        normalClickAudio();
+        if(event.target.tagName == "SECTION"){
+            setOverViewValues(event.target.classList[2]);
+            _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
+
+        }
+        else if (event.target.parentElement.tagName == "SECTION"){
+            console.log("second if");
+            setOverViewValues(event.target.parentElement.classList[2]);
+            _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
+        }
+        else if (event.target.parentElement.parentElement.tagName == "SECTION"){
+            console.log("third if");
+            setOverViewValues(event.target.parentElement.parentElement.classList[2]);
+            _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
+        }
+        else {
+            console.log("Problem");
+        }
     }
     //This function is to render project options
     let renderProjectOption = function(){
@@ -140,6 +222,7 @@ let TaskView = (function(){
             projectStatusWrapper.append(projectStatusHead, projectStatusValue);
 
             mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
+            mainSection.addEventListener("click", showFullTask);
             //Adding elements to its parent element ends here 
 
             _(domStrings.fullTaskSection).append(mainSection);

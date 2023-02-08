@@ -137,6 +137,7 @@ let ProjectView = (function(){
         _(domStrings.overViewToDate).innerText = project.toDate;
         _(domStrings.projectOverViewCreatedBy).id = project.createdBy;
         _(domStrings.fullProjectOverView).id = projectId;
+
         renderProjectParticipants(project.users);
 
         //This condition is for changing the text in exit button based on createdBy
@@ -153,7 +154,6 @@ let ProjectView = (function(){
     let showFullProject = function(event){
         normalClickAudio();
         if(event.target.tagName == "SECTION"){
-            console.log("first if");
             setOverViewValues(event.target.classList[2]);
             _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
 
@@ -172,6 +172,7 @@ let ProjectView = (function(){
             console.log("Problem");
         }
     }
+    //Rendering all projects 
     let renderProjects = function(projects){
         //Reseting all projects
         _(domStrings.fullProjectSection).innerHTML = "";
@@ -229,6 +230,10 @@ let ProjectView = (function(){
 
             mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
             mainSection.addEventListener("click", showFullProject);
+            // mainSection.addEventListener("dblclick", function(event){
+            //     event.preventDefault();
+            //     alert("double clicked");
+            // })
             //Adding elements to its parent element ends here 
 
             _(domStrings.fullProjectSection).append(mainSection);
@@ -238,6 +243,7 @@ let ProjectView = (function(){
     return {
         getDomStrings : getDomStrings,
         renderProjects : renderProjects,
-        renderPeopleSearchResult : renderPeopleSearchResult
+        renderPeopleSearchResult : renderPeopleSearchResult,
+        getUserById : getUserById
     }
 })();

@@ -44,9 +44,9 @@
                         <span>Projects</span>
                     </label>
                     <ul class="projects-ul">
-                        <li class="projects-button">Active</li>
-                        <li class="projects-button">Mine</li>
-                        <li class="projects-button">All</li>
+                        <li class="projects-button active-project-button">Active</li>
+                        <li class="projects-button mine-project-button">Mine</li>
+                        <li class="projects-button all-project-button">All</li>
                     </ul>
                 </div>
                 <div class="nav-button">
@@ -75,22 +75,6 @@
                     <!-- All project section starts here -->
                     <section class="all-projects-section x-axis-flex">
                         <h1 class="nothing-heading">You have no Projects</h1>
-                        <!-- <section class="single-project-section y-axis-flex">
-                            <h1 class="project-name">Testing</h1>
-                            <p class="project-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro </p>
-                            <div class="percentage-wrapper">
-                                <div class="project-percentage"></div>
-                                <span class="percentage-value">27%</span>
-                            </div>
-                            <div class="projects-date-wrapper x-axis-flex">
-                                <p>Date</p>
-                                <p class="due-data">12-2-2023</p>
-                            </div>
-                            <div class="projects-status-wrapper x-axis-flex">
-                                <p>Status</p>
-                                <span class="common-status">Yet to start</span>
-                            </div>
-                        </section> -->
                     </section>
                     <!-- All project section ends here -->
 
@@ -172,6 +156,43 @@
                         <h1 class="task-section-heading"><i class="fa-solid fa-list-check"></i> Tasks</h1>
                         <button class="add-new-task-button">New</button>
                     </header>
+
+                    <!--Task overview section starts here -->
+                    <section class="task-overview-outer-layer x-axis-flex">
+                        <div class="task-overview y-axis-flex">
+                            <i class="fa-solid fa-xmark task-overview-close-button"></i>
+                            <h1 class="task-overview-name">Testing</h1>
+                            <div class="task-overview-description-wrapper y-axis-flex">
+                                <h2 class="task-overview-desc-heading">Description</h2>
+                                <p class="task-overview-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. PorroLorem ipsum dolor sit amet consectetur, adipisicing elit. Porro</p>
+                            </div>
+                            <div class="task-overview-users y-axis-flex">
+                                <h2>Users</h2>
+                                <ul class="task-overview-users-ul">
+                                    <li class="task-overview-user-li x-axis-flex">
+                                        <div class="task-overview-user-image"></div>
+                                        <p class="task-overview-user-name">Vicky</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="task-overview-from  x-axis-flex">
+                                <h2>From</h2>
+                                <h2 class="task-from-date">12-09-2023</h2>
+                            </div>
+                            <div class="task-overview-deadline x-axis-flex">
+                                <h2>DeadLine</h2>
+                                <h2 class="task-deadline-date">12-09-2023</h2>
+                            </div>
+                            <div class="task-overview-created-by-wrapper x-axis-flex">
+                                <h2>Created by</h2>
+                                <h2 class="task-created-by-value">Checking</h2>
+                            </div>
+                            <div class="task-overview-button-wrapper x-axis-flex">
+                                <button class="exit-task-button">Exit</button>
+                            </div>
+                        </div>
+                    </section>
+                    <!--Task overview section ends here -->
 
                     <!-- All tasks section starts here -->
                     <section class="all-tasks-section x-axis-flex">
@@ -286,6 +307,12 @@
 <script src="assets/js/homejs/tasksscripts/taskmodel.js"></script>
 <script src="assets/js/homejs/tasksscripts/taskcontroller.js"></script>
 <!-- Tasks scripts starts here -->
+
+<!-- Sub Project buttons scripts starts here -->
+<script src="assets/js/homejs/projectsubscripts/projectsubview.js"></script>
+<script src="assets/js/homejs/projectsubscripts/projectsubmodel.js"></script>
+<script src="assets/js/homejs/projectsubscripts/projectsubcontroller.js"></script>
+<!-- Sub Project buttons scripts starts here -->
 
 <!-- Getting all details from current user script starts here -->
 <script src="assets/js/homejs/basicscripts/getalldetails.js"></script>
