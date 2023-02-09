@@ -34,7 +34,7 @@ public class AddTaskToDb {
                     + "','" + toDate + "'," + projectId +",'"+description+"',"+createdBy +")");
 
             // rendering the latest tid from tasks using pid
-            rs = stmt.executeQuery("select * from tasks where pid = "+projectId);
+            rs = stmt.executeQuery("select * from tasks where pid = "+projectId + " order  by tid desc limit 1");
             rs.next();
             int tid = rs.getInt("tid");
             

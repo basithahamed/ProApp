@@ -22,7 +22,7 @@ let TaskModel = (function(){
     }
     let getIndexOfTask = function(id){
         return tasksArray.findIndex(function(elem){
-            return elem.id == id;
+            return elem.taskId == id;
         });
     }
     let getTasks = function(){
