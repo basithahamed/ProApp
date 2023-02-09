@@ -29,13 +29,17 @@ let TaskView = (function(){
         commonStatus : "common-status",
         fullTaskOverview : ".task-overview-outer-layer",
         showTaskOverview : "show-task-overview",
+        taskOverViewCloseButton : ".task-overview-close-button",
+        overViewLi : "task-overview-user-li",
+        overViewUserName : "task-overview-user-name",
         overViewName : ".task-overview-name",
         overViewDesc : ".task-overview-description",
         overViewFromDate : ".task-from-date",
         overViewToDate : ".task-deadline-date",
         taskOverViewCreatedBy : ".task-created-by-value",
         overViewUl : ".task-overview-users-ul",
-        overViewExitButton : ".exit-task-button"
+        overViewExitButton : ".exit-task-button",
+        overViewUserImage : "task-overview-user-image"
     }
 
     let renderPeopleSearchResult = function(userDetails, typedText){
@@ -106,8 +110,10 @@ let TaskView = (function(){
     }
     //Setting values in Task overview section 
     let setOverViewValues = function(taskId){
+        console.log("Task id = " + taskId);
         //get project by id here
         let task = TaskModel.getTasks()[TaskModel.getIndexOfTask(taskId)];
+        console.log("Task = " + task);
         _(domStrings.overViewName).innerText = task.taskName;
         _(domStrings.overViewDesc).innerText = task.taskDescription;
         _(domStrings.overViewFromDate).innerText = task.fromDate;
@@ -124,7 +130,7 @@ let TaskView = (function(){
         else {
             _(domStrings.overViewExitButton).innerText = "Exit";
         }
-        
+        console.log(task.createdBy);
         ProjectView.getUserById(task.createdBy, _(domStrings.taskOverViewCreatedBy));
     }
     //This is for showing the full project when we clicked a tasks
@@ -189,6 +195,7 @@ let TaskView = (function(){
             //Adding classes to the elements starts here
             mainSection.classList.add(domStrings.singleTaskSection);
             mainSection.classList.add("y-axis-flex");
+            mainSection.classList.add(elem.taskId);
 
             projectHeading.classList.add(domStrings.taskNameTag);
             projectDescription.classList.add(domStrings.taskDescTag);

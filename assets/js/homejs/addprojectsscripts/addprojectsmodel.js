@@ -29,7 +29,7 @@ let AddProjectModel = (function(){
         formData.append("data", JSON.stringify(tempObj));
         
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/ProApp/project/add");
+        xhr.open("POST", "/ProAppBackup/project/add");
         xhr.send(formData);
         xhr.onload = function(){
             let serverObject = JSON.parse(xhr.response); 

@@ -12,10 +12,10 @@ public class UserAllTaskFromDb {
     public JSONArray retrieveTask(Connection con, int uid) {
         JSONArray jsonArray = new JSONArray();
         try {
-            JSONObject jsonObject = new JSONObject();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from task_relation inner join tasks on task_relation.tid = tasks.tid where task_relation.uid ="+uid);
             while (rs.next()) {
+                JSONObject jsonObject = new JSONObject();
                 jsonObject.put("tname", rs.getString("tname"));
                 jsonObject.put("tid", rs.getInt("tid"));
                 jsonObject.put("users", new UserProjectRelation().GetUidByTid(con, rs.getInt("tid")));

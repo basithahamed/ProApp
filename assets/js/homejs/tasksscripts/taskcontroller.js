@@ -6,7 +6,7 @@ let TaskController = (function(view, model){
     }
     let getUsersForTasks = function(typedText){
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/ProApp/user/getusers?id=all");
+        xhr.open("GET", "/ProAppBackup/user/getusers?id=all");
         xhr.send();
         xhr.onload = function(){
             view.renderPeopleSearchResult(JSON.parse(xhr.response), typedText);
@@ -43,7 +43,7 @@ let TaskController = (function(view, model){
             let flag = false;
             let userId = _(view.getDomStrings().taskUsers).classList[2];
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://10.52.0.190:8050/ProApp/user/getusers?id=all");
+            xhr.open("GET", "http://localhost:8787/ProAppBackup/user/getusers?id=all");
             xhr.send();
             xhr.onload = function(){
                 //Doing everything inside onload function because of asynchronous problem.
@@ -117,8 +117,24 @@ let TaskController = (function(view, model){
             } 
         });
 
-        //This is for full task section
-        // _(view.getDomStrings().)
+        //This is for task overview closing action 
+        _(view.getDomStrings().taskOverViewCloseButton).addEventListener("click", function(){
+            normalClickAudio();
+            _(view.getDomStrings().fullTaskOverview).removeAttribute("id");
+            _(view.getDomStrings().fullTaskOverview).classList.remove(view.getDomStrings().showTaskOverview);
+        });
+
+        //This is for task  overview closing button
+        _(view.getDomStrings().overViewExitButton).addEventListener("click", function(){
+            if(USERID == _(view.getDomStrings().taskOverViewCreatedBy).id){
+                console.log("Remove project");
+                removeProject(_(view.getDomStrings().fullTaskOverview).id);
+            }
+            else {
+                console.log("Exit from project");
+                exitFromProject(_(view.getDomStrings().fullTaskOverview).id);
+            }
+        });
     }
     init();
 

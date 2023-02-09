@@ -96,6 +96,7 @@ let ProjectView = (function(){
         xhr.open("GET", "user/getusers?id=" + id);
         xhr.send();
         xhr.onload = function(){
+            console.log(JSON.parse(xhr.response));
             createdByElement.innerText = JSON.parse(xhr.response).userName;
         }
     }

@@ -33,7 +33,7 @@ body{
     border: 1px solid black;
 }
 .mini-photo{
-    background-image: url("/ProApp/assets/images/user.png");
+    background-image: url("/ProAppBackup/assets/images/user.png");
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -90,7 +90,7 @@ body{
   .sorry-image-div{
     width: 200px;
     height: 200px;
-    background-image: url("/ProApp/assets/images/sorry.webp");
+    background-image: url("/ProAppBackup/assets/images/sorry.webp");
     background-size: 90% 100%;
   }
   .message{
