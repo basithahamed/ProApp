@@ -6,7 +6,7 @@ let TaskController = (function(view, model){
     }
     let getUsersForTasks = function(typedText){
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/ProAppBackup/user/getusers?id=all");
+        xhr.open("GET", "/ProApp/user/getusers?id=all");
         xhr.send();
         xhr.onload = function(){
             view.renderPeopleSearchResult(JSON.parse(xhr.response), typedText);
@@ -43,7 +43,7 @@ let TaskController = (function(view, model){
             let flag = false;
             let userId = _(view.getDomStrings().taskUsers).classList[2];
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:8787/ProAppBackup/user/getusers?id=all");
+            xhr.open("GET", "http://10.52.0.190:8050/ProApp/user/getusers?id=all");
             xhr.send();
             xhr.onload = function(){
                 //Doing everything inside onload function because of asynchronous problem.

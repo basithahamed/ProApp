@@ -8,7 +8,7 @@ let ProjectController = (function(view, model){
     //This is to get the users, used in oninput event
     let getUsers = function(typedText){
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/ProAppBackup/user/getusers?id=all");
+        xhr.open("GET", "/ProApp/user/getusers?id=all");
         xhr.send();
         xhr.onload = function(){
             view.renderPeopleSearchResult(JSON.parse(xhr.response), typedText);

@@ -43,7 +43,7 @@ let TaskModel = (function(){
         formData.append("taskData", JSON.stringify(tempObj));
         
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/ProAppBackup/task/add");
+        xhr.open("POST", "/ProApp/task/add");
         xhr.send(formData);
         xhr.onload = function(){
             let serverObject = JSON.parse(xhr.response);

@@ -1,8 +1,8 @@
 /* for the small image
-"https://loginpage.vickyp2.repl.co/TODOBGimg.jpg" */
+"https://loginpage.todoadminsp2.repl.co/TODOBGimg.jpg" */
 
 /* for the big image */
-/* https://loginpage.vickyp2.repl.co/toBg.jpg */
+/* https://loginpage.todoadminsp2.repl.co/toBg.jpg */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +30,7 @@ body {
 }
 
 .background-style-image {
-    background-image: url("/ProAppBackup/assets/images/webView.jpg");
+    background-image: url("/ProApp/assets/images/webView.jpg");
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -215,7 +215,7 @@ body {
     }
 
     .background-style-image {
-        background-image: url("/ProAppBackup/assets/images/mobileView.jpg");
+        background-image: url("/ProApp/assets/images/mobileView.jpg");
     }
 
     .login-section {

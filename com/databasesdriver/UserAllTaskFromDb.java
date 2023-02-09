@@ -18,12 +18,12 @@ public class UserAllTaskFromDb {
             while (rs.next()) {
                 jsonObject.put("tname", rs.getString("tname"));
                 jsonObject.put("tid", rs.getInt("tid"));
+                jsonObject.put("users", new UserProjectRelation().GetUidByTid(con, rs.getInt("tid")));
                 jsonObject.put("status",rs.getString("status"));
                 jsonObject.put("fromDate", rs.getString("fromdate"));
                 jsonObject.put("toDate", rs.getString("todate"));
                 jsonObject.put("createdBy", rs.getInt("created_by"));
                 jsonObject.put("projectId",rs.getInt("pid"));
-                jsonObject.put("users", new UserProjectRelation().GetUidByTid(con, rs.getInt("tid")));
                 jsonObject.put("description", rs.getString("description"));
                 jsonArray.add(jsonObject);
             }

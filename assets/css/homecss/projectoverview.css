@@ -77,7 +77,7 @@
 .project-overview-user-image, .task-overview-user-image{
     width: 40px;
     height: 40px;
-    background-image: url("/ProAppBackup/assets/images/user.png");
+    background-image: url("/ProApp/assets/images/user.png");
     background-size: cover;
     background-position: center;
     border: 1px solid white;
