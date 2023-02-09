@@ -12,6 +12,35 @@ let TaskController = (function(view, model){
             view.renderPeopleSearchResult(JSON.parse(xhr.response), typedText);
         }
     }
+    //This is to remove task works if current user is the one who created that specific task
+    let removeTask = function(id){
+        let xhr = new XMLHttpRequest();
+        
+        xhr.open("POST", "task/delete?taskId=" + id);
+        xhr.send();
+        xhr.onload = function(){
+            model.removeTask(id);
+            view.renderTasks(model.getTasks());
+            _(view.getDomStrings().taskOverViewCloseButton).click();
+        }
+    }
+    //This is to exit from a task
+    let exitFromTask = function(id){
+        let xhr = new XMLHttpRequest();
+        let obj = {
+            userId : USERID,
+            taskId : id
+        }
+        let formData = new FormData();
+        formData.append("userData", JSON.stringify(obj));
+        xhr.open("POST", "task/user/delete");
+        xhr.send(formData);
+        xhr.onload = function(){
+            model.removeTask(id);
+            view.renderTasks(model.getTasks());
+            _(view.getDomStrings().taskOverViewCloseButton).click();
+        }
+    }
     let validateProjectForm = function(){   
         //Getting all form input datas
         let taskUser = ["" + USERID];
@@ -128,11 +157,11 @@ let TaskController = (function(view, model){
         _(view.getDomStrings().overViewExitButton).addEventListener("click", function(){
             if(USERID == _(view.getDomStrings().taskOverViewCreatedBy).id){
                 console.log("Remove project");
-                removeProject(_(view.getDomStrings().fullTaskOverview).id);
+                removeTask(_(view.getDomStrings().fullTaskOverview).id);
             }
             else {
                 console.log("Exit from project");
-                exitFromProject(_(view.getDomStrings().fullTaskOverview).id);
+                exitFromTask(_(view.getDomStrings().fullTaskOverview).id);
             }
         });
     }

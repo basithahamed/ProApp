@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Caudex:ital@1&display=swap');
 *{
-    box-sizing: border-box;
-    margin: 0;
-    /* font-family: 'Poppins', sans-serif; */
-    font-family: 'MuseoModerno';
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Caudex', serif;
 }
 body{
     background-color: rgb(29,27,33);
@@ -69,6 +69,14 @@ body{
 }
 .nothing-heading{
   font-size: 40px;
+}
+.completed-section{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
   .error-message-div{
     max-width: 550px;

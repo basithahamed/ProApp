@@ -20,9 +20,7 @@ let ProjectSubView = (function(){
     let renderMineProjects = function(projectArray){
         let mineProjects = [];
         projectArray.forEach(function(elem){
-            console.log("outside if = " + "USERID = " + USERID + ", PROJECT created by = " + elem.createdBy);
             if(elem.createdBy == USERID){
-                console.log("USERID = " + USERID + ", PROJECT created by = " + elem.createdBy);
                 mineProjects.push(elem);
             }
         });

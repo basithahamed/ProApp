@@ -36,6 +36,7 @@ let ProjectView = (function(){
         fullProjectOverview : ".project-overview-outer-layer",
         projectOverViewCloseButton : ".project-overview-close-button",
         showProjectOverview : "show-project-overview",
+        showInnerOverview : "show-inner-over-view",
         projectOverViewCreatedBy : ".created-by-value",
         overViewName : ".project-overview-name",
         overViewDesc : ".project-overview-description",
@@ -46,7 +47,9 @@ let ProjectView = (function(){
         overViewUserImage : "project-overview-user-image",
         overViewUserName : "project-overview-user-name",
         overViewExitButton : ".exit-project-button",
-        fullProjectOverView : ".project-overview"
+        fullProjectOverView : ".project-overview",
+        changeProjectStatusWrapper : "change-project-status-wrapper",
+        changeProjectStatusButton : ".change-project-status-button",
     }
     let getDomStrings = function(){
         return domStrings;
@@ -55,7 +58,7 @@ let ProjectView = (function(){
     let renderPeopleSearchResult = function(userDetails, typedText){
         _(domStrings.projectPeopleUl).innerHTML = "";
         userDetails.forEach(function(elem){
-            if(elem.userName.toLowerCase().startsWith(typedText) && typedText != ""){
+            if(elem.userName.toLowerCase().startsWith(typedText) && typedText != "" && elem.uid != USERID){
                 //Creating elements here
                 let li = document.createElement("li");
                 let div = document.createElement("div");
@@ -157,7 +160,7 @@ let ProjectView = (function(){
         if(event.target.tagName == "SECTION"){
             setOverViewValues(event.target.classList[2]);
             _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
-
+            console.log()
         }
         else if (event.target.parentElement.tagName == "SECTION"){
             console.log("second if");
@@ -177,69 +180,81 @@ let ProjectView = (function(){
     let renderProjects = function(projects){
         //Reseting all projects
         _(domStrings.fullProjectSection).innerHTML = "";
-        projects.forEach(function(elem){
-            //Creating elements for a project section starts here 
-            let mainSection = document.createElement("section");
-            let projectHeading = document.createElement("h1");
-            let projectDescription = document.createElement("p");
-            let percentageWrapper = document.createElement("div");
-            let projectPercentage = document.createElement("div");
-            let percentageValue = document.createElement("span");
-            let projectDateWrapper = document.createElement("div");
-            let projectDateHead = document.createElement("p");
-            let projectDataValue = document.createElement("p");
-            let projectStatusWrapper = document.createElement("div");
-            let projectStatusHead = document.createElement("p");
-            let projectStatusValue = document.createElement("span");
-            //Creating elements for a project section ends here 
+        if(projects.length){
+            projects.forEach(function(elem){
+                //Creating elements for a project section starts here 
+                let mainSection = document.createElement("section");
+                let projectHeading = document.createElement("h1");
+                let projectDescription = document.createElement("p");
+                let percentageWrapper = document.createElement("div");
+                let projectPercentage = document.createElement("div");
+                let percentageValue = document.createElement("span");
+                let projectDateWrapper = document.createElement("div");
+                let projectDateHead = document.createElement("p");
+                let projectDataValue = document.createElement("p");
+                let projectStatusWrapper = document.createElement("div");
+                let projectStatusHead = document.createElement("p");
+                let projectStatusValue = document.createElement("span");
+                let changeStatusButtonWrapper = document.createElement("div");
+                let changeStatusButton = document.createElement("button");
+                //Creating elements for a project section ends here 
+    
+                //Adding classes to the elements starts here
+                mainSection.classList.add(domStrings.singleProjectSection.slice(1));
+                mainSection.classList.add("y-axis-flex");
+                mainSection.classList.add(elem.id);
+    
+                projectHeading.classList.add(domStrings.projectName.slice(1));
+                projectDescription.classList.add(domStrings.projectDescription.slice(1));
+    
+                percentageWrapper.classList.add(domStrings.projectPercentageWrapper.slice(1));
+                projectPercentage.classList.add(domStrings.projectPercentage.slice(1));
+                percentageValue.classList.add(domStrings.projectPercentageValue.slice(1));
+    
+                projectDateWrapper.classList.add(domStrings.projectDateWrapper.slice(1));
+                projectDateWrapper.classList.add("x-axis-flex");
+                projectDateHead.textContent = "Date ";
+                projectDataValue.classList.add(domStrings.projectDateCommonClass.slice(1));
+    
+                projectStatusWrapper.classList.add(domStrings.projectStatusWrapper.slice(1));
+                projectStatusWrapper.classList.add("x-axis-flex");
+                projectStatusHead.textContent = "Status";
 
-            //Adding classes to the elements starts here
-            mainSection.classList.add(domStrings.singleProjectSection.slice(1));
-            mainSection.classList.add("y-axis-flex");
-            mainSection.classList.add(elem.id);
-
-            projectHeading.classList.add(domStrings.projectName.slice(1));
-            projectDescription.classList.add(domStrings.projectDescription.slice(1));
-
-            percentageWrapper.classList.add(domStrings.projectPercentageWrapper.slice(1));
-            projectPercentage.classList.add(domStrings.projectPercentage.slice(1));
-            percentageValue.classList.add(domStrings.projectPercentageValue.slice(1));
-
-            projectDateWrapper.classList.add(domStrings.projectDateWrapper.slice(1));
-            projectDateWrapper.classList.add("x-axis-flex");
-            projectDateHead.textContent = "Date ";
-            projectDataValue.classList.add(domStrings.projectDateCommonClass.slice(1));
-
-            projectStatusWrapper.classList.add(domStrings.projectStatusWrapper.slice(1));
-            projectStatusWrapper.classList.add("x-axis-flex");
-            projectStatusHead.textContent = "Status";
-            //Adding classes to the elements ends here 
-
-            //Setting values to the elements starts here 
-            projectHeading.textContent = elem.projectName;
-            projectDescription.textContent = elem.projectDesc;
-            projectDataValue.textContent = elem.toDate;
-            percentageValue.textContent = "27%";
-            projectPercentage.style.width = "27%";
-            projectStatusValue.textContent = elem.status;
-            //Setting values to the elements ends here 
-
-            //Adding elements to its parent element starts here 
-            percentageWrapper.append(projectPercentage, percentageValue);
-            projectDateWrapper.append(projectDateHead, projectDataValue);
-            projectStatusWrapper.append(projectStatusHead, projectStatusValue);
-
-            mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
-            mainSection.addEventListener("click", showFullProject);
-            // mainSection.addEventListener("dblclick", function(event){
-            //     event.preventDefault();
-            //     alert("double clicked");
-            // })
-            //Adding elements to its parent element ends here 
-
-            _(domStrings.fullProjectSection).append(mainSection);
-        });  
-
+                changeStatusButtonWrapper.classList.add(domStrings.changeProjectStatusWrapper);
+                changeStatusButtonWrapper.classList.add("x-axis-flex");
+                changeStatusButton.classList.add(domStrings.changeProjectStatusButton.slice(1));
+                //Adding classes to the elements ends here 
+    
+                //Setting values to the elements starts here 
+                projectHeading.textContent = elem.projectName;
+                projectDescription.textContent = elem.projectDesc;
+                projectDataValue.textContent = elem.toDate;
+                percentageValue.textContent = "27%";
+                projectPercentage.style.width = "27%";
+                projectStatusValue.textContent = elem.status;
+                changeStatusButton.innerText = "Complete";
+                //Setting values to the elements ends here 
+    
+                //Adding elements to its parent element starts here 
+                percentageWrapper.append(projectPercentage, percentageValue);
+                projectDateWrapper.append(projectDateHead, projectDataValue);
+                projectStatusWrapper.append(projectStatusHead, projectStatusValue);
+                changeStatusButtonWrapper.append(changeStatusButton);
+    
+                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper, changeStatusButtonWrapper);
+                mainSection.addEventListener("click", showFullProject);
+                
+                //Adding elements to its parent element ends here 
+    
+                _(domStrings.fullProjectSection).append(mainSection);
+            });
+        }
+        else {
+            let h1Tag = document.createElement("h1");
+            h1Tag.textContent = "You have no Projects";
+            h1Tag.classList.add("nothing-heading");
+            _(domStrings.fullProjectSection).append(h1Tag);
+        }
     }
     return {
         getDomStrings : getDomStrings,

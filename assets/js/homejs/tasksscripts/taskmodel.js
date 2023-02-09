@@ -54,11 +54,15 @@ let TaskModel = (function(){
             TaskView.renderTasks(getTasks());
         }
     }
+    let removeTask = function(id){
+        tasksArray.splice(getIndexOfTask(id), 1);
+    }
     return {
         addTask : addTask,
         createTask : createTask,
         getTasks : getTasks,
         changeServerObject : changeServerObject,
-        getIndexOfTask : getIndexOfTask
+        getIndexOfTask : getIndexOfTask,
+        removeTask : removeTask
     }
 })();

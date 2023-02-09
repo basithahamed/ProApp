@@ -3,7 +3,6 @@
 package com.authorize;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,20 +20,15 @@ public class IsExsist {
             String passwordVar=rs.getString("password");
             
             
-            if(emailid.equals(mail) && passwordVar.equals(passwordVar)){
+            if(emailid.equals(mail) && passwordVar.equals(password)){
                 result=true;
             }
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally
-        {
+        } finally{
             c.close();
         }
         return result;
-
     }
-    
-
 }

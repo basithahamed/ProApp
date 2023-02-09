@@ -31,3 +31,9 @@ xhr.onload = function(){
     USERID = temp.currentUserId;
     USERNAME = temp.currentUserName;
 }
+let getCompletedDiv = function(classForButton, id, domStrings){
+    let sectionTag = document.createElement("section");
+    sectionTag.classList.add("completed-section");
+
+    return sectionTag;
+}

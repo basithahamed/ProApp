@@ -51,11 +51,12 @@
     width: 90%;
     height: 390px;
     background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.4);;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 12px;
     margin: 10px 0px; 
     justify-content: space-around;  
     align-items: flex-start;
+    position: relative;
     padding: 10px;
 }
 .common-project-inner-div{
@@ -99,6 +100,7 @@
 }
 .projects-status-wrapper, .task-status-wrapper{
     width: 70%;
+    min-width: 180px;
     justify-content: space-between;
 }
 .common-status{
@@ -200,7 +202,7 @@
     background-color: transparent;
     border: 1px solid white;
 }
-.show-add-task-button, .create-project-button{
+.show-add-task-button, .create-project-button, .change-project-status-button{
     padding: 8px 10px;
     background-color: rgb(39, 37, 45);
     color: white;
@@ -210,7 +212,7 @@
     font-size: 20px;
     cursor: pointer;
 }
-.show-add-task-button:active{
+.show-add-task-button:active, .change-project-status-button:active{
     transform: scale(0.9);
 }
 .create-project-button-wrapper{
@@ -224,6 +226,13 @@
 .create-project-button:hover {
     background-color: white;
     color: green;
+}
+.change-project-status-wrapper{
+    width: 100%;
+}
+.change-project-status-button{
+    background-color: green;
+    color: white;
 }
 /* Add task section styling starts here (Note: Some of the styles may be above this comment) */
 .task-adding-section{

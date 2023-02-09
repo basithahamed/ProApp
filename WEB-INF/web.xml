@@ -164,6 +164,16 @@
         <url-pattern>/project/user/delete</url-pattern>
     </servlet-mapping>
 
+    <!-- for deleting the task associated user -->
+    <servlet>
+        <servlet-name>RemoveTaskRelation</servlet-name>
+        <servlet-class>com.servlets.RemoveTaskRelation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveTaskRelation</servlet-name>
+        <url-pattern>/task/user/delete</url-pattern>
+    </servlet-mapping>
+
     <!-- for the login filter -->
     <filter>
         <filter-name>LoginFilter</filter-name>

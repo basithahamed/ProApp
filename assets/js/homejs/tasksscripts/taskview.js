@@ -45,7 +45,7 @@ let TaskView = (function(){
     let renderPeopleSearchResult = function(userDetails, typedText){
         _(domStrings.taskUsersUl).innerHTML = "";
         userDetails.forEach(function(elem){
-            if(elem.userName.toLowerCase().startsWith(typedText) && typedText != ""){
+            if(elem.userName.toLowerCase().startsWith(typedText) && typedText != "" && elem.uid != USERID){
                 //Creating elements here
                 let li = document.createElement("li");
                 let div = document.createElement("div");
@@ -176,64 +176,72 @@ let TaskView = (function(){
     let renderTasks = function(tasks){
         //Reseting all tasks
         _(domStrings.fullTaskSection).innerHTML = "";
-        tasks.forEach(function(elem){
-            //Creating elements for a task section starts here 
-            let mainSection = document.createElement("section");
-            let projectHeading = document.createElement("h1");
-            let projectDescription = document.createElement("p");
-            let percentageWrapper = document.createElement("div");
-            let projectPercentage = document.createElement("div");
-            let percentageValue = document.createElement("span");
-            let projectDateWrapper = document.createElement("div");
-            let projectDateHead = document.createElement("p");
-            let projectDataValue = document.createElement("p");
-            let projectStatusWrapper = document.createElement("div");
-            let projectStatusHead = document.createElement("p");
-            let projectStatusValue = document.createElement("span");
-            //Creating elements for a task section ends here 
-
-            //Adding classes to the elements starts here
-            mainSection.classList.add(domStrings.singleTaskSection);
-            mainSection.classList.add("y-axis-flex");
-            mainSection.classList.add(elem.taskId);
-
-            projectHeading.classList.add(domStrings.taskNameTag);
-            projectDescription.classList.add(domStrings.taskDescTag);
-
-            percentageWrapper.classList.add(domStrings.percentageWrapper);
-            projectPercentage.classList.add(domStrings.taskPercentage);
-            percentageValue.classList.add(domStrings.taskPercentageValue);
-
-            projectDateWrapper.classList.add(domStrings.taskDateWrapper);
-            projectDateWrapper.classList.add("x-axis-flex");
-            projectDateHead.textContent = "Date ";
-            projectDataValue.classList.add(domStrings.commonStatus);
-
-            projectStatusWrapper.classList.add(domStrings.taskStatusWrapper);
-            projectStatusWrapper.classList.add("x-axis-flex");
-            projectStatusHead.textContent = "Status";
-            //Adding classes to the elements ends here 
-
-            //Setting values to the elements starts here 
-            projectHeading.textContent = elem.taskName;
-            projectDescription.textContent = elem.taskDescription;
-            projectDataValue.textContent = elem.toDate;
-            percentageValue.textContent = "27%";
-            projectPercentage.style.width = "27%";
-            projectStatusValue.textContent = elem.status;
-            //Setting values to the elements ends here 
-
-            //Adding elements to its parent element starts here 
-            percentageWrapper.append(projectPercentage, percentageValue);
-            projectDateWrapper.append(projectDateHead, projectDataValue);
-            projectStatusWrapper.append(projectStatusHead, projectStatusValue);
-
-            mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
-            mainSection.addEventListener("click", showFullTask);
-            //Adding elements to its parent element ends here 
-
-            _(domStrings.fullTaskSection).append(mainSection);
-        });
+        if(tasks.length){
+            tasks.forEach(function(elem){
+                //Creating elements for a task section starts here 
+                let mainSection = document.createElement("section");
+                let projectHeading = document.createElement("h1");
+                let projectDescription = document.createElement("p");
+                let percentageWrapper = document.createElement("div");
+                let projectPercentage = document.createElement("div");
+                let percentageValue = document.createElement("span");
+                let projectDateWrapper = document.createElement("div");
+                let projectDateHead = document.createElement("p");
+                let projectDataValue = document.createElement("p");
+                let projectStatusWrapper = document.createElement("div");
+                let projectStatusHead = document.createElement("p");
+                let projectStatusValue = document.createElement("span");
+                //Creating elements for a task section ends here 
+    
+                //Adding classes to the elements starts here
+                mainSection.classList.add(domStrings.singleTaskSection);
+                mainSection.classList.add("y-axis-flex");
+                mainSection.classList.add(elem.taskId);
+    
+                projectHeading.classList.add(domStrings.taskNameTag);
+                projectDescription.classList.add(domStrings.taskDescTag);
+    
+                percentageWrapper.classList.add(domStrings.percentageWrapper);
+                projectPercentage.classList.add(domStrings.taskPercentage);
+                percentageValue.classList.add(domStrings.taskPercentageValue);
+    
+                projectDateWrapper.classList.add(domStrings.taskDateWrapper);
+                projectDateWrapper.classList.add("x-axis-flex");
+                projectDateHead.textContent = "Date ";
+                projectDataValue.classList.add(domStrings.commonStatus);
+    
+                projectStatusWrapper.classList.add(domStrings.taskStatusWrapper);
+                projectStatusWrapper.classList.add("x-axis-flex");
+                projectStatusHead.textContent = "Status";
+                //Adding classes to the elements ends here 
+    
+                //Setting values to the elements starts here 
+                projectHeading.textContent = elem.taskName;
+                projectDescription.textContent = elem.taskDescription;
+                projectDataValue.textContent = elem.toDate;
+                percentageValue.textContent = "27%";
+                projectPercentage.style.width = "27%";
+                projectStatusValue.textContent = elem.status;
+                //Setting values to the elements ends here 
+    
+                //Adding elements to its parent element starts here 
+                percentageWrapper.append(projectPercentage, percentageValue);
+                projectDateWrapper.append(projectDateHead, projectDataValue);
+                projectStatusWrapper.append(projectStatusHead, projectStatusValue);
+    
+                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
+                mainSection.addEventListener("click", showFullTask);
+                //Adding elements to its parent element ends here 
+    
+                _(domStrings.fullTaskSection).append(mainSection);
+            });
+        }
+        else {
+            let h1Tag = document.createElement("h1");
+            h1Tag.textContent = "You don't have a task yet";
+            h1Tag.classList.add("nothing-heading");
+            _(domStrings.fullTaskSection).append(h1Tag);
+        }
     }
     let getDomStrings = function(){
         return domStrings;

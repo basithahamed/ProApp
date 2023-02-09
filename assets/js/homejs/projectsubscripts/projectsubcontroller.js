@@ -1,4 +1,4 @@
-let ProjectSubController = (function(view, model){
+let ProjectSubController = (function(view){
 
     let init = function(){
         //This event is for active projects button in the nav bar
@@ -22,4 +22,4 @@ let ProjectSubController = (function(view, model){
     return {
         init : init
     }
-})(ProjectSubView, ProjectSubModel);
+})(ProjectSubView);

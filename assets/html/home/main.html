@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +35,7 @@
             <!-- Navbar section only visible in web view and tablet view -->
             <section class="web-view-nav-bar y-axis-flex dark-theme">
                 <div class="nav-button">
-                    <input type="checkbox" id="projects-input">
+                    <input tabindex="-1" type="checkbox" id="projects-input">
                     <label class="projects-button-ul" for="projects-input">
                         <i class="fa-solid fa-bars-progress"></i> 
                         <span>Projects</span>
@@ -50,15 +47,15 @@
                     </ul>
                 </div>
                 <div class="nav-button">
-                    <input type="checkbox" id="tasks-input">
+                    <input tabindex="-1" type="checkbox" id="tasks-input">
                     <label class="projects-button-ul task-button-ul" for="tasks-input">
                         <i class="fa-solid fa-list-check"></i>
                         <span>Tasks</span>
                     </label>
                     <ul class="projects-ul task-ul">
-                        <li class="projects-button task-button">Active</li>
-                        <li class="projects-button task-button">Mine</li>
-                        <li class="projects-button task-button">All</li>
+                        <li class="projects-button task-button active-task-button">Active</li>
+                        <li class="projects-button task-button mine-task-button">Mine</li>
+                        <li class="projects-button task-button all-task-button">All</li>
                     </ul>
                 </div>
                 <div class="nav-button"><i class="fa-solid fa-book"></i> Docs</div>
@@ -70,7 +67,7 @@
                 <section class="project-section y-axis-flex show-main-section">
                     <header class="project-section-header x-axis-flex">
                         <h1 class="project-heading"><i class="fa-solid fa-bars-progress"></i> Projects</h1>
-                        <button class="add-new-project-button">New</button>
+                        <button tabindex="-1" class="add-new-project-button">New</button>
                     </header>
                     <!-- All project section starts here -->
                     <section class="all-projects-section x-axis-flex">
@@ -109,8 +106,8 @@
                                 <h2 class="created-by-value">Checking</h2>
                             </div>
                             <div class="project-overview-button-wrapper x-axis-flex">
-                                <button class="view-tasks-overview-project-button">View Tasks</button>
-                                <button class="exit-project-button">Exit</button>
+                                <button tabindex="-1" class="view-tasks-overview-project-button">View Tasks</button>
+                                <button tabindex="-1" class="exit-project-button">Exit</button>
                             </div>
                         </div>
                     </section>
@@ -122,27 +119,27 @@
                         <form class="project-adding-section y-axis-flex">
                             <div class="project-name-input common-project-adding-input-wrapper x-axis-flex">
                                 <label for="project-name-input-id">Project Name </label>
-                                <input type="text" id="project-name-input-id" autocomplete="off" class="common-input project-heading-input" required placeholder="Project Name">
+                                <input tabindex="-1" type="text" id="project-name-input-id" autocomplete="off" class="common-input project-heading-input" required placeholder="Project Name">
                             </div>
 
                             <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="search-member-input-id">People </label>
                                 <div class="search-input-tag-wrapper y-axis-flex">
-                                    <input type="search" required id="search-member-input-id" autocomplete="off" class="common-input project-people-adding-input">
+                                    <input tabindex="-1" type="search" required id="search-member-input-id" autocomplete="off" class="common-input project-people-adding-input">
                                     <ul class="people-search-ul"></ul>
                                 </div>
                             </div>
                             <div class="from-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="from-date-input-id">From Date </label>
-                                <input type="date" required id="from-date-input-id">
+                                <input tabindex="-1" type="date" required id="from-date-input-id">
                             </div> 
                             <div class="to-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="date-input-id">To Date </label>
-                                <input type="date" required id="date-input-id">
+                                <input tabindex="-1" type="date" required id="date-input-id">
                             </div>  
-                            <textarea class="project-desc-input" placeholder="Description"></textarea>
+                            <textarea tabindex="-1" class="project-desc-input" placeholder="Description"></textarea>
                             <div class="create-project-button-wrapper">
-                                <button type="button" class="create-project-button">Create</button>
+                                <button tabindex="-1" type="button" class="create-project-button">Create</button>
                             </div>
                         </form>
                         <!-- Project adding section ends here -->
@@ -151,14 +148,14 @@
                 <!-- Main project section ends here -->
 
                 <!--Main task section starts here -->
-                <section class="task-section y-axis-flex">
+                <section class="task-section y-axis-flex" >
                     <header class="task-section-header x-axis-flex">
                         <h1 class="task-section-heading"><i class="fa-solid fa-list-check"></i> Tasks</h1>
-                        <button class="add-new-task-button">New</button>
+                        <button tabindex="-1" class="add-new-task-button">New</button>
                     </header>
 
                     <!--Task overview section starts here -->
-                    <section class="task-overview-outer-layer x-axis-flex">
+                    <section class="task-overview-outer-layer x-axis-flex"> 
                         <div class="task-overview y-axis-flex">
                             <i class="fa-solid fa-xmark task-overview-close-button"></i>
                             <h1 class="task-overview-name">Testing</h1>
@@ -188,14 +185,14 @@
                                 <h2 class="task-created-by-value">Checking</h2>
                             </div>
                             <div class="task-overview-button-wrapper x-axis-flex">
-                                <button class="exit-task-button">Exit</button>
+                                <button tabindex="-1" class="exit-task-button">Exit</button>
                             </div>
                         </div>
                     </section>
                     <!--Task overview section ends here -->
 
                     <!-- All tasks section starts here -->
-                    <section class="all-tasks-section x-axis-flex">
+                    <section class="all-tasks-section x-axis-flex" >
                         <h1 class="nothing-heading">You don't have a task yet</h1>
                         <!-- <section class="single-task-section y-axis-flex">
                             <h1 class="task-name">Task Heading</h1>
@@ -219,36 +216,36 @@
                 <!--Main task section ends here -->
 
                 <!-- Task adding section starts here -->
-                <form class="task-adding-section y-axis-flex">
+                <form tabindex="-1" class="task-adding-section y-axis-flex">
                     <i class="fa-solid fa-xmark task-adding-close-button"></i>
                     <h1 class="task-adding-heading">Task</h1>
                     <div class="common-task-adding-input-wrapper x-axis-flex">
                         <label for="task-name-input-id">Task Name</label>
-                        <input type="text" required id="task-name-input-id" class="common-input">
+                        <input tabindex="-1" type="text" required id="task-name-input-id" class="common-input">
                     </div>
                     <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                         <label for="search-member-input-id">People </label>
                         <div class="search-input-tag-wrapper y-axis-flex">
-                            <input type="search" required id="search-member-task-input-id" autocomplete="off" class="common-input task-people-adding-input">
+                            <input tabindex="-1" type="search" required id="search-member-task-input-id" autocomplete="off" class="common-input task-people-adding-input">
                             <ul class="people-search-ul people-task-search-ul"></ul>
                         </div>
                     </div>
                     <div class="from-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label for="from-task-input-date-id">From Date </label>
-                        <input type="date" required id="from-task-input-date-id">
+                        <input tabindex="-1" type="date" required id="from-task-input-date-id">
                     </div>
                     <div class="to-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label for="to-task-input-date-id">To Date </label>
-                        <input type="date" required id="to-task-input-date-id">
+                        <input tabindex="-1" type="date" required id="to-task-input-date-id">
                     </div>
                     <div class="project-choosing-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label>Project</label>
-                        <select class="project-choosing-select" name="project-option">
+                        <select tabindex="-1" class="project-choosing-select" name="project-option">
                             <option class="project-choosing-option">Checking</option>
                         </select>
                     </div>
-                    <textarea class="task-desc-input" placeholder="Description"></textarea>
-                    <button type="button" class="add-task-button">Add task</button>
+                    <textarea tabindex="-1" class="task-desc-input" placeholder="Description"></textarea>
+                    <button tabindex="-1" type="button" class="add-task-button">Add task</button>
                 </form>
                 <!-- Task adding section ends here -->
 
@@ -277,7 +274,7 @@
                   <p class="error-message-para">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</p>
                 </div>
               </div>
-              <button class="error-close-button">Close</button>
+              <button tabindex="-1" class="error-close-button">Close</button>
             </div>
         </section>
         <!-- Error showing section ends here --> 
@@ -309,9 +306,16 @@
 <!-- Tasks scripts starts here -->
 
 <!-- Sub Project buttons scripts starts here -->
+<!-- Project buttons starts here -->
 <script src="assets/js/homejs/projectsubscripts/projectsubview.js"></script>
-<script src="assets/js/homejs/projectsubscripts/projectsubmodel.js"></script>
 <script src="assets/js/homejs/projectsubscripts/projectsubcontroller.js"></script>
+<!-- Project buttons ends here -->
+
+<!-- Task buttons starts here -->
+<script src="assets/js/homejs/tasksubscripts/tasksubview.js"></script>
+<script src="assets/js/homejs/tasksubscripts/tasksubcontroller.js"></script>
+<!-- Task buttons ends here -->
+
 <!-- Sub Project buttons scripts starts here -->
 
 <!-- Getting all details from current user script starts here -->
