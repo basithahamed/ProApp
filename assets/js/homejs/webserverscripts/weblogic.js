@@ -2,7 +2,7 @@ let userObj = {
     userId : USERID,
     userName : USERNAME
 }
-let webConnection = new WebSocket("ws://localhost:8787/ProAppBackup/proapp?data=vicky");
+let webConnection = new WebSocket("ws://localhost:8787/ProApp/proapp?data=vicky");
 webConnection.onopen = function(event){
     console.log(event.log);
 }

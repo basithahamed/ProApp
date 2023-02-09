@@ -26,7 +26,7 @@
     align-items: center;
   }
   .background-style-image{
-    background-image: url("/ProAppBackup/assets/images/webView.jpg");
+    background-image: url("/ProApp/assets/images/webView.jpg");
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -188,7 +188,7 @@
       height: 620px;
     }
     .background-style-image{
-      background-image: url("/ProAppBackup/assets/images/mobileView.jpg");
+      background-image: url("/ProApp/assets/images/mobileView.jpg");
     }
     .login-section{
       background-color: transparent;
