@@ -24,7 +24,7 @@ public class ChangeTaskStatus extends HttpServlet {
             JSONObject js=(JSONObject)new JSONParser().parse(request.getParameter("taskData"));
             int taskId = Integer.parseInt(String.valueOf(js.get("taskId")));
             int userId = Integer.parseInt(String.valueOf(js.get("userId")));
-            response.getWriter().print(new ChangeTaskStatusDb().taskStatusChanger((Connection)getServletContext().getAttribute("Connection"), taskId, userId));
+            response.getWriter().print(new ChangeTaskStatusDb().taskRelationStatusChanger((Connection)getServletContext().getAttribute("Connection"), taskId, userId));
 
         } catch (ParseException e) {
             // TODO Auto-generated catch block

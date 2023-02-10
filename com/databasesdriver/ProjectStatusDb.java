@@ -30,7 +30,7 @@ public class ProjectStatusDb {
             }
 
 
-            // result = (singleCount/totalCount)*100;
+            result = (j/total)*100;
             // jsobj.put("percentage",percentage );
             
         } catch (Exception e) {
