@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
--- Host: 192.168.103.32    Database: proapp
+-- Host: localhost    Database: proapp
 -- ------------------------------------------------------
 -- Server version	8.0.32-0ubuntu0.22.04.2
 
@@ -21,19 +21,20 @@
 DROP DATABASE IF EXISTS `proapp`;
 CREATE DATABASE `proapp`;
 USE `proapp`;
+
 DROP TABLE IF EXISTS `project_relation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `project_relation` (
   `prid` int NOT NULL AUTO_INCREMENT,
-  `uid` int NOT NULL,
   `pid` int NOT NULL,
+  `uid` int DEFAULT NULL,
   PRIMARY KEY (`prid`),
   KEY `uid` (`uid`),
   KEY `pid` (`pid`),
   CONSTRAINT `project_relation_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
   CONSTRAINT `project_relation_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `project_relation` (
 
 LOCK TABLES `project_relation` WRITE;
 /*!40000 ALTER TABLE `project_relation` DISABLE KEYS */;
-INSERT INTO `project_relation` VALUES (1,1,1),(2,2,1),(3,2,2),(4,4,2);
+INSERT INTO `project_relation` VALUES (5,3,3),(6,3,1),(13,7,2),(14,7,3),(15,8,2),(16,8,1),(17,9,2),(18,9,1);
 /*!40000 ALTER TABLE `project_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +65,7 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`pid`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +74,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (1,'ooo ','Yet To Start','2023-02-04','2023-02-23','wv',1),(2,'ooo ','Yet To Start','2023-02-04','2023-02-23','wv',2);
+INSERT INTO `projects` VALUES (3,'Testing 03','Yet To Start','2023-02-09','2023-02-17','',3),(7,'Testing 18','Completed','2023-02-10','2023-02-23','jdsnkjn',2),(8,'Testing Project b1','Completed','2023-02-24','2023-02-19','Testing Project \n',2),(9,'<script>alert(\"123\")</script>','Completed','2023-02-10','2023-02-23','<script>alert(\"123\")</script>',2);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,12 +89,13 @@ CREATE TABLE `task_relation` (
   `trid` int NOT NULL AUTO_INCREMENT,
   `tid` int NOT NULL,
   `uid` int NOT NULL,
+  `IsCompleted` enum('true','false') DEFAULT 'false',
   PRIMARY KEY (`trid`),
   KEY `tid` (`tid`),
   KEY `uid` (`uid`),
   CONSTRAINT `task_relation_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `tasks` (`tid`),
   CONSTRAINT `task_relation_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +104,7 @@ CREATE TABLE `task_relation` (
 
 LOCK TABLES `task_relation` WRITE;
 /*!40000 ALTER TABLE `task_relation` DISABLE KEYS */;
-INSERT INTO `task_relation` VALUES (1,1,1),(2,1,2),(3,2,3),(4,2,4);
+INSERT INTO `task_relation` VALUES (19,10,2,'false'),(20,10,3,'false'),(21,11,2,'false'),(22,11,1,'false'),(23,12,2,'false'),(24,12,3,'false'),(25,13,2,'false'),(26,13,1,'false'),(27,14,2,'false'),(28,14,1,'false'),(29,15,2,'true'),(30,15,1,'false');
 /*!40000 ALTER TABLE `task_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +129,7 @@ CREATE TABLE `tasks` (
   KEY `created_by` (`created_by`),
   CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`),
   CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +138,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (1,'vanakkam da mapla2','2020-11-18','2021-12-18','Yet To Start',1,'null',3),(2,'vanakkam da mapla2','2020-11-18','2021-12-18','Yet To Start',2,'null',4);
+INSERT INTO `tasks` VALUES (10,'Testing 20','2023-02-10','2023-02-12','Completed',7,'',2),(11,'testing Task','2023-02-15','2023-02-25','Completed',7,'testtt',2),(12,'testing Task 4:02','2023-02-24','2023-03-03','Completed',8,'For testing the java code (Bugged code by Bharath)',2),(13,'testing 4:04','2023-02-26','2023-03-02','Completed',8,'For testing the code',2),(14,'Demo Task','2023-02-24','2023-03-01','Yet To Start',8,'test Task',2),(15,'Test Task feb 10 8','2023-02-09','2023-02-25','Yet To Start',7,'tettttt',2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +167,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','todoadmins','todoadmins@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password');
+INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','Vicky','vicky@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -178,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-07 20:34:59
+-- Dump completed on 2023-02-10 20:31:27
