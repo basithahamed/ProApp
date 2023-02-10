@@ -47,9 +47,7 @@ let ProjectView = (function(){
         overViewUserImage : "project-overview-user-image",
         overViewUserName : "project-overview-user-name",
         overViewExitButton : ".exit-project-button",
-        fullProjectOverView : ".project-overview",
-        changeProjectStatusWrapper : "change-project-status-wrapper",
-        changeProjectStatusButton : ".change-project-status-button",
+        fullProjectOverView : ".project-overview"
     }
     let getDomStrings = function(){
         return domStrings;
@@ -195,8 +193,6 @@ let ProjectView = (function(){
                 let projectStatusWrapper = document.createElement("div");
                 let projectStatusHead = document.createElement("p");
                 let projectStatusValue = document.createElement("span");
-                let changeStatusButtonWrapper = document.createElement("div");
-                let changeStatusButton = document.createElement("button");
                 //Creating elements for a project section ends here 
     
                 //Adding classes to the elements starts here
@@ -220,9 +216,6 @@ let ProjectView = (function(){
                 projectStatusWrapper.classList.add("x-axis-flex");
                 projectStatusHead.textContent = "Status";
 
-                changeStatusButtonWrapper.classList.add(domStrings.changeProjectStatusWrapper);
-                changeStatusButtonWrapper.classList.add("x-axis-flex");
-                changeStatusButton.classList.add(domStrings.changeProjectStatusButton.slice(1));
                 //Adding classes to the elements ends here 
     
                 //Setting values to the elements starts here 
@@ -232,16 +225,14 @@ let ProjectView = (function(){
                 percentageValue.textContent = "27%";
                 projectPercentage.style.width = "27%";
                 projectStatusValue.textContent = elem.status;
-                changeStatusButton.innerText = "Complete";
                 //Setting values to the elements ends here 
     
                 //Adding elements to its parent element starts here 
                 percentageWrapper.append(projectPercentage, percentageValue);
                 projectDateWrapper.append(projectDateHead, projectDataValue);
                 projectStatusWrapper.append(projectStatusHead, projectStatusValue);
-                changeStatusButtonWrapper.append(changeStatusButton);
-    
-                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper, changeStatusButtonWrapper);
+                
+                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
                 mainSection.addEventListener("click", showFullProject);
                 
                 //Adding elements to its parent element ends here 
