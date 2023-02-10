@@ -2,9 +2,9 @@ package com.databasesdriver;
 
 // import java.lang.Thread.State;
 import java.sql.Connection;
-// import java.sql.DriverManager;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
-// import java.sql.SQLException;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ChangeTaskStatusDb {
@@ -57,13 +57,6 @@ public class ChangeTaskStatusDb {
         // return result;
     }
 
-    // public static void main(String[] args) throws ClassNotFoundException,
-    // SQLException {
-    // Class.forName("com.mysql.cj.jdbc.Driver");
-    // Connection c =
-    // DriverManager.getConnection("jdbc:mysql://192.168.103.32:3306/proapp",
-    // "todoadmins", "todo@111");
-    // System.out.println("output:" + taskRelationStatusChanger(c, 15, 2));
+ 
 
-    // }
 }
