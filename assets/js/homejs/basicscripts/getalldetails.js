@@ -10,7 +10,6 @@ let resetProject = function(){
         allProjects = JSON.parse(projectsXhr.response);
         //Rendering all projects
         allProjects.forEach(function(elem){
-            console.log(AddProjectModel.changeServerObject(elem));
             ProjectModel.addProject(AddProjectModel.changeServerObject(elem));
             ProjectView.renderProjects(ProjectModel.getProjectsArray());
         });
@@ -26,13 +25,13 @@ let resetTasks = function(){
     tasksXhr.open("GET", "task/getall");
     tasksXhr.send();
     tasksXhr.onload = function(){
+        TaskModel.resetTasks();
         let allTasks = JSON.parse(tasksXhr.response);
         console.log(allTasks);
         allTasks.forEach(function(elem){
-            console.log(TaskModel.changeServerObject(elem));
-            TaskModel.addTask(TaskModel.changeServerObject(elem));
-            TaskView.renderTasks(TaskModel.getTasks());
+            TaskModel.addTask(TaskModel.changeServerObject(elem, true));
         });
+        TaskView.renderTasks(TaskModel.getTasks());
     }
 }
 

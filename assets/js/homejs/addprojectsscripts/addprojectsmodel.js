@@ -1,18 +1,19 @@
 let AddProjectModel = (function(){
 
-    let Project = function(id, projectName, projectDesc, fromDate, toDate, users, createdBy){
+    let Project = function(id, projectName, projectDesc, fromDate, toDate, users, createdBy, percentage){
         this.id = id;
         this.projectName = projectName;
         this.projectDesc = projectDesc;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.status = "Yet to start";
+        this.percentage = percentage;
         this.users = users;
         this.createdBy = createdBy;
     }
     let changeServerObject = function(serverObject){
         localStorage.lastAddedProject = serverObject.id;
-        return new Project(serverObject.id, serverObject.projectName, serverObject.projectDesc, serverObject.fromDate, serverObject.toDate, serverObject.users, serverObject.createdBy);
+        return new Project(serverObject.id, serverObject.projectName, serverObject.projectDesc, serverObject.fromDate, serverObject.toDate, serverObject.users, serverObject.createdBy, serverObject.percentage);
     }
     let addProject = function(projectName, projectDesc, fromDate, toDate, users){
         let formData = new FormData();

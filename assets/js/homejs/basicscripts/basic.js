@@ -47,9 +47,10 @@ let getCompletedDiv = function(id){
     mainDivTag.id = id;
 
     changeButton.addEventListener("click", function(event){
-        console.log(ProjectView.getDomStrings().showCompletedDiv);
+        console.log(TaskView.getDomStrings().showCompletedDiv);
         let selectedId = event.target.parentElement.id;
         event.target.parentElement.parentElement.classList.remove(TaskView.getDomStrings().showCompletedDiv);
+        TaskController.changeTaskStatus(selectedId);
     });
     mainDivTag.append(h1Tag, changeButton);
 

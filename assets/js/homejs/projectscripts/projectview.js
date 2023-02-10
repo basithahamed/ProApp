@@ -227,8 +227,8 @@ let ProjectView = (function(){
                 projectHeading.textContent = elem.projectName;
                 projectDescription.textContent = elem.projectDesc;
                 projectDataValue.textContent = elem.toDate;
-                percentageValue.textContent = "27%";
-                projectPercentage.style.width = "27%";
+                percentageValue.textContent = elem.percentage;
+                projectPercentage.style.width = elem.percentage;
                 projectStatusValue.textContent = elem.status;
                 //Setting values to the elements ends here 
     

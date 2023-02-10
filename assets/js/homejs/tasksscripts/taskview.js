@@ -185,7 +185,7 @@ let TaskView = (function(){
     let completeTask = function(event){
         event.stopImmediatePropagation();
         console.log("task completing event");
-        event.target.parentElement.parentElement.classList.add(domStrings.showCompletedDiv);
+        // event.target.parentElement.parentElement.classList.add(domStrings.showCompletedDiv);
         console.log();
         TaskController.changeTaskStatus(event.target.parentElement.parentElement.classList[2].slice(4));
     }
@@ -260,6 +260,14 @@ let TaskView = (function(){
 
                 mainSection.append(nonCompletedDiv, getCompletedDiv(elem.taskId));
                 //Adding elements to its parent element ends here 
+
+                //This if condition is for making elements rotate  if they are completed.
+                if(elem.status == "Completed"){
+                    mainSection.classList.add(domStrings.showCompletedDiv);
+                }
+                else if (elem.status == "On Progress") {
+                    completeStatusButton.textContent = "Undo";
+                }
     
                 _(domStrings.fullTaskSection).append(mainSection);
             });
@@ -279,6 +287,7 @@ let TaskView = (function(){
         getDomStrings : getDomStrings,
         renderPeopleSearchResult : renderPeopleSearchResult,
         renderProjectOption : renderProjectOption,
-        renderTasks : renderTasks
+        renderTasks : renderTasks,
+        completeTask : completeTask
     }
 })();
