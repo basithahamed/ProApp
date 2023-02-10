@@ -155,19 +155,24 @@ let ProjectView = (function(){
     //This is for showing the full project when we clicked a project
     let showFullProject = function(event){
         normalClickAudio();
-        if(event.target.tagName == "SECTION"){
-            setOverViewValues(event.target.classList[2]);
+        if(event.target.tagName == "SECTION" && event.target.classList.contains(domStrings.singleProjectSection.slice(1))){
+            setOverViewValues(event.target.classList[2].slice(7));
             _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
             console.log()
         }
-        else if (event.target.parentElement.tagName == "SECTION"){
+        else if (event.target.parentElement.tagName == "SECTION" && event.target.parentElement.classList.contains(domStrings.singleProjectSection.slice(1))){
             console.log("second if");
-            setOverViewValues(event.target.parentElement.classList[2]);
+            setOverViewValues(event.target.parentElement.classList[2].slice(7));
             _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
         }
-        else if (event.target.parentElement.parentElement.tagName == "SECTION"){
+        else if (event.target.parentElement.parentElement.tagName == "SECTION" && event.target.parentElement.parentElement.classList.contains(domStrings.singleProjectSection.slice(1))){
             console.log("third if");
-            setOverViewValues(event.target.parentElement.parentElement.classList[2]);
+            setOverViewValues(event.target.parentElement.parentElement.classList[2].slice(7));
+            _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
+        }
+        else if (event.target.parentElement.parentElement.parentElement.tagName == "SECTION" && event.target.parentElement.parentElement.parentElement.classList.contains(domStrings.singleProjectSection.slice(1))){
+            console.log("third if");
+            setOverViewValues(event.target.parentElement.parentElement.parentElement.classList[2].slice(7));
             _(domStrings.fullProjectOverview).classList.add(domStrings.showProjectOverview);
         }
         else {
@@ -198,7 +203,7 @@ let ProjectView = (function(){
                 //Adding classes to the elements starts here
                 mainSection.classList.add(domStrings.singleProjectSection.slice(1));
                 mainSection.classList.add("y-axis-flex");
-                mainSection.classList.add(elem.id);
+                mainSection.classList.add("project" + elem.id);
     
                 projectHeading.classList.add(domStrings.projectName.slice(1));
                 projectDescription.classList.add(domStrings.projectDescription.slice(1));
@@ -239,7 +244,7 @@ let ProjectView = (function(){
     
                 _(domStrings.fullProjectSection).append(mainSection);
             });
-        }
+        } 
         else {
             let h1Tag = document.createElement("h1");
             h1Tag.textContent = "You have no Projects";

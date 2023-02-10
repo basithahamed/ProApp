@@ -39,7 +39,11 @@ let TaskView = (function(){
         taskOverViewCreatedBy : ".task-created-by-value",
         overViewUl : ".task-overview-users-ul",
         overViewExitButton : ".exit-task-button",
-        overViewUserImage : "task-overview-user-image"
+        overViewUserImage : "task-overview-user-image",
+        completeStatusButton : "complete-task-button",
+        showCompletedDiv : "show-completed-div",
+        nonCompletedDiv : "non-completed-task",
+        changeToIncomplete : ".change-to-not-complete-button"
     }
 
     let renderPeopleSearchResult = function(userDetails, typedText){
@@ -137,18 +141,23 @@ let TaskView = (function(){
     let showFullTask = function(event){
         normalClickAudio();
         if(event.target.tagName == "SECTION"){
-            setOverViewValues(event.target.classList[2]);
+            setOverViewValues(event.target.classList[2].slice(4));
             _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
 
         }
         else if (event.target.parentElement.tagName == "SECTION"){
             console.log("second if");
-            setOverViewValues(event.target.parentElement.classList[2]);
+            setOverViewValues(event.target.parentElement.classList[2].slice(4));
             _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
         }
         else if (event.target.parentElement.parentElement.tagName == "SECTION"){
             console.log("third if");
-            setOverViewValues(event.target.parentElement.parentElement.classList[2]);
+            setOverViewValues(event.target.parentElement.parentElement.classList[2].slice(4));
+            _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
+        }
+        else if (event.target.parentElement.parentElement.parentElement.tagName == "SECTION"){
+            console.log("fourth if");
+            setOverViewValues(event.target.parentElement.parentElement.parentElement.classList[2].slice(4));
             _(domStrings.fullTaskOverview).classList.add(domStrings.showTaskOverview);
         }
         else {
@@ -173,6 +182,14 @@ let TaskView = (function(){
         });
     }
 
+    let completeTask = function(event){
+        event.stopImmediatePropagation();
+        console.log("task completing event");
+        event.target.parentElement.parentElement.classList.add(domStrings.showCompletedDiv);
+        console.log();
+        TaskController.changeTaskStatus(event.target.parentElement.parentElement.classList[2].slice(4));
+    }
+
     let renderTasks = function(tasks){
         //Reseting all tasks
         _(domStrings.fullTaskSection).innerHTML = "";
@@ -180,6 +197,7 @@ let TaskView = (function(){
             tasks.forEach(function(elem){
                 //Creating elements for a task section starts here 
                 let mainSection = document.createElement("section");
+                let nonCompletedDiv = document.createElement("div");
                 let projectHeading = document.createElement("h1");
                 let projectDescription = document.createElement("p");
                 let percentageWrapper = document.createElement("div");
@@ -191,12 +209,16 @@ let TaskView = (function(){
                 let projectStatusWrapper = document.createElement("div");
                 let projectStatusHead = document.createElement("p");
                 let projectStatusValue = document.createElement("span");
+                let completeStatusButton = document.createElement("button");
                 //Creating elements for a task section ends here 
     
                 //Adding classes to the elements starts here
                 mainSection.classList.add(domStrings.singleTaskSection);
                 mainSection.classList.add("y-axis-flex");
-                mainSection.classList.add(elem.taskId);
+                mainSection.classList.add("task" + elem.taskId);
+
+                nonCompletedDiv.classList.add(domStrings.nonCompletedDiv);
+                nonCompletedDiv.classList.add("y-axis-flex");
     
                 projectHeading.classList.add(domStrings.taskNameTag);
                 projectDescription.classList.add(domStrings.taskDescTag);
@@ -213,6 +235,8 @@ let TaskView = (function(){
                 projectStatusWrapper.classList.add(domStrings.taskStatusWrapper);
                 projectStatusWrapper.classList.add("x-axis-flex");
                 projectStatusHead.textContent = "Status";
+
+                completeStatusButton.classList.add(domStrings.completeStatusButton);
                 //Adding classes to the elements ends here 
     
                 //Setting values to the elements starts here 
@@ -222,6 +246,7 @@ let TaskView = (function(){
                 percentageValue.textContent = "27%";
                 projectPercentage.style.width = "27%";
                 projectStatusValue.textContent = elem.status;
+                completeStatusButton.textContent = "Complete";
                 //Setting values to the elements ends here 
     
                 //Adding elements to its parent element starts here 
@@ -229,8 +254,11 @@ let TaskView = (function(){
                 projectDateWrapper.append(projectDateHead, projectDataValue);
                 projectStatusWrapper.append(projectStatusHead, projectStatusValue);
     
-                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
-                mainSection.addEventListener("click", showFullTask);
+                nonCompletedDiv.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper, completeStatusButton);
+                nonCompletedDiv.addEventListener("click", showFullTask);
+                completeStatusButton.addEventListener("click", completeTask);
+
+                mainSection.append(nonCompletedDiv, getCompletedDiv(elem.taskId));
                 //Adding elements to its parent element ends here 
     
                 _(domStrings.fullTaskSection).append(mainSection);

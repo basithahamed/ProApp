@@ -26,6 +26,7 @@ public class UserAllProjectFromDb {
                 jsonObject.put("users", new UserProjectRelation().GetUidByPid(con, pid));
                 jsonObject.put("createdBy", rs.getString("created_by"));
                 jsonObject.put("projectDesc", rs.getString("comment"));
+                jsonObject.put("percentage", new ProjectStatusDb().returnPercentage(con, pid, uid));
                 jsArr.add(jsonObject);
             }
 

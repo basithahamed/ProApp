@@ -24,6 +24,21 @@ let TaskController = (function(view, model){
             _(view.getDomStrings().taskOverViewCloseButton).click();
         }
     }
+    let changeTaskStatus = function(id){
+        let xhr = new XMLHttpRequest();
+        let obj = {
+            userId : USERID,
+            taskId : id
+        }
+        let formData = new FormData();
+        formData.append("taskData", JSON.stringify(obj));
+
+        xhr.open("POST", "task/user/changestatus");
+        xhr.send(formData);
+        xhr.onload = function(){
+            console.log(xhr.response);
+        }
+    }
     //This is to exit from a task
     let exitFromTask = function(id){
         let xhr = new XMLHttpRequest();
@@ -169,5 +184,6 @@ let TaskController = (function(view, model){
 
     return {
         addTask : addTask,
+        changeTaskStatus : changeTaskStatus
     }
 })(TaskView, TaskModel);

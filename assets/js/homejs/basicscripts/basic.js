@@ -16,6 +16,7 @@ let normalClickAudio = function(){
     let clickAudio = new Audio("assets/audio/MouseClick.mp3");
     clickAudio.play();
 }
+//This is to show a error message
 let showErrorMessage = function(errorMessage){
     _(MainView.getDomStrings().errorSection).classList.add(MainView.getDomStrings().showErrorSection.slice(1));
     _(MainView.getDomStrings().errorMessagePara).innerText = errorMessage;
@@ -31,9 +32,26 @@ xhr.onload = function(){
     USERID = temp.currentUserId;
     USERNAME = temp.currentUserName;
 }
-let getCompletedDiv = function(classForButton, id, domStrings){
-    let sectionTag = document.createElement("section");
-    sectionTag.classList.add("completed-section");
+//This is for getting a task completed page for a task single task.
+let getCompletedDiv = function(id){
+    let mainDivTag = document.createElement("div");
+    let h1Tag = document.createElement("h1");
+    let changeButton = document.createElement("button");
 
-    return sectionTag;
+    mainDivTag.classList.add("completed-section");
+    mainDivTag.classList.add("y-axis-flex");
+    changeButton.classList.add("change-to-not-complete-button");
+    
+    h1Tag.textContent = "Completed";
+    changeButton.textContent = "Change";
+    mainDivTag.id = id;
+
+    changeButton.addEventListener("click", function(event){
+        console.log(ProjectView.getDomStrings().showCompletedDiv);
+        let selectedId = event.target.parentElement.id;
+        event.target.parentElement.parentElement.classList.remove(TaskView.getDomStrings().showCompletedDiv);
+    });
+    mainDivTag.append(h1Tag, changeButton);
+
+    return mainDivTag;
 }

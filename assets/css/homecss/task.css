@@ -12,7 +12,7 @@
     color: white;
     right: 0;
 }
-.project-choosing-select{
+.project-choosing-select, .complete-task-button, .change-to-not-complete-button{
     background-color: rgb(34,131,226);
     color: white;
     padding: 10px;
@@ -21,6 +21,30 @@
     outline: none;
     border-radius: 10px;
 }
+.single-task-section{
+    transform-style: preserve-3d;
+    padding: 0;
+    transition: 1s;
+}
+.non-completed-task{
+    position: absolute;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.completed-section{
+    height: 100%;
+    justify-content: space-around;
+}
+.show-completed-div{
+    font-size: 40px;
+    transform: rotateY(180deg);
+}
+.complete-task-button, .change-to-not-complete-button{
+    background-color: green;
+}
+
 @media screen and (max-width: 550px) {
     .task-adding-section{
         height: 85%;

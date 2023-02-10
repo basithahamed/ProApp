@@ -54,7 +54,7 @@ body{
     overflow: hidden;
 }
 .error-message-section{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -76,6 +76,8 @@ body{
   bottom: 0;
   right: 0;
   left: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
   background-color: rgba(0, 0, 0, 0.4);
 }
   .error-message-div{
