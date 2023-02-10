@@ -37,7 +37,7 @@ let TaskModel = (function(){
         formData.append("taskData", JSON.stringify(tempObj));
         
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://10.52.0.190:8050/ProApp/task/add");
+        xhr.open("POST", "http://192.168.103.32:8050/ProApp/task/add");
         xhr.send(formData);
         xhr.onload = function(){
             let serverObject = JSON.parse(xhr.response);
