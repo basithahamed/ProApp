@@ -29,6 +29,7 @@ let ProjectController = (function(view, model){
         xhr.onload = function(){
             model.removeProject(id);
             view.renderProjects(model.getProjectsArray());
+            resetTasks();
             _(view.getDomStrings().projectOverViewCloseButton).click();
         }
     }
@@ -46,6 +47,7 @@ let ProjectController = (function(view, model){
         xhr.onload = function(){
             model.removeProject(id);
             view.renderProjects(model.getProjectsArray());
+            resetTasks();
             _(view.getDomStrings().projectOverViewCloseButton).click();
         }
     }
