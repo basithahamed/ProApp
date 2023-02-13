@@ -16,11 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `project_relation`
+-- Table structure for table `images`
 --
 DROP DATABASE IF EXISTS `proapp`;
 CREATE DATABASE `proapp`;
 USE `proapp`;
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `images` (
+  `imageId` int NOT NULL AUTO_INCREMENT,
+  `uid` int DEFAULT NULL,
+  `imagePath` varchar(255) DEFAULT 'default.png',
+  PRIMARY KEY (`imageId`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,2,'2.png');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_relation`
+--
 
 DROP TABLE IF EXISTS `project_relation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -34,7 +61,7 @@ CREATE TABLE `project_relation` (
   KEY `pid` (`pid`),
   CONSTRAINT `project_relation_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
   CONSTRAINT `project_relation_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +70,7 @@ CREATE TABLE `project_relation` (
 
 LOCK TABLES `project_relation` WRITE;
 /*!40000 ALTER TABLE `project_relation` DISABLE KEYS */;
-INSERT INTO `project_relation` VALUES (5,3,3),(6,3,1),(13,7,2),(14,7,3),(15,8,2),(16,8,1),(17,9,2),(18,9,1);
+INSERT INTO `project_relation` VALUES (83,25,1),(84,25,3),(85,25,2);
 /*!40000 ALTER TABLE `project_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +92,7 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`pid`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +101,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (3,'Testing 03','Yet To Start','2023-02-09','2023-02-17','',3),(7,'Testing 18','Completed','2023-02-10','2023-02-23','jdsnkjn',2),(8,'Testing Project b1','Completed','2023-02-24','2023-02-19','Testing Project \n',2),(9,'<script>alert(\"123\")</script>','Completed','2023-02-10','2023-02-23','<script>alert(\"123\")</script>',2);
+INSERT INTO `projects` VALUES (25,'Testing Project ','Yet To Start','2023-02-13','2023-02-17','',2);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +122,7 @@ CREATE TABLE `task_relation` (
   KEY `uid` (`uid`),
   CONSTRAINT `task_relation_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `tasks` (`tid`),
   CONSTRAINT `task_relation_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +131,7 @@ CREATE TABLE `task_relation` (
 
 LOCK TABLES `task_relation` WRITE;
 /*!40000 ALTER TABLE `task_relation` DISABLE KEYS */;
-INSERT INTO `task_relation` VALUES (19,10,2,'false'),(20,10,3,'false'),(21,11,2,'false'),(22,11,1,'false'),(23,12,2,'false'),(24,12,3,'false'),(25,13,2,'false'),(26,13,1,'false'),(27,14,2,'false'),(28,14,1,'false'),(29,15,2,'true'),(30,15,1,'false');
+INSERT INTO `task_relation` VALUES (66,36,1,'false'),(67,36,2,'false');
 /*!40000 ALTER TABLE `task_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +156,7 @@ CREATE TABLE `tasks` (
   KEY `created_by` (`created_by`),
   CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`),
   CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +165,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (10,'Testing 20','2023-02-10','2023-02-12','Completed',7,'',2),(11,'testing Task','2023-02-15','2023-02-25','Completed',7,'testtt',2),(12,'testing Task 4:02','2023-02-24','2023-03-03','Completed',8,'For testing the java code (Bugged code by vicky)',2),(13,'testing 4:04','2023-02-26','2023-03-02','Completed',8,'For testing the code',2),(14,'Demo Task','2023-02-24','2023-03-01','Yet To Start',8,'test Task',2),(15,'Test Task feb 10 8','2023-02-09','2023-02-25','Yet To Start',7,'tettttt',2);
+INSERT INTO `tasks` VALUES (36,'Testing task','2023-02-13','2023-03-04','Yet To Start',25,'',2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +185,7 @@ CREATE TABLE `users` (
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `emailid` (`emailid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +194,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'vicky','vicky','L','vicky@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','Vicky','vicky1@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password');
+INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','Vicky','vicky@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password'),(5,'SivaSankar','SivaSankar','S','siva@proapp.com','password');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -180,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-10 20:31:27
+-- Dump completed on 2023-02-14  0:21:54
