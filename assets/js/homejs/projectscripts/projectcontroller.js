@@ -34,11 +34,14 @@ let ProjectController = ((view, model) => {
     let getSelectedUsers = optionName => {
         tempArray = [];
         let temp = document.getElementsByName(optionName);
+        console.log("seleced tags = " + temp);
         temp.forEach(elem => {
             if(elem.checked){
+                console.log(elem.value);
                 tempArray.push(elem.value);
             }
         });
+        console.log("selected users = " + tempArray);
         return tempArray;
     }
     //This is to exit from a project
@@ -112,7 +115,7 @@ let ProjectController = ((view, model) => {
             playErrorAudio();
         }
     }
-    let init = function(){
+    let init = () => {
         //Adding listener to new button
         //This is for opening the add project section
         _(view.getDomStrings().newProjectButton).addEventListener("click", function(){
@@ -166,11 +169,9 @@ let ProjectController = ((view, model) => {
         //This is for project overview exiting button
         _(view.getDomStrings().overViewExitButton).addEventListener("click", () => {
             if(USERID == _(view.getDomStrings().projectOverViewCreatedBy).id){
-                console.log("Remove project");
                 removeProject(_(view.getDomStrings().fullProjectOverView).id);
             }
             else {
-                console.log("Exit from project");
                 exitFromProject(_(view.getDomStrings().fullProjectOverView).id);
             }
         });

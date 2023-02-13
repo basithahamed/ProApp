@@ -2,9 +2,7 @@ package com.databasesdriver;
 
 // import java.lang.Thread.State;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ChangeTaskStatusDb {
@@ -42,7 +40,7 @@ public class ChangeTaskStatusDb {
                 }
                 total++;
             }
-            System.out.println("j:" + j + "total:" + total);
+            //System.out.println("j:" + j + "total:" + total);
             if (j == 0) {
                 stmt.executeUpdate("update tasks set status = 'Yet To Start' where tid = " + tid);
             } else if (total == j) {

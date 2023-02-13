@@ -1,4 +1,4 @@
-let ProjectView = (function(){
+let ProjectView = (() => {
 
     let domStrings = {
         mainProjectSection : ".project-section",
@@ -53,27 +53,28 @@ let ProjectView = (function(){
         overViewUserImage : "project-overview-user-image",
         overViewUserName : "project-overview-user-name",
         overViewExitButton : ".exit-project-button",
-        fullProjectOverView : ".project-overview"
+        fullProjectOverView : ".project-overview",
+        showCompletedDiv : "show-completed-div",
+        nonCompletedDiv : "non-completed-task"
     }
-    let getDomStrings = function(){
-        return domStrings;
-    }
+    let getDomStrings = () => domStrings;
+    
     //This is to set name of the created user in overview section
-    let getUserById = function(id, createdByElement){
+    let getUserById = (id, createdByElement) => {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "user/getusers?id=" + id);
         xhr.send();
-        xhr.onload = function(){
+        xhr.onload = () => {
             console.log(JSON.parse(xhr.response));
             createdByElement.innerText = JSON.parse(xhr.response).userName;
         }
     }
     //To render people in the project
-    let renderProjectParticipants = function(users){
+    let renderProjectParticipants = users => {
         //Reseting users ul
         _(domStrings.overViewUl).innerHTML = "";
 
-        users.forEach(function(elem){
+        users.forEach(elem => {
             //Creating elements for users list
             let liTag = document.createElement("li");
             let divTag = document.createElement("div");
@@ -97,7 +98,7 @@ let ProjectView = (function(){
         });
     }
     //This is for setting details of the clicked project for the overview
-    let setOverViewValues = function(projectId){
+    let setOverViewValues = projectId => {
         //get project by id here
         let project = ProjectModel.getProjectsArray()[ProjectModel.getIndexOfProject(projectId)];
         _(domStrings.overViewName).innerText = project.projectName;
@@ -120,7 +121,7 @@ let ProjectView = (function(){
         getUserById(project.createdBy, _(domStrings.projectOverViewCreatedBy));
     }
     //This is for showing the full project when we clicked a project
-    let showFullProject = function(event){
+    let showFullProject = event => {
         normalClickAudio();
         if(event.target.tagName == "SECTION" && event.target.classList.contains(domStrings.singleProjectSection.slice(1))){
             setOverViewValues(event.target.classList[2].slice(7));
@@ -147,13 +148,14 @@ let ProjectView = (function(){
         }
     }
     //Rendering all projects 
-    let renderProjects = function(projects){
+    let renderProjects = projects => {
         //Reseting all projects
         _(domStrings.fullProjectSection).innerHTML = "";
         if(projects.length){
-            projects.forEach(function(elem){
+            projects.forEach(elem => {
                 //Creating elements for a project section starts here 
                 let mainSection = document.createElement("section");
+                let nonCompletedDiv = document.createElement("div");
                 let projectHeading = document.createElement("h1");
                 let projectDescription = document.createElement("p");
                 let percentageWrapper = document.createElement("div");
@@ -171,6 +173,9 @@ let ProjectView = (function(){
                 mainSection.classList.add(domStrings.singleProjectSection.slice(1));
                 mainSection.classList.add("y-axis-flex");
                 mainSection.classList.add("project" + elem.id);
+
+                nonCompletedDiv.classList.add(domStrings.nonCompletedDiv);
+                nonCompletedDiv.classList.add("y-axis-flex");
     
                 projectHeading.classList.add(domStrings.projectName.slice(1));
                 projectDescription.classList.add(domStrings.projectDescription.slice(1));
@@ -195,7 +200,7 @@ let ProjectView = (function(){
                 projectDescription.textContent = elem.projectDesc;
                 projectDataValue.textContent = elem.toDate;
                 percentageValue.textContent = elem.percentage;
-                projectPercentage.style.width = elem.percentage;
+                projectPercentage.style.width = elem.percentage + "%";
                 projectStatusValue.textContent = elem.status;
                 //Setting values to the elements ends here 
     
@@ -204,8 +209,15 @@ let ProjectView = (function(){
                 projectDateWrapper.append(projectDateHead, projectDataValue);
                 projectStatusWrapper.append(projectStatusHead, projectStatusValue);
                 
-                mainSection.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
+                nonCompletedDiv.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
+                mainSection.append(nonCompletedDiv, getCompletedDiv(elem.id, true));
                 mainSection.addEventListener("click", showFullProject);
+
+                //This if condition is for making elements rotate  if they are completed.
+                console.log(elem.status);
+                if(elem.status == "Completed"){
+                    mainSection.classList.add(domStrings.showCompletedDiv);
+                }
                 
                 //Adding elements to its parent element ends here 
     

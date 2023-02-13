@@ -30,7 +30,6 @@ public class HomeFilter extends HttpFilter {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= DriverManager.getConnection("jdbc:mysql://10.52.0.190:3306/proapp", "todoadmins", "todo@111");
         } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
             
@@ -40,32 +39,18 @@ public class HomeFilter extends HttpFilter {
         {
                 res.setContentType("text/html");  
 
-                System.out.println("form login if");
+                //System.out.println("form login if");
                 // RequestDispatcher rd=req.getRequestDispatcher("assets/html/login.html");
                 // rd.forward(req, res);
 
                 res.sendRedirect("Login");  
-                System.out.println("i am form temp ");
+                //System.out.println("i am form temp ");
         }
         else
         {
-            // System.out.println("from else home");
-            
-            // System.out.println("id:"+uid);
-            // try {
-            //     System.out.println("res:"+new IsExsist().checker(con, uid,(String) session.getAttribute("emailId"),(String) session.getAttribute("password")));
-            // } catch (SQLException e) {
-            //     // TODO Auto-generated catch block
-            //     e.printStackTrace();
-            // }
-            // uid = Integer.parseInt(temp);
-            // String mail=(String) session.getAttribute("emailId");
-            // String pass=(String) session.getAttribute("password");
-            // System.out.println("email:"+mail);
-            // System.out.println("pass:"+pass);
             try {
                 if (new IsExsist().checker(con, uid,(String) session.getAttribute("emailId"),(String) session.getAttribute("password"))) {
-                    System.out.println("homeSucess");
+                    //System.out.println("homeSucess");
                     RequestDispatcher rd=request.getRequestDispatcher("home");
                     rd.forward(request, response);
                 }
@@ -76,9 +61,6 @@ public class HomeFilter extends HttpFilter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        // System.out.print("temp"+temp);
-       
-        
+        }        
     }
 }

@@ -17,6 +17,7 @@ let TaskController = ((view, model) => {
         xhr.onload = () => {
             model.removeTask(id);
             view.renderTasks(model.getTasks());
+            resetProject();
             _(view.getDomStrings().taskOverViewCloseButton).click();
         }
     }
@@ -47,6 +48,7 @@ let TaskController = ((view, model) => {
         xhr.onload = () => {
             model.removeTask(id);
             view.renderTasks(model.getTasks());
+            resetProject();
             _(view.getDomStrings().taskOverViewCloseButton).click();
         }
     }
@@ -56,7 +58,7 @@ let TaskController = ((view, model) => {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "/ProApp/user/getusers/project?id=" + pid);
         xhr.send();
-        xhr.onload = function() {
+        xhr.onload = () => {
             let temp = JSON.parse(xhr.response);
             let flag = false;
             for(let i = 0;i < users.length;i++){

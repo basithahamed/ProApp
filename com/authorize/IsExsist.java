@@ -31,4 +31,23 @@ public class IsExsist {
         }
         return result;
     }
+    public String IsRegisteredDetailsExists(Connection con ,String mail, String userName) {
+        String result = "";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from users");
+            while (rs.next()) {
+                if (rs.getString("emailid").equals(mail)) {
+                    result = "Email Id Already Exsist";
+                }
+                else if(rs.getString("uname").equals(userName))
+                {
+                    result = "Username Already Exsist";
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

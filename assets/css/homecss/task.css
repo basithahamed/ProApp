@@ -21,11 +21,6 @@
     outline: none;
     border-radius: 10px;
 }
-.single-task-section{
-    transform-style: preserve-3d;
-    padding: 0;
-    transition: 1s;
-}
 .non-completed-task{
     position: absolute;
     justify-content: space-around;

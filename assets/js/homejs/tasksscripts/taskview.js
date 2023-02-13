@@ -246,8 +246,8 @@ let TaskView = (() => {
                 projectHeading.textContent = elem.taskName;
                 projectDescription.textContent = elem.taskDescription;
                 projectDataValue.textContent = elem.toDate;
-                percentageValue.textContent = "27%";
-                projectPercentage.style.width = "27%";
+                percentageValue.textContent = elem.percentage;
+                projectPercentage.style.width = elem.percentage + "%";
                 projectStatusValue.textContent = elem.status;
                 completeStatusButton.textContent = "Complete";
                 //Setting values to the elements ends here 
@@ -258,7 +258,7 @@ let TaskView = (() => {
                 projectStatusWrapper.append(projectStatusHead, projectStatusValue);
     
                 nonCompletedDiv.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper, completeStatusButton);
-                nonCompletedDiv.addEventListener("click", showFullTask);
+                mainSection.addEventListener("click", showFullTask);
                 completeStatusButton.addEventListener("click", completeTask);
 
                 mainSection.append(nonCompletedDiv, getCompletedDiv(elem.taskId));
@@ -268,8 +268,8 @@ let TaskView = (() => {
                 if(elem.status == "Completed"){
                     mainSection.classList.add(domStrings.showCompletedDiv);
                 }
-                else if (elem.status == "On Progress") {
-                    completeStatusButton.textContent = "Undo";
+                else if (elem.isCompleted) {
+                    completeStatusButton.textContent = "Change";
                 }
     
                 _(domStrings.fullTaskSection).append(mainSection);

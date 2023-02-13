@@ -30,7 +30,6 @@ let PeopleAdding = (() => {
 
         peopleSelectingLabel.classList.add(domStrings.peopleSelectingLabel);
         peopleSelectingLabel.classList.add("x-axis-flex");
-        peopleSelectingLabel.setAttribute("for", "person" + id);
         
         miniProfileImage.classList.add(domStrings.miniPeoplePhoto);
         miniProfileImage.style.backgroundImage = "url(/ProApp/assets/images/user.png)";
@@ -39,7 +38,16 @@ let PeopleAdding = (() => {
         personName.textContent = name;
 
         personOptionLabel.classList.add(domStrings.peopleOptionLabel);
-        personOptionLabel.setAttribute("for", "person" + id);
+        if(isProject){
+            personOptionLabel.setAttribute("for", "projectperson" + id);
+            peopleSelectingLabel.setAttribute("for", "projectperson" + id);
+            inputCheckBox.id = "projectperson" + id;
+        }
+        else {
+            personOptionLabel.setAttribute("for", "taskperson" + id);
+            peopleSelectingLabel.setAttribute("for", "taskperson" + id);
+            inputCheckBox.id = "taskperson" + id;
+        }
 
         roundIcon.classList.add(domStrings.smallRoundIcon);
         inputCheckBox.classList.add(domStrings.peopleInputCheckbox);
@@ -50,7 +58,6 @@ let PeopleAdding = (() => {
         else {
             inputCheckBox.name = "task-people-option";
         }
-        inputCheckBox.id = "person" + id;
         inputCheckBox.value = id;
 
         //Adding listeners to the elemetns

@@ -33,26 +33,31 @@ xhr.onload = function(){
     USERNAME = temp.currentUserName;
 }
 //This is for getting a task completed page for a task single task.
-let getCompletedDiv = function(id){
+let getCompletedDiv = function(id, isProject){
     let mainDivTag = document.createElement("div");
     let h1Tag = document.createElement("h1");
-    let changeButton = document.createElement("button");
-
+    
     mainDivTag.classList.add("completed-section");
     mainDivTag.classList.add("y-axis-flex");
-    changeButton.classList.add("change-to-not-complete-button");
     
     h1Tag.textContent = "Completed";
-    changeButton.textContent = "Change";
     mainDivTag.id = id;
 
-    changeButton.addEventListener("click", function(event){
-        console.log(TaskView.getDomStrings().showCompletedDiv);
-        let selectedId = event.target.parentElement.id;
-        event.target.parentElement.parentElement.classList.remove(TaskView.getDomStrings().showCompletedDiv);
-        TaskController.changeTaskStatus(selectedId);
-    });
-    mainDivTag.append(h1Tag, changeButton);
-
+    if(!isProject){
+        let changeButton = document.createElement("button");
+        changeButton.classList.add("change-to-not-complete-button");
+        changeButton.textContent = "Undo";
+        changeButton.addEventListener("click", function(event){
+            console.log(TaskView.getDomStrings().showCompletedDiv);
+            let selectedId = event.target.parentElement.id;
+            event.target.parentElement.parentElement.classList.remove(TaskView.getDomStrings().showCompletedDiv);
+            TaskController.changeTaskStatus(selectedId);
+        });
+        mainDivTag.append(h1Tag, changeButton);
+    }
+    else {
+        mainDivTag.append(h1Tag);
+    }
+    
     return mainDivTag;
 }

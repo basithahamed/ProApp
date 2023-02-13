@@ -1,6 +1,6 @@
-let TaskSubController = (function(view){
+let TaskSubController = (view => {
 
-    let init = function(){
+    let init = () => {
         //This is for active button of Task section
         _(view.getDomStrings().activeTaskButton).addEventListener("click", function(){
             view.renderActiveTasks(TaskModel.getTasks());

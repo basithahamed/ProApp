@@ -29,6 +29,7 @@
 .projects-button-ul{
     display: block;
     width: 100%;
+    cursor: pointer;
 }
 .projects-ul{
     height: 0;

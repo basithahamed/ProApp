@@ -41,7 +41,7 @@ public class AddProjectToDb {
             Statement stmt2 = con.createStatement();
             ResultSet rs2;
             for (int i = 0; i < users.size(); i++) {
-                // System.out.println(jsonArray.get(i));
+                // //System.out.println(jsonArray.get(i));
                 
                 // adding the jsonarray of users by iterating
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));

@@ -1,21 +1,21 @@
-let AddProjectModel = (function(){
+let AddProjectModel = (() => {
 
-    let Project = function(id, projectName, projectDesc, fromDate, toDate, users, createdBy, percentage){
+    let Project = function(id, projectName, projectDesc, status, fromDate, toDate, users, createdBy, percentage){
         this.id = id;
         this.projectName = projectName;
         this.projectDesc = projectDesc;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.status = "Yet to start";
+        this.status = status;
         this.percentage = percentage;
         this.users = users;
         this.createdBy = createdBy;
     }
     let changeServerObject = function(serverObject){
         localStorage.lastAddedProject = serverObject.id;
-        return new Project(serverObject.id, serverObject.projectName, serverObject.projectDesc, serverObject.fromDate, serverObject.toDate, serverObject.users, serverObject.createdBy, serverObject.percentage);
+        return new Project(serverObject.id, serverObject.projectName, serverObject.projectDesc, serverObject.status, serverObject.fromDate, serverObject.toDate, serverObject.users, serverObject.createdBy, serverObject.percentage);
     }
-    let addProject = function(projectName, projectDesc, fromDate, toDate, users){
+    let addProject = (projectName, projectDesc, fromDate, toDate, users) => {
         let formData = new FormData();
         let tempCreated = USERID;
         let tempObj = {
@@ -32,7 +32,7 @@ let AddProjectModel = (function(){
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/ProApp/project/add");
         xhr.send(formData);
-        xhr.onload = function(){
+        xhr.onload = () => {
             let serverObject = JSON.parse(xhr.response); 
             let project = changeServerObject(serverObject);
             ProjectModel.addProject(project);
@@ -41,15 +41,7 @@ let AddProjectModel = (function(){
         }
         // return new Project(getTempId(), projectName, projectDesc, fromDate, toDate, users);
     }
-    let getTempId = function(){
-        if(ProjectModel.getProjectsArray().length){
-            return ProjectModel.getProjectsArray()[ProjectModel.getProjectsArray().length-1].id + 1;
-        }
-        else {
-            return 1;
-        }
-    }
-
+   
     return {
         addProject : addProject,
         changeServerObject : changeServerObject

@@ -1,9 +1,7 @@
 package com.databasesdriver;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.json.simple.JSONArray;
@@ -14,9 +12,7 @@ public class UserAllProjectFromDb {
         JSONArray jsArr = new JSONArray();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "select * from project_relation inner join projects on project_relation.pid = projects.pid where project_relation.uid ="
-                            + uid);
+            ResultSet rs = stmt.executeQuery("select * from project_relation inner join projects on project_relation.pid = projects.pid where project_relation.uid ="+ uid);
 
             ProjectStatusDb psdb = new ProjectStatusDb();
             while (rs.next()) {
@@ -41,7 +37,6 @@ public class UserAllProjectFromDb {
     }
 
     public static void ProjectStatusChanger(Connection con, int pid) {
-        // boolean result = false;
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select status from tasks where pid = " + pid);
@@ -57,26 +52,19 @@ public class UserAllProjectFromDb {
                 }
                 totalCount++;
             }
-            System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
+            //System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
             if (totalCount == completedCount) {
                 stmt.executeUpdate("update projects set status = 'Completed' where pid = " + pid);
-
             } else if (completedCount > 0) {
                 stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
-
-            }
-            else if (onProgressCount > 0) {
+            } else if (onProgressCount > 0) {
                 stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
-            } 
-            else if (completedCount == 0) {
-                
+            } else if (completedCount == 0) {
                 stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
-
             } 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // return result;
     }
 
     

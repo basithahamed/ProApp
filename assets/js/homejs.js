@@ -274,7 +274,7 @@ let MainRunner = (function (domStrings, view) {
         }
         //Sending the data has JSON object, We want to use MultipartConfig Annotation in servlet
         let formData = new FormData();
-        formData.append("check", "hello");
+        
         formData.append("userData", JSON.stringify(data));
 
         let xhr = new XMLHttpRequest();

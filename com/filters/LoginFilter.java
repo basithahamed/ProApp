@@ -28,7 +28,7 @@ public class LoginFilter extends HttpFilter{
             throws IOException, ServletException {
 
         String userData = request.getParameter("userData");
-                // System.out.println("i am form login filter");
+                // //System.out.println("i am form login filter");
         try {
             
             JSONObject jsObj = (JSONObject) new JSONParser().parse(userData);
@@ -42,7 +42,7 @@ public class LoginFilter extends HttpFilter{
                     HttpSession session = sessionVar.getSession(); // making a session Var
                     session.setAttribute("emailId", email);
                     session.setAttribute("password", password);
-                    // System.out.println("from lpgin");
+                    // //System.out.println("from lpgin");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection conn= DriverManager.getConnection("jdbc:mysql://10.52.0.190:3306/proapp", "todoadmins", "todo@111");
                     session.setAttribute("uid", new GetUidByEmail().returnid(conn, email));
@@ -54,7 +54,7 @@ public class LoginFilter extends HttpFilter{
 
                 }
             } catch (Exception e) {
-                // System.out.println("i am from Login Filter Exception");
+                // //System.out.println("i am from Login Filter Exception");
                 e.printStackTrace();
             }
         } catch (Exception e) {

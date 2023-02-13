@@ -1,4 +1,4 @@
-let ProjectSubView = (function(){
+let ProjectSubView = (() => {
 
     let domStrings = {
         activeProjectsButton : ".active-project-button",
@@ -6,30 +6,27 @@ let ProjectSubView = (function(){
         allProjectButton : ".all-project-button"
     }
     //This is to render active projects 
-    let renderActiveProjects = function(projectsArray){
+    let renderActiveProjects = projectsArray => {
         let activeProjects = [];
-        projectsArray.forEach(function(elem){
+        projectsArray.forEach(elem => {
             if(elem.status == "Yet to start"){
                 activeProjects.push(elem);
             }
         });
-        console.log(activeProjects);
         ProjectView.renderProjects(activeProjects);
     }
     //This is to render projects that the current user participated
-    let renderMineProjects = function(projectArray){
+    let renderMineProjects = projectArray => {
         let mineProjects = [];
-        projectArray.forEach(function(elem){
+        projectArray.forEach(elem => {
             if(elem.createdBy == USERID){
                 mineProjects.push(elem);
             }
         });
-        console.log(mineProjects);
         ProjectView.renderProjects(mineProjects);
     }
-    let getDomStrings = function(){
-        return domStrings;
-    }
+    let getDomStrings = () => domStrings;
+    
     return {
         getDomStrings : getDomStrings,
         renderActiveProjects : renderActiveProjects,

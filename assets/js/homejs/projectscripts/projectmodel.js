@@ -10,6 +10,8 @@ let ProjectModel = (function(){
             return elem.id == id;
         });
     }
+    let resetProject = () => projectsArray = [];
+    
     let removeProject = function(id){
         projectsArray.splice(getIndexOfProject(id), 1);
     }
@@ -25,6 +27,7 @@ let ProjectModel = (function(){
         removeProject : removeProject,
         changeStatus : changeStatus,
         addProject : addProject,
-        getIndexOfProject : getIndexOfProject
+        getIndexOfProject : getIndexOfProject,
+        resetProject : resetProject
     }
 })();

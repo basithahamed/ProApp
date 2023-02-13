@@ -55,9 +55,10 @@
     border-radius: 12px;
     margin: 10px 0px; 
     justify-content: space-around;  
+    transform-style: preserve-3d;
     align-items: flex-start;
     position: relative;
-    padding: 10px;
+    transition: 1s;
 }
 .common-project-inner-div{
     padding: 10px;
@@ -83,7 +84,6 @@
 }
 .project-percentage, .task-percentage{
     background-color: green;
-    width: 27%;
     height: 100%;
     position: absolute;
     border-radius: 10px;

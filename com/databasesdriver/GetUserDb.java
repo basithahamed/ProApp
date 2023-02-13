@@ -18,7 +18,7 @@ public class GetUserDb {
             rs=statement.executeQuery("select * from users");
             while(rs.next()){
                 JSONObject jsonObject=new JSONObject();
-                jsonObject.put("uid", rs.getInt("uid"));
+                jsonObject.put("userId", rs.getInt("uid"));
                 jsonObject.put("userName", rs.getString("uname"));
                 jsonArray.add(jsonObject);
             }
@@ -31,7 +31,7 @@ public class GetUserDb {
     // method for returning users by the given uid
     public JSONObject returnUserId(Connection c,String val) {
         int uid=Integer.parseInt(val);
-        // System.out.println("uid:"+uid);
+        // //System.out.println("uid:"+uid);
         JSONObject jsonObject=new JSONObject();
         try {
             ResultSet rs;
@@ -39,7 +39,7 @@ public class GetUserDb {
             rs=statement.executeQuery("select * from users where uid="+uid);
             rs.next();
 
-            jsonObject.put("uid", rs.getInt("uid"));
+            jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
             
             

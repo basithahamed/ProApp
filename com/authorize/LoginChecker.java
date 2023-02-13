@@ -24,7 +24,7 @@ public class LoginChecker {
             rs = ps.executeQuery();
             while (rs.next()) {
                 if (rs.getString("emailid").equals(email) && rs.getString("password").equals(password)) {
-                    System.out.println("login access");
+                    //System.out.println("login access");
                     return true;
                 }
             }

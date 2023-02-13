@@ -120,17 +120,17 @@ let MainRunner = (function (domStrings, view) {
         let formData = new FormData();
         formData.append("userData", JSON.stringify(data));
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "CreateUser");
+        xhr.open("POST", "user/create");
         xhr.send(formData);
         xhr.onload=function()
         {
-            if(xhr.response == "Success"){
+            if(JSON.parse(xhr.response).result == "Success"){
                 let anker = document.createElement("a");
                 anker.href = "home";
                 anker.click();
             }
             else{
-                view.inValidInputDisplay("", xhr.response, true);
+                view.inValidInputDisplay("", JSON.parse(xhr.response).result, true);
             }
         }
         //No need of onload function
