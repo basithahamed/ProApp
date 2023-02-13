@@ -12,7 +12,7 @@
     color: white;
     right: 0;
 }
-.project-choosing-select, .complete-task-button, .change-to-not-complete-button{
+.project-choosing-select, .complete-task-button, .change-to-not-complete-button, .upload-user-photo, .edit-profile-improve-button{
     background-color: rgb(34,131,226);
     color: white;
     padding: 10px;

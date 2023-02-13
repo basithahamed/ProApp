@@ -171,7 +171,6 @@ let TaskView = (() => {
     let renderProjectOption = () => {
         //Reseting the select tag 
         _(domStrings.taskProjectSelect).innerHTML = "";
-        console.log("Projects while rendering project option = " + ProjectModel.getProjectsArray());
         let projects = ProjectModel.getProjectsArray();
         //Looping through all availbale projects 
         projects.forEach(elem => {
@@ -187,9 +186,7 @@ let TaskView = (() => {
 
     let completeTask = event => {
         event.stopImmediatePropagation();
-        console.log("task completing event");
         // event.target.parentElement.parentElement.classList.add(domStrings.showCompletedDiv);
-        console.log();
         TaskController.changeTaskStatus(event.target.parentElement.parentElement.classList[2].slice(4));
     }
 
