@@ -19,7 +19,6 @@ import com.databasesdriver.ChangeTaskStatusDb;
 public class ChangeTaskStatus extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         try {
             JSONObject js=(JSONObject)new JSONParser().parse(request.getParameter("taskData"));
             int taskId = Integer.parseInt(String.valueOf(js.get("taskId")));
@@ -27,7 +26,6 @@ public class ChangeTaskStatus extends HttpServlet {
             response.getWriter().print(new ChangeTaskStatusDb().taskRelationStatusChanger((Connection)getServletContext().getAttribute("Connection"), taskId, userId));
 
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

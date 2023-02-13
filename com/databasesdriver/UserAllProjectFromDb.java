@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class UserAllProjectFromDb {
-    public static JSONArray retrieveProject(Connection con, int uid) {
+    public JSONArray retrieveProject(Connection con, int uid) {
         JSONArray jsArr = new JSONArray();
         try {
             Statement stmt = con.createStatement();
@@ -18,64 +18,66 @@ public class UserAllProjectFromDb {
                     "select * from project_relation inner join projects on project_relation.pid = projects.pid where project_relation.uid ="
                             + uid);
 
-            int pid;
+            ProjectStatusDb psdb = new ProjectStatusDb();
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
-                pid = rs.getInt("pid");
-                ProjectStatusChanger(con,pid);
+                int pid = rs.getInt("pid");
+                ProjectStatusChanger(con, pid);
                 jsonObject.put("id", pid);
                 jsonObject.put("projectName", rs.getString("pname"));
                 jsonObject.put("status", rs.getString("status"));
                 jsonObject.put("fromDate", rs.getString("fromdate"));
                 jsonObject.put("toDate", rs.getString("todate"));
                 jsonObject.put("users", new UserProjectRelation().GetUidByPid(con, pid));
-                jsonObject.put("createdBy", rs.getString("created_by"));
+                jsonObject.put("createdBy", rs.getInt("created_by"));
                 jsonObject.put("projectDesc", rs.getString("comment"));
-                // jsonObject.put("percentage", new ProjectStatusDb().returnPercentage(con, pid, uid));
+                jsonObject.put("percentage", psdb.returnPercentage(con, pid, uid));
                 jsArr.add(jsonObject);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return jsArr;
     }
 
-    public static String ProjectStatusChanger(Connection con,int pid) {
-        String result="";
+    public static void ProjectStatusChanger(Connection con, int pid) {
+        // boolean result = false;
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select status from tasks where pid = " + pid);
-            int j = 0;
-            int total = 0;
+
+            int completedCount = 0;
+            int onProgressCount = 0;
+            int totalCount = 0;
             while (rs.next()) {
                 if (rs.getString("status").equals("Completed")) {
-                    j++;
+                    completedCount++;
+                } else if (rs.getString("status").equals("On Progress")) {
+                    onProgressCount++;
                 }
-                total++;
+                totalCount++;
             }
-            System.out.println("j:" + j + "total:" + total + "pid: "+pid);
-            if (j == 0) {
-                stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
-                result="Yet To Start";
-            } else if (total == j) {
+            System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
+            if (totalCount == completedCount) {
                 stmt.executeUpdate("update projects set status = 'Completed' where pid = " + pid);
-                result="Completed";
-            } else if (j > 0) {
+
+            } else if (completedCount > 0) {
                 stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
-                result="On Progress";
+
             }
+            else if (onProgressCount > 0) {
+                stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
+            } 
+            else if (completedCount == 0) {
+                
+                stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
 
-
+            } 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        // return result;
     }
-    // public static void main(String[] args) throws ClassNotFoundException, SQLException {
-    //     Class.forName("com.mysql.cj.jdbc.Driver");
-    //     Connection c = DriverManager.getConnection("jdbc:mysql://192.168.103.32:3306/proapp", "todoadmins", "todo@111");
-    //     System.out.println(retrieveProject(c, 2));
-    // }
-}
 
+    
+}

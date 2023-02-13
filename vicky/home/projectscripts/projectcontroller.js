@@ -6,7 +6,7 @@ let ProjectController = (function(view, model){
     }
     let getUsers = function(typedText){
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://192.168.103.32:8050/ProApp/user/getusers?id=all");
+        xhr.open("GET", "http://10.52.0.190:8050/ProApp/user/getusers?id=all");
         xhr.send();
         xhr.onload = function(){
             view.renderPeopleSearchResult(JSON.parse(xhr.response), typedText);
@@ -50,7 +50,7 @@ let ProjectController = (function(view, model){
             let flag = false;
             let userId = _(view.getDomStrings().projectPeopleAddingInput).classList[2];
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://192.168.103.32:8050/ProApp/user/getusers?id=all");
+            xhr.open("GET", "http://10.52.0.190:8050/ProApp/user/getusers?id=all");
             xhr.send();
             xhr.onload = function(){
                 //Doing everything inside onload function because of asynchronous problem.

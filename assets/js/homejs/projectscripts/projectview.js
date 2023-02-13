@@ -17,7 +17,13 @@ let ProjectView = (function(){
         projectFromDate : "#from-date-input-id",
         projectLastDate : "#date-input-id",
         projectPercentageWrapper : ".percentage-wrapper",
-        projectPeopleAddingInput : ".project-people-adding-input",
+        projectPeopleAddingButton : ".choose-people-button",
+        peopleAddingSection : ".people-selecting-checkboxes-wrapper",
+        peopleOptionsWrapper : ".people-options-wrapper",
+        peopleAddingLabel : ".people-option-label",
+        smallRoundIcon : ".small-round-icon",
+        showPeopleAddingSection : "show-people-choosing-section",
+        peopleAddingDoneButton : ".done-people-add-button",
         projectPercentage : ".project-percentage",
         projectPercentageValue : ".percentage-value",
         projectDateWrapper : ".projects-date-wrapper",
@@ -51,45 +57,6 @@ let ProjectView = (function(){
     }
     let getDomStrings = function(){
         return domStrings;
-    }
-    //This function is to render all search results of users
-    let renderPeopleSearchResult = function(userDetails, typedText){
-        _(domStrings.projectPeopleUl).innerHTML = "";
-        userDetails.forEach(function(elem){
-            if(elem.userName.toLowerCase().startsWith(typedText) && typedText != "" && elem.uid != USERID){
-                //Creating elements here
-                let li = document.createElement("li");
-                let div = document.createElement("div");
-                let p = document.createElement("p");
-
-                li.id = elem.uid;
-                //Adding listeners to the created li tag
-                li.addEventListener("click", function(event){
-                    if(_(domStrings.projectPeopleAddingInput).classList.length > 2){
-                        _(domStrings.projectPeopleAddingInput).classList.remove(document.querySelector(domStrings.projectPeopleAddingInput).classList[2]);
-                    }
-                    if(event.target.tagName == "LI"){
-                        _(domStrings.projectPeopleAddingInput).classList.add(event.target.id);
-                        _(domStrings.projectPeopleAddingInput).value = event.target.children[1].innerText;
-                    }
-                    else if (event.target.tagName == "P") {
-                        _(domStrings.projectPeopleAddingInput).classList.add(event.target.parentElement.id);
-                        _(domStrings.projectPeopleAddingInput).value = event.target.innerText;
-                    }
-                    else if (event.target.tagName == "DIV"){
-                        _(domStrings.projectPeopleAddingInput).classList.add(event.target.parentElement.id);
-                        _(domStrings.projectPeopleAddingInput).value = event.target.nextElementSibling.innerText;
-                    }
-                    _(domStrings.projectPeopleUl).innerHTML = "";
-                });
-                li.classList.add(domStrings.projectUserSeachLi);
-                li.classList.add("x-axis-flex");
-                p.textContent = elem.userName;
-                div.classList.add(domStrings.projectUserSeachPhoto.slice(1));
-                li.append(div, p);
-                _(domStrings.projectPeopleUl).append(li);
-            }
-        });
     }
     //This is to set name of the created user in overview section
     let getUserById = function(id, createdByElement){
@@ -255,7 +222,6 @@ let ProjectView = (function(){
     return {
         getDomStrings : getDomStrings,
         renderProjects : renderProjects,
-        renderPeopleSearchResult : renderPeopleSearchResult,
         getUserById : getUserById
     }
 })();

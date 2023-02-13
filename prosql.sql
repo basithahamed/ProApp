@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
--- Host: localhost    Database: proapp
+-- Host: 10.52.0.190    Database: proapp
 -- ------------------------------------------------------
 -- Server version	8.0.32-0ubuntu0.22.04.2
 
@@ -138,7 +138,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (10,'Testing 20','2023-02-10','2023-02-12','Completed',7,'',2),(11,'testing Task','2023-02-15','2023-02-25','Completed',7,'testtt',2),(12,'testing Task 4:02','2023-02-24','2023-03-03','Completed',8,'For testing the java code (Bugged code by Bharath)',2),(13,'testing 4:04','2023-02-26','2023-03-02','Completed',8,'For testing the code',2),(14,'Demo Task','2023-02-24','2023-03-01','Yet To Start',8,'test Task',2),(15,'Test Task feb 10 8','2023-02-09','2023-02-25','Yet To Start',7,'tettttt',2);
+INSERT INTO `tasks` VALUES (10,'Testing 20','2023-02-10','2023-02-12','Completed',7,'',2),(11,'testing Task','2023-02-15','2023-02-25','Completed',7,'testtt',2),(12,'testing Task 4:02','2023-02-24','2023-03-03','Completed',8,'For testing the java code (Bugged code by todoadmins)',2),(13,'testing 4:04','2023-02-26','2023-03-02','Completed',8,'For testing the code',2),(14,'Demo Task','2023-02-24','2023-03-01','Yet To Start',8,'test Task',2),(15,'Test Task feb 10 8','2023-02-09','2023-02-25','Yet To Start',7,'tettttt',2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','Vicky','vicky@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password');
+INSERT INTO `users` VALUES (1,'todoadmins','todoadmins','L','todoadmins@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','Vicky','vicky@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

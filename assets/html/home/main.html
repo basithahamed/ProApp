@@ -10,6 +10,7 @@
     <link href="assets/css/homecss/mobile.css" type="text/css" rel="stylesheet">
     <link href="assets/css/homecss/project.css" type="text/css" rel="stylesheet">
     <link href="assets/css/homecss/task.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/homecss/profile.css" type="text/css" rel="stylesheet">
     <link href="assets/css/homecss/projectoverview.css" type="text/css" rel="stylesheet">
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -27,7 +29,7 @@
         <header class="top-header x-axis-flex dark-theme    ">
             <div class="hamburger-menu"><i class="fa-solid fa-bars"></i></div>
             <h1>Task Manager</h1>
-            <div class="mini-photo"></div>
+            <div class="mini-photo profile-button"></div>
         </header>
 
         <!-- main body consists of navbar and other sections-->
@@ -124,10 +126,17 @@
 
                             <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="search-member-input-id">People </label>
-                                <div class="search-input-tag-wrapper y-axis-flex">
-                                    <input tabindex="-1" type="search" required id="search-member-input-id" autocomplete="off" class="common-input project-people-adding-input">
-                                    <ul class="people-search-ul"></ul>
+                                <button type="button" tabindex="-1" class="choose-people-button">Add People</button>
+                            </div>
+                            <!-- This section will be opened when the user wants to add people in project -->
+                            <div class="people-selecting-checkboxes-wrapper y-axis-flex">
+                                <header class="people-selecting-header">
+                                    <h1>People</h1>
+                                </header>
+                                <div class="people-selecting-body">
+                                    <div class="people-options-wrapper"></div>
                                 </div>
+                                <button type="button" class="done-people-add-button">Done</button>
                             </div>
                             <div class="from-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="from-date-input-id">From Date </label>
@@ -194,22 +203,6 @@
                     <!-- All tasks section starts here -->
                     <section class="all-tasks-section x-axis-flex" >
                         <h1 class="nothing-heading">You don't have a task yet</h1>
-                        <!-- <section class="single-task-section y-axis-flex">
-                            <h1 class="task-name">Task Heading</h1>
-                            <p class="task-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro </p>
-                            <div class="percentage-wrapper">
-                                <div class="task-percentage"></div>
-                                <span class="task-percentage-value">27%</span>
-                            </div>
-                            <div class="task-date-wrapper x-axis-flex">
-                                <p>Date</p>
-                                <p class="task-due-data">12-2-2023</p>
-                            </div>
-                            <div class="task-status-wrapper x-axis-flex">
-                                <p>Status</p>
-                                <span class="common-status">Yet to start</span>
-                            </div>
-                        </section> -->
                     </section>
                     <!-- All tasks section ends here -->
                 </section>
@@ -223,12 +216,15 @@
                         <label for="task-name-input-id">Task Name</label>
                         <input tabindex="-1" type="text" required id="task-name-input-id" class="common-input">
                     </div>
-                    <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
-                        <label for="search-member-input-id">People </label>
-                        <div class="search-input-tag-wrapper y-axis-flex">
-                            <input tabindex="-1" type="search" required id="search-member-task-input-id" autocomplete="off" class="common-input task-people-adding-input">
-                            <ul class="people-search-ul people-task-search-ul"></ul>
+                    <!-- This section will be opened when the user wants to add people in task -->
+                    <div class="task-people-selecting-checkboxes-wrapper y-axis-flex">
+                        <header class="people-selecting-header">
+                            <h1>People</h1>
+                        </header>
+                        <div class="people-selecting-body">
+                            <div class="task-people-options-wrapper"></div>
                         </div>
+                        <button type="button" class="task-done-people-add-button">Done</button>
                     </div>
                     <div class="from-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label for="from-task-input-date-id">From Date </label>
@@ -244,17 +240,53 @@
                             <option class="project-choosing-option">Checking</option>
                         </select>
                     </div>
+                    <div class="search-input-wrapper common-task-adding-input-wrapper x-axis-flex">
+                        <label for="search-member-input-id">People </label>
+                        <button type="button" tabindex="-1" class="choose-task-people-button">Add People</button>
+                    </div>
                     <textarea tabindex="-1" class="task-desc-input" placeholder="Description"></textarea>
                     <button tabindex="-1" type="button" class="add-task-button">Add task</button>
                 </form>
                 <!-- Task adding section ends here -->
+
+                <!-- Profile section starts here -->
+                <section class="full-profile-section x-axis-flex">
+                    <div class="inner-main-profile-wrapper y-axis-flex">
+                        <i class="fa-solid fa-xmark profile-close-button"></i>
+                        <div class="profile-image-wrapper y-axis-flex">
+                            <div class="user-big-profile-image"></div>
+                            <h2 class="user-profile-name"></h2>
+                        </div>
+                        <div class="buttons-wrapper y-axis-flex">
+                            <button type="button" class="common-profile-button edit-profile-button x-axis-flex">
+                              <i class="bi bi-gear"></i>&nbsp&nbspEdit profile
+                            </button>
+                            <button type="button" class="common-profile-button change-password-button x-axis-flex">
+                              <i class="bi bi-lock"></i>&nbsp&nbspChange password
+                            </button>
+                            <button type="button" class="common-profile-button change-photo-button x-axis-flex">
+                              <i class="bi bi-camera"></i>&nbsp&nbspChange photo
+                            </button>
+                            <button type="button" class="common-profile-button group-members-button x-axis-flex">
+                              <i class="bi bi-people"></i>&nbsp&nbspGroup memebers
+                            </button>
+                            <button type="button" class="common-profile-button add-friend-button x-axis-flex">
+                              <i class="bi bi-person-add"></i>&nbsp&nbspAdd a friend
+                            </button>
+                            <button type="button" class="common-profile-button add-friend-button x-axis-flex">
+                              <i class="bi bi-bell"></i>&nbsp&nbspNotification
+                            </button>
+                          </div>
+                    </div>
+                </section>
+                <!-- Profile section ends here -->
 
                 <!-- Bottom section for mobile view consists of buttons that are in navbar -->
                 <section class="bottom-section">
                     <div class="projects-button-ul mobile-bottom-buttons"><i class="fa-solid fa-bars-progress"></i></div>
                     <div class="task-button-ul mobile-bottom-buttons"><i class="fa-solid fa-list-check"></i></div>
                     <div class="mobile-bottom-buttons"><i class="fa-solid fa-book"></i></div>
-                    <div class="mobile-bottom-buttons"><div class="bottom-icon-profile"></div></div>
+                    <div class="mobile-bottom-buttons"><div class="bottom-icon-profile profile-button"></div></div>
                 </section>
                 <!-- Bottom navbar ends here -->
             </section>
@@ -288,6 +320,7 @@
 <!-- Basic script files ends here -->
 
 <!-- Project section scripts starts here -->
+<script src="assets/js/homejs/projectscripts/projectpeopleview.js"></script>
 <script src="assets/js/homejs/projectscripts/projectview.js"></script>
 <script src="assets/js/homejs/projectscripts/projectmodel.js"></script>
 <script src="assets/js/homejs/projectscripts/projectcontroller.js"></script>
@@ -316,7 +349,12 @@
 <script src="assets/js/homejs/tasksubscripts/tasksubcontroller.js"></script>
 <!-- Task buttons ends here -->
 
-<!-- Sub Project buttons scripts starts here -->
+<!-- Sub Project buttons scripts ends here -->
+
+<!-- Profile page scripts starts here -->
+<script src="assets/js/homejs/profilescripts/profileview.js"></script>
+<script src="assets/js/homejs/profilescripts/profilecontroller.js"></script>
+<!-- Profile page scripts ends here -->
 
 <!-- Getting all details from current user script starts here -->
 <script src="assets/js/homejs/basicscripts/getalldetails.js"></script>

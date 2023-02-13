@@ -1,4 +1,4 @@
-let TaskView = (function(){
+let TaskView = (() => {
 
     let domStrings = {
         taskNavbarButton : ".task-button-ul",
@@ -11,11 +11,14 @@ let TaskView = (function(){
         taskDescInput : ".task-desc-input",
         taskFromDate : "#from-task-input-date-id",
         taskToDate : "#to-task-input-date-id",
-        taskUsers : "#search-member-task-input-id",
-        taskUsersUl : ".people-task-search-ul",
         taskButton : ".add-task-button",
         taskProjectSelect : ".project-choosing-select",
         taskProjectSelectOption : ".project-choosing-option",
+        taskPeopleSelectingFullWrapper : ".task-people-selecting-checkboxes-wrapper",
+        taskPeopleOptionWrapper : ".task-people-options-wrapper",
+        taskPeopleAddingSectionButton : ".choose-task-people-button",
+        showPeopleAddingSection : "show-people-choosing-section",
+        peopleAddingDoneButton : ".task-done-people-add-button",
         fullTaskSection : ".all-tasks-section",
         taskNameTag : "task-name",
         singleTaskSection : "single-task-section",
@@ -46,9 +49,9 @@ let TaskView = (function(){
         changeToIncomplete : ".change-to-not-complete-button"
     }
 
-    let renderPeopleSearchResult = function(userDetails, typedText){
+    let renderPeopleSearchResult = (userDetails, typedText) => {
         _(domStrings.taskUsersUl).innerHTML = "";
-        userDetails.forEach(function(elem){
+        userDetails.forEach(elem => {
             if(elem.userName.toLowerCase().startsWith(typedText) && typedText != "" && elem.uid != USERID){
                 //Creating elements here
                 let li = document.createElement("li");
@@ -85,11 +88,11 @@ let TaskView = (function(){
         });
     }
     //To render people in the task
-    let renderTaskParticipants = function(users){
+    let renderTaskParticipants = users => {
         //Reseting users ul
         _(domStrings.overViewUl).innerHTML = "";
 
-        users.forEach(function(elem){
+        users.forEach(elem => {
             //Creating elements for users list
             let liTag = document.createElement("li");
             let divTag = document.createElement("div");
@@ -113,7 +116,7 @@ let TaskView = (function(){
         });
     }
     //Setting values in Task overview section 
-    let setOverViewValues = function(taskId){
+    let setOverViewValues = taskId => {
         console.log("Task id = " + taskId);
         //get project by id here
         let task = TaskModel.getTasks()[TaskModel.getIndexOfTask(taskId)];
@@ -138,7 +141,7 @@ let TaskView = (function(){
         ProjectView.getUserById(task.createdBy, _(domStrings.taskOverViewCreatedBy));
     }
     //This is for showing the full project when we clicked a tasks
-    let showFullTask = function(event){
+    let showFullTask = event => {
         normalClickAudio();
         if(event.target.tagName == "SECTION"){
             setOverViewValues(event.target.classList[2].slice(4));
@@ -165,13 +168,13 @@ let TaskView = (function(){
         }
     }
     //This function is to render project options
-    let renderProjectOption = function(){
+    let renderProjectOption = () => {
         //Reseting the select tag 
         _(domStrings.taskProjectSelect).innerHTML = "";
         console.log("Projects while rendering project option = " + ProjectModel.getProjectsArray());
         let projects = ProjectModel.getProjectsArray();
         //Looping through all availbale projects 
-        projects.forEach(function(elem){
+        projects.forEach(elem => {
             let optionTag = document.createElement("option");
             optionTag.value = elem.id;
             optionTag.textContent = elem.projectName;
@@ -182,7 +185,7 @@ let TaskView = (function(){
         });
     }
 
-    let completeTask = function(event){
+    let completeTask = event => {
         event.stopImmediatePropagation();
         console.log("task completing event");
         // event.target.parentElement.parentElement.classList.add(domStrings.showCompletedDiv);
@@ -190,11 +193,11 @@ let TaskView = (function(){
         TaskController.changeTaskStatus(event.target.parentElement.parentElement.classList[2].slice(4));
     }
 
-    let renderTasks = function(tasks){
+    let renderTasks = tasks => {
         //Reseting all tasks
         _(domStrings.fullTaskSection).innerHTML = "";
         if(tasks.length){
-            tasks.forEach(function(elem){
+            tasks.forEach(elem => {
                 //Creating elements for a task section starts here 
                 let mainSection = document.createElement("section");
                 let nonCompletedDiv = document.createElement("div");
@@ -279,9 +282,7 @@ let TaskView = (function(){
             _(domStrings.fullTaskSection).append(h1Tag);
         }
     }
-    let getDomStrings = function(){
-        return domStrings;
-    }
+    let getDomStrings = () => domStrings;
 
     return {
         getDomStrings : getDomStrings,
