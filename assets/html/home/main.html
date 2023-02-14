@@ -125,7 +125,7 @@
 
                             <div class="search-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="search-member-input-id">People </label>
-                                <button type="button" tabindex="-1" class="choose-people-button">Add People</button>
+                                <button tabindex="-1"type="button"  class="choose-people-button">Add People</button>
                             </div>
                             <!-- This section will be opened when the user wants to add people in project -->
                             <div class="people-selecting-checkboxes-wrapper y-axis-flex">
@@ -135,7 +135,7 @@
                                 <div class="people-selecting-body">
                                     <div class="people-options-wrapper"></div>
                                 </div>
-                                <button type="button" class="done-people-add-button">Done</button>
+                                <button tabindex="-1"type="button" class="done-people-add-button">Done</button>
                             </div>
                             <div class="from-date-input-wrapper common-project-adding-input-wrapper x-axis-flex">
                                 <label for="from-date-input-id">From Date </label>
@@ -145,7 +145,7 @@
                                 <label for="date-input-id">To Date </label>
                                 <input tabindex="-1" type="date" required id="date-input-id">
                             </div>  
-                            <textarea tabindex="-1" class="project-desc-input" placeholder="Description"></textarea>
+                            <textarea tabindex="-1"  class="project-desc-input" placeholder="Description"></textarea>
                             <div class="create-project-button-wrapper">
                                 <button tabindex="-1" type="button" class="create-project-button">Create</button>
                             </div>
@@ -208,7 +208,7 @@
                 <!--Main task section ends here -->
 
                 <!-- Task adding section starts here -->
-                <form tabindex="-1" class="task-adding-section y-axis-flex">
+                <form  class="task-adding-section y-axis-flex">
                     <i class="fa-solid fa-xmark task-adding-close-button"></i>
                     <h1 class="task-adding-heading">Task</h1>
                     <div class="common-task-adding-input-wrapper x-axis-flex">
@@ -223,7 +223,7 @@
                         <div class="people-selecting-body">
                             <div class="task-people-options-wrapper"></div>
                         </div>
-                        <button type="button" class="task-done-people-add-button">Done</button>
+                        <button tabindex="-1"type="button" class="task-done-people-add-button">Done</button>
                     </div>
                     <div class="from-date-task-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label for="from-task-input-date-id">From Date </label>
@@ -235,15 +235,15 @@
                     </div>
                     <div class="project-choosing-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label>Project</label>
-                        <select tabindex="-1" class="project-choosing-select" name="project-option">
+                        <select tabindex="-1"  class="project-choosing-select" name="project-option">
                             <option class="project-choosing-option">Checking</option>
                         </select>
                     </div>
                     <div class="search-input-wrapper common-task-adding-input-wrapper x-axis-flex">
                         <label for="search-member-input-id">People </label>
-                        <button type="button" tabindex="-1" class="choose-task-people-button">Add People</button>
+                        <button tabindex="-1"type="button"  class="choose-task-people-button">Add People</button>
                     </div>
-                    <textarea tabindex="-1" class="task-desc-input" placeholder="Description"></textarea>
+                    <textarea tabindex="-1"  class="task-desc-input" placeholder="Description"></textarea>
                     <button tabindex="-1" type="button" class="add-task-button">Add task</button>
                 </form>
                 <!-- Task adding section ends here -->
@@ -257,22 +257,30 @@
                             <h2 class="user-profile-name"></h2>
                         </div>
                         <div class="buttons-wrapper y-axis-flex">
-                            <button type="button" class="common-profile-button edit-profile-button x-axis-flex">
+                            <button tabindex="-1"type="button" class="common-profile-button edit-profile-button x-axis-flex">
                               <i class="bi bi-gear"></i>&nbsp&nbspEdit profile
                             </button>
-                            <button type="button" class="common-profile-button change-photo-button x-axis-flex">
+                            <button tabindex="-1"type="button" class="common-profile-button change-photo-button x-axis-flex">
                               <i class="bi bi-camera"></i>&nbsp&nbspChange photo
                             </button>
-                            <button type="button" class="common-profile-button group-members-button x-axis-flex">
+                            <button tabindex="-1"type="button" class="common-profile-button group-members-button x-axis-flex">
                               <i class="bi bi-people"></i>&nbsp&nbspGroup memebers
                             </button>
-                            <button type="button" class="common-profile-button add-friend-button x-axis-flex">
+                            <button tabindex="-1"type="button" class="common-profile-button add-friend-button x-axis-flex">
                               <i class="bi bi-person-add"></i>&nbsp&nbspAdd a friend
                             </button>
-                            <button type="button" class="common-profile-button add-friend-button x-axis-flex">
+                            <button tabindex="-1"type="button" class="common-profile-button add-friend-button x-axis-flex">
                               <i class="bi bi-bell"></i>&nbsp&nbspNotification
                             </button>
-                          </div>
+                        </div>
+                        <div class="full-update-image-window x-axis-flex">
+                            <div class="update-image-window y-axis-flex">
+                                <i class="fa-solid fa-xmark main-image-upload-close-button"></i>
+                                <div class="user-big-profile-image user-change-photo-image"></div>
+                                <label for="upload-photo-id" class="image-upload-button">Upload</label>
+                                <input type="file" accept="image/*" id="upload-photo-id"></input>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <!-- Profile section ends here -->
@@ -285,31 +293,31 @@
                         <div class="mini-profile-user-image"></div>
                         <span>First name : <span class="mini-profile-first-name">Vignesh</span></span>
                         <span>Last name : <span class="mini-profile-last-name">Waren</span></span>
-                        <button class="upload-user-photo">Upload photo</button>
+                        <button tabindex="-1"class="upload-user-photo">Upload photo</button>
                     </section>
                     <!-- Profile details filling form starts here -->
                     <section class="edit-profile-area y-axis-flex">
                         <i class="fa-solid fa-xmark edit-profile-close-button"></i>
                         <h1 class="edit-profile-head">Edit Profile</h1>
-                        <div class="edit-profile-body">
+                        <form class="edit-profile-body">
                             <div class="common-label-input-wrapper y-axis-flex">
                                 <label for="edit-profile-first-name-input">First Name</label>
-                                <input type="text" id="edit-profile-first-name-input" class="common-edit-profile-input">
+                                <input tabindex="-1"type="text" id="edit-profile-first-name-input" class="common-edit-profile-input">
                             </div>
                             <div class="common-label-input-wrapper y-axis-flex">
                                 <label for="edit-profile-last-name-input">Last Name</label>
-                                <input type="text" id="edit-profile-last-name-input" class="common-edit-profile-input">
+                                <input tabindex="-1"type="text" id="edit-profile-last-name-input" class="common-edit-profile-input">
                             </div>
                             <div class="common-label-input-wrapper y-axis-flex">
-                                <label for="edit-profile-pass-name-input">Password</label>
-                                <input type="text" id="edit-profile-pass-name-input" class="common-edit-profile-input">
+                                <label for="edit-profile-nick-name-input">Nick Name</label>
+                                <input tabindex="-1"type="text" id="edit-profile-nick-name-input" class="common-edit-profile-input">
                             </div>
                             <div class="common-label-input-wrapper y-axis-flex">
                                 <label for="edit-profile-email-name-input">Email</label>
-                                <input type="text" id="edit-profile-email-name-input" class="common-edit-profile-input">
+                                <input tabindex="-1"type="text" id="edit-profile-email-name-input" class="common-edit-profile-input">
                             </div>
-                            <button class="edit-profile-improve-button">Improve</button>
-                        </div>
+                            <button type="button" tabindex="-1"class="edit-profile-improve-button">Improve</button>
+                        </form>
                     </section>
                     <!-- Profile details filling form ends here -->
                 </section>

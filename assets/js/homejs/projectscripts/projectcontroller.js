@@ -34,14 +34,12 @@ let ProjectController = ((view, model) => {
     let getSelectedUsers = optionName => {
         tempArray = [];
         let temp = document.getElementsByName(optionName);
-        console.log("seleced tags = " + temp);
         temp.forEach(elem => {
             if(elem.checked){
                 console.log(elem.value);
                 tempArray.push(elem.value);
             }
         });
-        console.log("selected users = " + tempArray);
         return tempArray;
     }
     //This is to exit from a project

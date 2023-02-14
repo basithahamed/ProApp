@@ -63,7 +63,24 @@
         <servlet-name>CreateUser</servlet-name>
         <url-pattern>/user/create</url-pattern>
     </servlet-mapping>
-
+    <!-- Update user -->
+    <servlet>
+        <servlet-name>Updateuser</servlet-name>
+        <servlet-class>com.servlets.UpdateUserDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Updateuser</servlet-name>
+        <url-pattern>/user/update</url-pattern>
+    </servlet-mapping>
+     <!-- updatedp -->
+     <servlet>
+        <servlet-name>saveImage</servlet-name>
+        <servlet-class>com.servlets.saveImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>saveImage</servlet-name>
+        <url-pattern>/user/changeimage</url-pattern>
+    </servlet-mapping>
     <!-- project add -->
     <servlet>
         <servlet-name>AddProject</servlet-name>

@@ -16,7 +16,7 @@
 .project-heading, .task-section-heading{
     font-size: 30px;
 }
-.add-new-project-button, .add-new-task-button, .choose-people-button, .done-people-add-button, .choose-task-people-button, .task-done-people-add-button{
+.add-new-project-button, .add-new-task-button, .choose-people-button, .done-people-add-button, .choose-task-people-button, .task-done-people-add-button, .image-upload-button{
     font-size: 20px;
     padding: 8px 10px;
     background-color: rgb(35, 131, 226);
