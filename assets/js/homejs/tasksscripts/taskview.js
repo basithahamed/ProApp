@@ -82,6 +82,7 @@ let TaskView = (() => {
                 li.classList.add("x-axis-flex");
                 p.textContent = elem.userName;
                 div.classList.add(ProjectView.getDomStrings().projectUserSeachPhoto.slice(1));
+                div.style.width = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
                 li.append(div, p);
                 _(domStrings.taskUsersUl).append(li);
             }
@@ -107,7 +108,7 @@ let TaskView = (() => {
             paraTag.classList.add(domStrings.overViewUserName);
 
             //Adding content to the elements
-            divTag.style.backgroundImage = "url(assets/images/user.png)";
+            divTag.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
             paraTag.textContent = elem.userName;
 
             //Inserting elements

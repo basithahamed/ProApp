@@ -14,6 +14,7 @@ public class CurrentUser {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("currentUserId", sess.getAttribute("uid"));
         jsonObject.put("currentUserName", sess.getAttribute("userName"));
+        jsonObject.put("imagePath", sess.getAttribute("uid")+".png");
         return jsonObject;
     }
 }

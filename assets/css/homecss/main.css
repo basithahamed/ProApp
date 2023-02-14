@@ -33,7 +33,6 @@ body{
     border: 1px solid black;
 }
 .mini-photo{
-    background-image: url("/ProApp/assets/images/user.png");
     width: 55px;
     height: 55px;
     border-radius: 50%;

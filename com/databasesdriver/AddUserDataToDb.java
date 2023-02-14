@@ -2,6 +2,7 @@ package com.databasesdriver;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -47,6 +48,10 @@ public class AddUserDataToDb {
             {
                 stmt = con.createStatement();
                 stmt.executeUpdate("insert into users (uname,firstname,lastname,emailid,password) values(" + "'" + uname + "','" + firstname + "','" + lastname + "','" + emailid + "','" + password + "')");
+                ResultSet rs = stmt.executeQuery("select uid from users order by uid desc limit 1");
+                rs.next();
+                int uid = rs.getInt("uid");
+                new AddImageToDb().insertImages(uid, con);
                 resultObject.put("result", "Success");
                 //System.out.println("suces form add user");
                 //System.out.println(emailid + ", " + password);

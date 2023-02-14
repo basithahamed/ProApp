@@ -65,7 +65,6 @@ let ProjectView = (() => {
         xhr.open("GET", "user/getusers?id=" + id);
         xhr.send();
         xhr.onload = () => {
-            console.log(JSON.parse(xhr.response));
             createdByElement.innerText = JSON.parse(xhr.response).userName;
         }
     }
@@ -73,7 +72,7 @@ let ProjectView = (() => {
     let renderProjectParticipants = users => {
         //Reseting users ul
         _(domStrings.overViewUl).innerHTML = "";
-
+        
         users.forEach(elem => {
             //Creating elements for users list
             let liTag = document.createElement("li");
@@ -89,7 +88,7 @@ let ProjectView = (() => {
             paraTag.classList.add(domStrings.overViewUserName);
 
             //Adding content to the elements
-            divTag.style.backgroundImage = "url(assets/images/user.png)";
+            divTag.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
             paraTag.textContent = elem.userName;
 
             //Inserting elements

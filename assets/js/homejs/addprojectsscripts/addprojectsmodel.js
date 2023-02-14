@@ -13,6 +13,7 @@ let AddProjectModel = (() => {
     }
     let changeServerObject = function(serverObject){
         localStorage.lastAddedProject = serverObject.id;
+        
         return new Project(serverObject.id, serverObject.projectName, serverObject.projectDesc, serverObject.status, serverObject.fromDate, serverObject.toDate, serverObject.users, serverObject.createdBy, serverObject.percentage);
     }
     let addProject = (projectName, projectDesc, fromDate, toDate, users) => {

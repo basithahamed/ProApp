@@ -25,6 +25,7 @@ public class UserProjectRelation {
                 JSONObject jsObject=new JSONObject();
                 jsObject.put("userId",rs.getString("uid") );
                 jsObject.put("userName",rs.getString("uname"));
+                jsObject.put("imagePath", rs.getString("uid")+".png");
                 jsArr.add(jsObject);
             }
             
@@ -49,6 +50,7 @@ public class UserProjectRelation {
                 JSONObject jsObject=new JSONObject();
                 jsObject.put("userId",rs.getString("uid") );
                 jsObject.put("userName",rs.getString("uname"));
+                jsObject.put("imagePath", rs.getString("uid")+".png");
                 jsArr.add(jsObject);
             }
             

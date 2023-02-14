@@ -20,6 +20,7 @@ public class GetUserDb {
                 JSONObject jsonObject=new JSONObject();
                 jsonObject.put("userId", rs.getInt("uid"));
                 jsonObject.put("userName", rs.getString("uname"));
+                jsonObject.put("imagePath", rs.getString("uid")+".png");
                 jsonArray.add(jsonObject);
             }
         } catch (Exception e) {
@@ -31,7 +32,6 @@ public class GetUserDb {
     // method for returning users by the given uid
     public JSONObject returnUserId(Connection c,String val) {
         int uid=Integer.parseInt(val);
-        // //System.out.println("uid:"+uid);
         JSONObject jsonObject=new JSONObject();
         try {
             ResultSet rs;
@@ -41,8 +41,7 @@ public class GetUserDb {
 
             jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
-            
-            
+            jsonObject.put("imagePath", rs.getString("uid")+".png");
         } 
         catch (Exception e) {
             e.printStackTrace();

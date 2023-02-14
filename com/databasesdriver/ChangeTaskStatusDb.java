@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ChangeTaskStatusDb {
-    public static boolean taskRelationStatusChanger(Connection con, int tid, int uid) {
+    public boolean taskRelationStatusChanger(Connection con, int tid, int uid) {
 
         boolean result = false;
         try {
@@ -18,7 +18,7 @@ public class ChangeTaskStatusDb {
                     "update task_relation set IsCompleted = '" + !Boolean.parseBoolean(rs.getString("IsCompleted"))
                             + "' where tid = " + tid + " and uid = " + uid);
 
-            taskStatusChanger(con, tid);
+            new ChangeTaskStatusDb().taskStatusChanger(con, tid);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -26,7 +26,7 @@ public class ChangeTaskStatusDb {
         return result;
     }
 
-    public static void taskStatusChanger(Connection con, int tid) {
+    public void taskStatusChanger(Connection con, int tid) {
         // boolean result = false;
         try {
             Statement stmt = con.createStatement();

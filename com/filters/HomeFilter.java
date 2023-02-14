@@ -28,7 +28,7 @@ public class HomeFilter extends HttpFilter {
        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
+            con= DriverManager.getConnection("jdbc:mysql://10.52.0.51:3306/proapp", "todoadmins", "todo@111");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

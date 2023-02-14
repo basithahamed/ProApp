@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.databasesdriver.GetUserDb;
 
 public class GetUsers extends HttpServlet{
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection c=(Connection)getServletContext().getAttribute("Connection");
         GetUserDb getUser=new GetUserDb();
-        if(request.getParameter("id").equals("all")){
+        if(request.getParameter("id").equalsIgnoreCase("all")){
             response.getWriter().print(getUser.returnAllUser(c));
         }
         else{

@@ -31,7 +31,6 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-image: url("/ProApp/assets/images/user.png");
     background-size: cover;
     background-position: center;
 }
@@ -66,12 +65,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 20;
+    z-index: 51;
     padding-top: 30px;
     font-size: 25px;
+    transform: translateX(100%);
+    transition: 0.5s;
+  }
+  .show-edit-profile-section{
+    transform: translateX(0%);
   }
   .mini-profile{
-    width:400px;
+    width: 400px;
     height: 500px;
     color: white;
     align-self: flex-start;
@@ -79,8 +83,10 @@
     background-color: rgb(52,50,56);
     justify-content: space-around;
     border-radius: 10px;
+    margin-left: 10px;
   }
   .edit-profile-area{
+    position: relative;
     max-width: 700px;
     width: 100%;
     height: 90%;
@@ -91,6 +97,7 @@
     padding: 20px;
     justify-content: space-around;
     align-items: flex-start;
+    margin-right: 10px ;
   }
   .mini-profile-user-name, .edit-profile-head{
     font-size: 30px;
@@ -101,7 +108,9 @@
     border-radius: 50%;
     background-position: center;
     background-size: cover;
-    background-image: url("/ProApp/assets/images/usersImages/2.png");
+  }
+  .upload-user-photo, .edit-profile-improve-button{
+    transition: 0.5s;
   }
   .upload-user-photo:active {
     transform: scale(0.9);
@@ -134,8 +143,37 @@
     border-radius: 10px;
   }
   /* Profile editing section styling starts here */
+  
+  @media screen and (max-width: 857px){
+    .edit-profile-body {
+      grid-template-columns: auto;
+    }
+  }
+  @media screen and (max-height: 850px){
+    .edit-profile-area{
+      height: 97%;
+    }
+    .outer-edit-profile{
+      padding: 0px;
+    }
+  }
+  @media screen and (max-width: 715px){
+    .mini-profile{
+      display: none;
+    }
+    .edit-profile-area{
+      margin-right: 0;
+      margin: 5px;
+    }
+    .edit-profile-body {
+      grid-template-columns: auto auto;
+    }
+  }
   @media screen and (max-width: 550px){
     .full-profile-section{
         bottom: 10%;
+    }
+    .edit-profile-body {
+      grid-template-columns: auto;
     }
   }

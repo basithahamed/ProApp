@@ -75,8 +75,6 @@ public class UserAllTaskFromDb {
             {
                 result=true;
             }
-            // result=rs.getString("IsCompleted");
-
         } catch (Exception e) {
             e.printStackTrace();
 

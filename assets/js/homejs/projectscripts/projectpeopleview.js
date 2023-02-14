@@ -32,7 +32,7 @@ let PeopleAdding = (() => {
         peopleSelectingLabel.classList.add("x-axis-flex");
         
         miniProfileImage.classList.add(domStrings.miniPeoplePhoto);
-        miniProfileImage.style.backgroundImage = "url(/ProApp/assets/images/user.png)";
+        miniProfileImage.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${id}.png)`;
 
         personName.classList.add(domStrings.personName);
         personName.textContent = name;
@@ -83,6 +83,7 @@ let PeopleAdding = (() => {
 
     let renderPeopleChoosingSection = (fullPeopleDisplaySection, usersList, isProject) => {
         fullPeopleDisplaySection.innerHTML = "";
+        console.log(usersList);
         usersList.forEach((elem) => {
             fullPeopleDisplaySection.append(getPersonOption(elem.userId, elem.userName, isProject));
         });
