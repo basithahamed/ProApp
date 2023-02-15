@@ -89,7 +89,7 @@
 .image-upload-button:active {
   transform: scale(0.9);
 }
-#upload-photo-id{
+#upload-photo-id, #upload-photo-id-2{
   display: none;
 }
 

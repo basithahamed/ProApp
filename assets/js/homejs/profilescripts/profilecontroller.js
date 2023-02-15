@@ -15,7 +15,8 @@ let ProfileController = (view => {
         xhr.open("POST", "user/changeimage");
         xhr.send(formData);
         xhr.onload = () => {
-            console.log(xhr.response);
+            resetImages();
+            alert(xhr.response);
         }
     }
     //sending update data to server
@@ -136,6 +137,10 @@ let ProfileController = (view => {
         //This is for uploading photo button action
         _(view.getDomStrings().mainUploadPhotoButton).addEventListener("change", event => {
             uploadPhotoToServer(_(view.getDomStrings().mainUploadPhotoButton).files[0]);
+        });
+        //This is for uploading photo button in the edit profile section 
+        _(view.getDomStrings().editProfilePhotoUploadButton).addEventListener("change", event => {
+            uploadPhotoToServer(_(view.getDomStrings().editProfilePhotoUploadButton).files[0]);
         });
     }
     init();

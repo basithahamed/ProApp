@@ -25,16 +25,18 @@ let USERID;
 let USERNAME;
 let CURRENTUSERPHOTO;
 
-let xhr = new XMLHttpRequest();
-xhr.open("GET", "user/currentuser");
-xhr.send();
-xhr.onload = function(){
-    let temp = JSON.parse(xhr.response);
-    USERID = temp.currentUserId;
-    USERNAME = temp.currentUserName;
-    CURRENTUSERPHOTO= temp.imagePath;
-    _(".mini-photo").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
-    _(".bottom-icon-profile").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+let getCurrentUserDetails = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "user/currentuser");
+    xhr.send();
+    xhr.onload = () => {
+        let temp = JSON.parse(xhr.response);
+        USERID = temp.currentUserId;
+        USERNAME = temp.currentUserName;
+        CURRENTUSERPHOTO= temp.imagePath;
+        _(".mini-photo").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+        _(".bottom-icon-profile").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+    }
 }
 //This is for getting a task completed page for a task single task.
 let getCompletedDiv = function(id, isProject){
@@ -65,3 +67,4 @@ let getCompletedDiv = function(id, isProject){
     
     return mainDivTag;
 }
+getCurrentUserDetails();

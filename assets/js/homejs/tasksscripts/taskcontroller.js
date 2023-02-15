@@ -32,7 +32,10 @@ let TaskController = ((view, model) => {
 
         xhr.open("POST", "task/user/changestatus");
         xhr.send(formData);
-        xhr.onload = () => resetTasks();
+        xhr.onload = () => {
+            resetTasks();
+            resetProject();
+        }
     }
     //This is to exit from a task
     let exitFromTask = id => {

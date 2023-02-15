@@ -15,6 +15,7 @@ let ProfileView = (() => {
         fullChangePhotoSection : ".full-update-image-window",
         showFullChangePhoto : "show-image-window",
         mainUploadPhotoButton : "#upload-photo-id",
+        editProfilePhotoUploadButton : "#upload-photo-id-2",
         mainUploadPhotoSectionCloseButton : ".main-image-upload-close-button",
         editProfileForm : ".edit-profile-body",
         showEditProfile : "show-edit-profile-section",

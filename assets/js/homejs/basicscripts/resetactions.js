@@ -3,6 +3,7 @@ let allTasks;
 
 //Getting all projects data of current user
 let resetProject = () => {
+    ProjectModel.resetProject();
     let projectsXhr = new XMLHttpRequest();
     projectsXhr.open("GET", "project/getall");
     projectsXhr.send();
@@ -33,6 +34,17 @@ let resetTasks = () => {
         });
         TaskView.renderTasks(TaskModel.getTasks());
     }
+}
+
+let resetImages = () => {
+    getCurrentUserDetails();
+    console.log(CURRENTUSERPHOTO);
+    _All(ProfileView.getDomStrings().profileImage).forEach(elem => {
+        elem.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+    });
+    _(ProfileView.getDomStrings().editProfilePhotoImage).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+    _(".mini-photo").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+    _(".bottom-icon-profile").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
 }
 
 resetProject();
