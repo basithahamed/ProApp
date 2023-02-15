@@ -24,7 +24,7 @@ public class SaveImageDb {
             st.execute("use proapp");
 
             InputStream in = part.getInputStream();
-            File f = new File("/home/vigneshwaran/ApacheTerminal/apache-tomcat-8.5.84/webapps/ProApp/assets/images/usersImages/" + uid + imageType);
+            File f = new File("/opt/tomcat/apache-tomcat-8.5.84/webapps/ProApp/assets/images/usersImages/" + uid + imageType);
     
             FileOutputStream out = new FileOutputStream(f);
             int readingValue = 0;

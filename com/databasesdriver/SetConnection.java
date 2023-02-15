@@ -11,7 +11,7 @@ public class SetConnection implements ServletContextListener{
     public void contextInitialized(ServletContextEvent event){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "todouser", "vi99g@NESH");
+            Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.169:3306/proapp", "todoadmins", "todo@111");
             event.getServletContext().setAttribute("Connection", c);
             //System.out.println("Connection attribute setted");
         }

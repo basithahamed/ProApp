@@ -2,7 +2,7 @@
 //     userId : USERID,
 //     userName : USERNAME
 // }
-// let webConnection = new WebSocket("ws://10.52.0.38:8787/ProApp/proapp?data=todouser");
+// let webConnection = new WebSocket("ws://10.52.0.169:8050/ProApp/proapp?data=todoadmins");
 // webConnection.onopen = function(event){
 //     console.log(event.log);
 // }

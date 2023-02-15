@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
--- Host: 10.52.0.38    Database: proapp
+-- Host: 10.52.0.169    Database: proapp
 -- ------------------------------------------------------
 -- Server version	8.0.32-0ubuntu0.22.04.2
 
@@ -194,7 +194,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','todouser','todouser@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password'),(5,'SivaSankar','SivaSankar','S','siva@proapp.com','password');
+INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com','password'),(2,'Basith','Basith','ahamed','basith@proapp.com','password'),(3,'Vignesh','Vignesh','todoadmins','todoadmins@proapp.com','password'),(4,'Harish','Harish','M','harish@proapp.com','password'),(5,'SivaSankar','SivaSankar','S','siva@proapp.com','password');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
