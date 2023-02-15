@@ -14,10 +14,14 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.authorize.IsExist;
 
-import com.authorize.IsExsist;
-
+/**
+ * Home Filter Will be Called When we enter the Home Page
+ * It won't let the user in without the session 
+ */
 public class HomeFilter extends HttpFilter {
+    
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
@@ -28,7 +32,7 @@ public class HomeFilter extends HttpFilter {
        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://10.52.0.169:3306/proapp", "todoadmins", "todo@111");
+            con= DriverManager.getConnection("jdbc:mysql://10.52.0.126:3306/proapp", "todoadmins", "todo@111");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -38,18 +42,12 @@ public class HomeFilter extends HttpFilter {
         if(uid==null)
         {
                 res.setContentType("text/html");  
-
-                //System.out.println("form login if");
-                // RequestDispatcher rd=req.getRequestDispatcher("assets/html/login.html");
-                // rd.forward(req, res);
-
                 res.sendRedirect("Login");  
-                //System.out.println("i am form temp ");
         }
         else
         {
             try {
-                if (new IsExsist().checker(con, uid,(String) session.getAttribute("emailId"),(String) session.getAttribute("password"))) {
+                if (new IsExist().checker(con, uid,(String) session.getAttribute("emailId"),(String) session.getAttribute("password"))) {
                     //System.out.println("homeSucess");
                     RequestDispatcher rd=request.getRequestDispatcher("home");
                     rd.forward(request, response);

@@ -10,18 +10,18 @@
         <welcome-file>default.jsp</welcome-file>
         <welcome-file>default.htm</welcome-file>
     </welcome-file-list>
+    <!-- For the Listner -->
     <listener>
-        <listener-class>com.databasesdriver.SetConnection</listener-class>
+        <listener-class>com.listener.SetConnection</listener-class>
     </listener>
-
     <!-- login -->
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>com.servlets.Login</servlet-class>
+        <servlet-class>com.servlets.login.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <!-- login Action -->
@@ -34,10 +34,11 @@
         <url-pattern>/LoginAction</url-pattern>
     </servlet-mapping>
 
+
     <!-- for the home page servlet -->
     <servlet>
         <servlet-name>Home</servlet-name>
-        <servlet-class>com.servlets.Home</servlet-class>
+        <servlet-class>com.servlets.login.Home</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
@@ -47,44 +48,78 @@
     <!-- Redirecting to register Page -->
     <servlet>
         <servlet-name>Register</servlet-name>
-        <servlet-class>com.servlets.Register</servlet-class>
+        <servlet-class>com.servlets.login.Register</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
 
+
     <!-- insertUser -->
     <servlet>
         <servlet-name>CreateUser</servlet-name>
-        <servlet-class>com.servlets.CreateUser</servlet-class>
+        <servlet-class>com.servlets.user.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateUser</servlet-name>
         <url-pattern>/user/create</url-pattern>
     </servlet-mapping>
+
     <!-- Update user -->
     <servlet>
         <servlet-name>Updateuser</servlet-name>
-        <servlet-class>com.servlets.UpdateUserDetails</servlet-class>
+        <servlet-class>com.servlets.user.UpdateUserDetails</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Updateuser</servlet-name>
         <url-pattern>/user/update</url-pattern>
     </servlet-mapping>
-     <!-- updatedp -->
-     <servlet>
+
+    <!-- updatedp internal api-->
+    <servlet>
         <servlet-name>saveImage</servlet-name>
-        <servlet-class>com.servlets.saveImage</servlet-class>
+        <servlet-class>com.servlets.image.SaveImage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>saveImage</servlet-name>
         <url-pattern>/user/changeimage</url-pattern>
     </servlet-mapping>
+
+    <!-- get User  internal api-->
+    <servlet>
+        <servlet-name>GetUsers</servlet-name>
+        <servlet-class>com.servlets.user.GetUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUsers</servlet-name>
+        <url-pattern>/user/getusers</url-pattern>
+    </servlet-mapping>
+
+    <!-- retriveUserbypid  -->
+    <servlet>
+        <servlet-name>RetrieveProjectRelation</servlet-name>
+        <servlet-class>com.servlets.user.RetrieveUsersFromProject</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RetrieveProjectRelation</servlet-name>
+        <url-pattern>/user/getusers/project</url-pattern>
+    </servlet-mapping>
+
+    <!-- for returning the currentUser; which is only for the internal case where user is login  -->
+    <servlet>
+        <servlet-name>CurrentUser</servlet-name>
+        <servlet-class>com.servlets.user.GetCurrentUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CurrentUser</servlet-name>
+        <url-pattern>/user/currentuser</url-pattern>
+    </servlet-mapping>
+
     <!-- project add -->
     <servlet>
         <servlet-name>AddProject</servlet-name>
-        <servlet-class>com.servlets.AddProject</servlet-class>
+        <servlet-class>com.servlets.project.AddProject</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddProject</servlet-name>
@@ -94,37 +129,39 @@
     <!-- project Delete -->
     <servlet>
         <servlet-name>DeleteProject</servlet-name>
-        <servlet-class>com.servlets.DeleteProject</servlet-class>
+        <servlet-class>com.servlets.project.DeleteProject</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteProject</servlet-name>
         <url-pattern>/project/delete</url-pattern>
     </servlet-mapping>
 
-    <!-- get User  -->
+    <!-- for getting the all project regarding to the user internal api-->
+
     <servlet>
-        <servlet-name>GetUsers</servlet-name>
-        <servlet-class>com.servlets.GetUsers</servlet-class>
+        <servlet-name>GetAllProject</servlet-name>
+        <servlet-class>com.servlets.project.GetAllProjects</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetUsers</servlet-name>
-        <url-pattern>/user/getusers</url-pattern>
+        <servlet-name>GetAllProject</servlet-name>
+        <url-pattern>/project/getall</url-pattern>
     </servlet-mapping>
 
-    <!-- retriveUserbypid -->
+
+    <!-- for deleting the project associated user -->
     <servlet>
-        <servlet-name>RetrieveProjectRelation</servlet-name>
-        <servlet-class>com.servlets.RetrieveProjectRelation</servlet-class>
+        <servlet-name>RemoveProjectRelation</servlet-name>
+        <servlet-class>com.servlets.project.RemoveProjectRelation</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RetrieveProjectRelation</servlet-name>
-        <url-pattern>/user/getusers/project</url-pattern>
+        <servlet-name>RemoveProjectRelation</servlet-name>
+        <url-pattern>/project/user/delete</url-pattern>
     </servlet-mapping>
 
     <!-- taskadd -->
     <servlet>
         <servlet-name>AddTask</servlet-name>
-        <servlet-class>com.servlets.AddTask</servlet-class>
+        <servlet-class>com.servlets.task.AddTask</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddTask</servlet-name>
@@ -134,57 +171,29 @@
     <!-- for deleting the task  -->
     <servlet>
         <servlet-name>DeleteTask</servlet-name>
-        <servlet-class>com.servlets.DeleteTask</servlet-class>
+        <servlet-class>com.servlets.task.DeleteTask</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteTask</servlet-name>
         <url-pattern>/task/delete</url-pattern>
     </servlet-mapping>
-
-    <!-- for returning the currentUser; which is only for the internal case where user is login  -->
-    <servlet>
-        <servlet-name>CurrentUser</servlet-name>
-        <servlet-class>com.servlets.GetCurrentUser</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CurrentUser</servlet-name>
-        <url-pattern>/user/currentuser</url-pattern>
-    </servlet-mapping>
-
-    <!-- for getting the all project regarding to the user -->
-    <servlet>
-        <servlet-name>GetAllProject</servlet-name>
-        <servlet-class>com.servlets.GetAllProjects</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetAllProject</servlet-name>
-        <url-pattern>/project/getall</url-pattern>
-    </servlet-mapping>
-
     <!-- for getting the all task regarding to the user -->
     <servlet>
         <servlet-name>GetAllTask</servlet-name>
-        <servlet-class>com.servlets.GetAllTask</servlet-class>
+        <servlet-class>com.servlets.task.GetAllTasks</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetAllTask</servlet-name>
         <url-pattern>/task/getall</url-pattern>
     </servlet-mapping>
 
-    <!-- for deleting the project associated user -->
-    <servlet>
-        <servlet-name>RemoveProjectRelation</servlet-name>
-        <servlet-class>com.servlets.RemoveProjectRelation</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RemoveProjectRelation</servlet-name>
-        <url-pattern>/project/user/delete</url-pattern>
-    </servlet-mapping>
 
     <!-- for deleting the task associated user -->
+
+
     <servlet>
         <servlet-name>RemoveTaskRelation</servlet-name>
-        <servlet-class>com.servlets.RemoveTaskRelation</servlet-class>
+        <servlet-class>com.servlets.task.RemoveTaskRelation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RemoveTaskRelation</servlet-name>
@@ -194,22 +203,15 @@
     <!-- for changing the task status -->
     <servlet>
         <servlet-name>ChangeTaskStatus</servlet-name>
-        <servlet-class>com.servlets.ChangeTaskStatus</servlet-class>
+        <servlet-class>com.servlets.task.ChangeTaskStatus</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangeTaskStatus</servlet-name>
         <url-pattern>/task/user/changestatus</url-pattern>
     </servlet-mapping>
-    <!-- for changing the project status -->
-    <servlet>
-        <servlet-name>ChangeProjectStatus</servlet-name>
-        <servlet-class>com.servlets.ChangeProjectStatus</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ChangeProjectStatus</servlet-name>
-        <url-pattern>/project/changestatus</url-pattern>
-    </servlet-mapping>
-    <!-- for the login filter -->
+
+
+    <!-- Login Filter -->
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.filters.LoginFilter</filter-class>

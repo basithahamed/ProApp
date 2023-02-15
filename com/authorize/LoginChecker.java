@@ -1,22 +1,26 @@
 package com.authorize;
 
-import java.sql.Connection;
+import java.sql.*;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+/**
+ * This class contains method to validate the email and password
+ */
 public class LoginChecker {
-
-    public boolean validater(String email, String password) throws SQLException {
+    /**
+     * This method is to validate the email and password
+     * @param email Used for checking with DB
+     * @param password Used for checking with DB
+     * @return returns boolean with verification of the email and password
+     */
+    public boolean validater(String email, String password) {
         // creating a prepare statement
         boolean result = false;
-        Connection connection = DriverManager.getConnection("jdbc:mysql://10.52.0.169:3306/proapp", "todoadmins",
-                "todo@111");
+        Connection connection = null;
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
+            connection = DriverManager.getConnection("jdbc:mysql://10.52.0.126:3306/proapp", "todoadmins",
+                "todo@111");
             PreparedStatement ps;
             ResultSet rs;
             String sql = "select * from users";
@@ -29,12 +33,20 @@ public class LoginChecker {
                 }
             }
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            connection.close();
+        } 
+        finally {
+            if(connection != null){
+                try {
+                    connection.close();
+                } 
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
         return result;
     }
 
