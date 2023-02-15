@@ -20,7 +20,8 @@ public class GetUserDb {
                 JSONObject jsonObject=new JSONObject();
                 jsonObject.put("userId", rs.getInt("uid"));
                 jsonObject.put("userName", rs.getString("uname"));
-                jsonObject.put("imagePath", rs.getString("uid")+".png");
+                String imagePath = new SaveImageDb().getImagePath(rs.getInt("uid"), c);
+                jsonObject.put("imagePath", imagePath);
                 jsonArray.add(jsonObject);
             }
         } catch (Exception e) {
@@ -41,7 +42,8 @@ public class GetUserDb {
 
             jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
-            jsonObject.put("imagePath", rs.getString("uid")+".png");
+            String imagePath = new SaveImageDb().getImagePath(rs.getInt("uid"), c);
+            jsonObject.put("imagePath", imagePath);
         } 
         catch (Exception e) {
             e.printStackTrace();

@@ -12,8 +12,8 @@ public class LoginChecker {
     public boolean validater(String email, String password) throws SQLException {
         // creating a prepare statement
         boolean result = false;
-        Connection connection = DriverManager.getConnection("jdbc:mysql://10.52.0.51:3306/proapp", "todoadmins",
-                "todo@111");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "todouser",
+                "vi99g@NESH");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
