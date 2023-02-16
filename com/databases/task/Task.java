@@ -1,6 +1,9 @@
 package com.databases.task;
 
 import org.json.simple.*;
+
+import com.databases.project.UpdateProject;
+
 import java.sql.*;
 
 /**
@@ -60,7 +63,8 @@ public class Task {
             jsObj.put("projectId", projectId);
             jsObj.put("users",userDetails);
             jsObj.put("tid", tid);
-            
+            UpdateProject upj=new UpdateProject();
+            upj.changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
         } catch (Exception e) {
             e.printStackTrace();
         } 

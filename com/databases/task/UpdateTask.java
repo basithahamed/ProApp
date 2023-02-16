@@ -2,6 +2,9 @@ package com.databases.task;
 
 import java.sql.*;
 
+import com.databases.project.RetrieveProject;
+import com.databases.project.UpdateProject;
+
 /**
  * This class contains the methods to update tasks.
  */
@@ -58,6 +61,8 @@ public class UpdateTask {
             } else if (j > 0) {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
+            UpdateProject upj=new UpdateProject();
+            upj.changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
         } 
         catch (Exception e) {
             e.printStackTrace();

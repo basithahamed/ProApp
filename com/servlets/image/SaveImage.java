@@ -18,7 +18,7 @@ public class SaveImage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection c=(Connection)getServletContext().getAttribute("Connection");
-        String location = "/home/vicky/Apache/apache-tomcat-8.5.85/webapps/ProApp/assets/images/usersImages/";
+        String location = "/home/todoadmins/Apache/apache-tomcat-8.5.85/webapps/ProApp/assets/images/usersImages/";
         response.getWriter().println(new Image().updatePhoto(c, request.getPart("userImage"), Integer.parseInt(request.getParameter("uid")), request.getParameter("imageType"), location));
     }
 }

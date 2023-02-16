@@ -72,4 +72,19 @@ public class RetrieveProject {
         }
         return jsArr;
     }
+
+    /*For retriving the pid from tid */
+    public int retrieveTidByPid(Connection con,int tid) {
+        int result=0;
+        try {
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("select pid from tasks where tid="+tid);
+            rs.next();
+            result=rs.getInt("pid");
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

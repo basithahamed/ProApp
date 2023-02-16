@@ -19,8 +19,8 @@ public class LoginChecker {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky",
-                "vi99g@NESH");
+            connection = DriverManager.getConnection("jdbc:mysql://10.52.0.126:3306/proapp", "todoadmins",
+                "todo@111");
             PreparedStatement ps;
             ResultSet rs;
             String sql = "select * from users";
