@@ -42,7 +42,7 @@ public class HomeFilter extends HttpFilter {
         if(uid==null)
         {
                 res.setContentType("text/html");  
-                res.sendRedirect("Login");  
+                res.sendRedirect("login");  
         }
         else
         {
