@@ -192,6 +192,17 @@
         <servlet-name>DeleteTask</servlet-name>
         <url-pattern>/task/delete</url-pattern>
     </servlet-mapping>
+
+    <!-- for retrieving the user details using taskId -->
+    <servlet>
+        <servlet-name>GetUserByTid</servlet-name>
+        <servlet-class>com.servlets.task.GetUserByTid</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUserByTid</servlet-name>
+        <url-pattern>/user/getusers/task</url-pattern>
+    </servlet-mapping>
+
     <!-- for getting the all task regarding to the user -->
     <servlet>
         <servlet-name>GetAllTask</servlet-name>
