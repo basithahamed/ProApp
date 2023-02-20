@@ -19,7 +19,7 @@ public class SaveImage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection con=(Connection)getServletContext().getAttribute("Connection");
-        System.out.println(request.getParameter("imageType"));
+        // System.out.println(request.getParameter("imageType"));
         response.getWriter().println(new SaveImageDb().savePhoto(con,request.getParts(),request.getParameter("uid"),request.getParameter("imageType")));
     }
 }

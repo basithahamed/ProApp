@@ -44,14 +44,15 @@ public class User {
                 stmt.executeUpdate("insert into users (uname,firstname,lastname,emailid,password) values(" + "'" + uname + "','" + firstname + "','" + lastname + "','" + emailid + "','" + password + "')");
                 ResultSet rs = stmt.executeQuery("select uid from users order by uid desc limit 1");
                 rs.next();
-                int uid = rs.getInt("uid");
-                new Image().insertImage(uid, con);
+
+                RetrieveUser ru = new RetrieveUser();
+                new Image().insertImage(rs.getInt("uid"), con);
                 resultObject.put("result", "Success");
                 HttpSession session = request.getSession();
                 session.setAttribute("emailId", emailid);
                 session.setAttribute("password", password);
-                session.setAttribute("uid", new com.databases.users.RetrieveUser().getUidByEmail(con, emailid));
-                session.setAttribute("userName", new com.databases.users.RetrieveUser().getUnameByEmail(con, emailid));
+                session.setAttribute("uid", ru.getUidByEmail(con, emailid));
+                session.setAttribute("userName", ru.getUnameByEmail(con, emailid));
             }
         } 
         catch (Exception e) {

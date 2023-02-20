@@ -23,10 +23,9 @@ public class CreateUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            User insertUser = new User();
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             Connection c = (Connection) request.getServletContext().getAttribute("Connection");
-            insertUser.insertUserData(c, jsonObject, request);    
+            new User().insertUserData(c, jsonObject, request);    
         } 
         catch (Exception e) {
             e.printStackTrace();

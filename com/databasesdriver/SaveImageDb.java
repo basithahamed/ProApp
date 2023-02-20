@@ -16,7 +16,7 @@ public class SaveImageDb {
             st.execute("use proapp");
 
             for (Part p : parts) {
-                p.write("/home/bharath/Downloads/apache-tomcat-8.5.84/webapps/ProApp/assets/images/usersImages/" +uid+imageType);
+                p.write("/opt/tomcat/apache-tomcat-8.5.84/webapps/ProApp/assets/images/usersImages/" +uid+imageType);
             }
             ps.setString(1, uid + imageType);
             ps.setInt(2, Integer.parseInt(uid));

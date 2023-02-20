@@ -40,6 +40,7 @@ public class RetrieveProject {
         }
         return result;
     }
+
     /**
      * This method is to retrieve projects
      * @param con Used to connect to the DB
@@ -52,16 +53,18 @@ public class RetrieveProject {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from project_relation inner join projects on project_relation.pid = projects.pid where project_relation.uid ="+ uid);
 
+            UpdateProject up = new UpdateProject();
+            RetrieveUser ru = new RetrieveUser();
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
                 int pid = rs.getInt("pid");
-                new UpdateProject().changeProjectStatus(con, pid);
+                up.changeProjectStatus(con, pid);
                 jsonObject.put("id", pid);
                 jsonObject.put("projectName", rs.getString("pname"));
                 jsonObject.put("status", rs.getString("status"));
                 jsonObject.put("fromDate", rs.getString("fromdate"));
                 jsonObject.put("toDate", rs.getString("todate"));
-                jsonObject.put("users", new RetrieveUser().getUserDetailByPid(con, pid));
+                jsonObject.put("users", ru.getUserDetailByPid(con, pid));
                 jsonObject.put("createdBy", rs.getInt("created_by"));
                 jsonObject.put("projectDesc", rs.getString("comment"));
                 jsonObject.put("percentage", returnPercentage(con, pid, uid));
@@ -82,7 +85,6 @@ public class RetrieveProject {
             rs.next();
             result=rs.getInt("pid");
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return result;

@@ -22,14 +22,15 @@ public class RetrieveUser {
         JSONArray jsArr=new JSONArray();
         try {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select * from task_relation inner join users on task_relation.uid=users.uid where tid ="+tid);
+            rs = stmt.executeQuery("select users.uid,uname from task_relation inner join users on task_relation.uid=users.uid where tid ="+tid);
             
+            Image img = new Image();
             while(rs.next()){
                 JSONObject jsObject=new JSONObject();
-                jsObject.put("userId",rs.getString("uid") );
+                int uid = rs.getInt("uid");
+                jsObject.put("userId",uid);
                 jsObject.put("userName",rs.getString("uname"));
-                String imagePath = new Image().getImagePath(rs.getInt("uid"), con);
-                jsObject.put("imagePath", imagePath);
+                jsObject.put("imagePath", img.getImagePath(uid, con));
                 jsArr.add(jsObject);
             }
         } 
@@ -50,15 +51,16 @@ public class RetrieveUser {
         ResultSet rs = null;
 
         JSONArray jsArr=new JSONArray();
+        Image img = new Image();
         try {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select * from project_relation inner join users on project_relation.uid=users.uid where pid ="+pid);
+            rs = stmt.executeQuery("select users.uid,uname from project_relation inner join users on project_relation.uid=users.uid where pid ="+pid);
             while(rs.next()){
                 JSONObject jsObject=new JSONObject();
-                jsObject.put("userId",rs.getString("uid") );
+                int uid = rs.getInt("uid");
+                jsObject.put("userId",uid);
                 jsObject.put("userName",rs.getString("uname"));
-                String imagePath = new Image().getImagePath(rs.getInt("uid"), con);
-                jsObject.put("imagePath", imagePath);
+                jsObject.put("imagePath", img.getImagePath(uid, con));
                 jsArr.add(jsObject);
             } 
         } 
@@ -92,10 +94,10 @@ public class RetrieveUser {
      * @param email Used to get that particular user name
      * @return returns a int contains user name.
      */
-    public String getUnameByEmail(Connection c,String email)  {
+    public String getUnameByEmail(Connection con,String email)  {
         String name = "";
         try{
-            Statement stmt=c.createStatement();  
+            Statement stmt=con.createStatement();  
             ResultSet rs=stmt.executeQuery("select uname from users where emailid='"+email+"'");
             rs.next();
             name = rs.getString("uname");
@@ -118,8 +120,7 @@ public class RetrieveUser {
         jsonObject.put("currentUserName", sess.getAttribute("userName"));
         // 
         Connection con = (Connection) request.getServletContext().getAttribute("Connection");
-        String imagePath = new Image().getImagePath((int) sess.getAttribute("uid"), con);
-        jsonObject.put("imagePath", imagePath);
+        jsonObject.put("imagePath", new Image().getImagePath((int) sess.getAttribute("uid"), con));
         
         return jsonObject;
     }
@@ -128,18 +129,19 @@ public class RetrieveUser {
      * @param c This is used to connect to DB
      * @return return JSONArray contains all user details
      */
-    public JSONArray getAllUser(Connection c) {
+    public JSONArray getAllUser(Connection con) {
         JSONArray jsonArray=new JSONArray();
+        Image img = new Image();
         try {
             ResultSet rs;
-            Statement statement=c.createStatement();
-            rs=statement.executeQuery("select * from users");
+            Statement statement=con.createStatement();
+            rs=statement.executeQuery("select uid,uname from users");
             while(rs.next()){
                 JSONObject jsonObject=new JSONObject();
-                jsonObject.put("userId", rs.getInt("uid"));
+                int uid = rs.getInt("uid");
+                jsonObject.put("userId", uid);
                 jsonObject.put("userName", rs.getString("uname"));
-                String imagePath = new Image().getImagePath(rs.getInt("uid"), c);
-                jsonObject.put("imagePath", imagePath);
+                jsonObject.put("imagePath", img.getImagePath(uid, con));
                 jsonArray.add(jsonObject);
             }
         } catch (Exception e) {
@@ -159,13 +161,12 @@ public class RetrieveUser {
         try {
             ResultSet rs;
             Statement statement=c.createStatement();
-            rs=statement.executeQuery("select * from users where uid="+uid);
+            rs=statement.executeQuery("select uid,uname from users where uid="+uid);
             rs.next();
 
             jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
-            String imagePath = new Image().getImagePath(rs.getInt("uid"), c);
-            jsonObject.put("imagePath", imagePath);
+            jsonObject.put("imagePath", new Image().getImagePath(rs.getInt("uid"), c));
         } 
         catch (Exception e) {
             e.printStackTrace();

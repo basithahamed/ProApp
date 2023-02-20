@@ -11,18 +11,18 @@ import java.sql.SQLException;
 public class IsExist {
     /**
      * This method is used to verify user Data
-     * @param c Connection object For communicating with db
+     * @param con Connection object For communicating with db
      * @param id user id for verification
      * @param mail user email for verification
      * @param password user password for verification
      * @return returns a boolean value indicates the result wheather the details is valid or not
      */
-    public Boolean checker(Connection c, Integer id,String mail,String password)  {
+    public Boolean checker(Connection con, int id,String mail,String password)  {
         boolean result=false;
 
         try (
-            Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from users where uid =" + id)) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select emailid,password from users where uid =" + id)) {
             rs.next();
             String emailid=rs.getString("emailid");
             String passwordVar=rs.getString("password");
@@ -36,7 +36,7 @@ public class IsExist {
             e.printStackTrace();
         } finally{
             try {
-                c.close();
+                con.close();
             } 
             catch (SQLException e) {
                 e.printStackTrace();
@@ -55,7 +55,7 @@ public class IsExist {
         String result = "";
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from users");
+            ResultSet rs = stmt.executeQuery("select emailid,uname from users");
             while (rs.next()) {
                 if (rs.getString("emailid").equals(mail)) {
                     result = "Email Id Already Exsist";

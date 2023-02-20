@@ -195,11 +195,11 @@
 
     <!-- for retrieving the user details using taskId -->
     <servlet>
-        <servlet-name>GetUserByTid</servlet-name>
-        <servlet-class>com.servlets.task.GetUserByTid</servlet-class>
+        <servlet-name>RetrieveUsersFromTask</servlet-name>
+        <servlet-class>com.servlets.user.RetrieveUsersFromTask</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetUserByTid</servlet-name>
+        <servlet-name>RetrieveUsersFromTask</servlet-name>
         <url-pattern>/user/getusers/task</url-pattern>
     </servlet-mapping>
 

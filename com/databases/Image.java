@@ -1,7 +1,6 @@
 package com.databases;
 import java.io.*;
 import java.sql.*;
-import java.util.Arrays;
 
 import javax.servlet.http.Part;
 /**
@@ -58,7 +57,7 @@ public class Image {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select imagePath from images where uid = " + uid);
             rs.next();
-            path = rs.getString(1);
+            path = rs.getString("imagePath");
         } 
         catch (Exception e) {
             e.printStackTrace();

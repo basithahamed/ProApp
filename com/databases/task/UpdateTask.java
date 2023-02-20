@@ -20,7 +20,7 @@ public class UpdateTask {
         boolean result = false;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from task_relation where uid = " + uid + " and tid = " + tid);
+            ResultSet rs = stmt.executeQuery("select IsCompleted from task_relation where uid = " + uid + " and tid = " + tid);
 
             rs.next();
             stmt.executeUpdate(
@@ -61,8 +61,7 @@ public class UpdateTask {
             } else if (j > 0) {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
-            UpdateProject upj=new UpdateProject();
-            upj.changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
+            new UpdateProject().changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
         } 
         catch (Exception e) {
             e.printStackTrace();

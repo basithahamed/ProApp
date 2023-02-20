@@ -28,7 +28,7 @@ public class Project {
 
             // inserting the given project data
             stmt.executeUpdate("insert into projects(pname,fromdate,todate,comment,created_by) values('" + pname + "','" + fromdate + "','" + todate + "','" + comment + "','" + createdBy + "')");
-            ResultSet rs = stmt.executeQuery("select * from projects order by pid desc limit 1");
+            ResultSet rs = stmt.executeQuery("select pid from projects order by pid desc limit 1");
             rs.next(); 
             int pid = Integer.parseInt(rs.getString("pid"));//getting the latest pid to add in project_relation table
 
@@ -38,7 +38,7 @@ public class Project {
                 // adding the jsonarray of users by iterating
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));
                 stmt.executeUpdate("insert into project_relation (pid,uid) values(" + pid + "," + uid + ")");
-                rs2 = stmt2.executeQuery("select * from users where uid = "+uid);
+                rs2 = stmt2.executeQuery("select uid,uname from users where uid = "+uid);
                 while(rs2.next()){
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("userId",rs2.getInt("uid"));
@@ -63,6 +63,7 @@ public class Project {
         } 
         return resJsObj;
     }
+
     /**
      * This method is to delete a project
      * @param con Used connect to the DB

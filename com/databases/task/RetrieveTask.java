@@ -3,6 +3,8 @@ package com.databases.task;
 import java.sql.*; 
 import org.json.simple.*;
 
+import com.databases.users.RetrieveUser;
+
 /**
  * This class is used to retrieve tasks data
  */
@@ -17,7 +19,7 @@ public class RetrieveTask {
         int status = 0;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from task_relation where tid=" + tid);
+            ResultSet rs = stmt.executeQuery("select IsCompleted from task_relation where tid=" + tid);
             int trueCount = 0;
             int totalCount = 0;
             while (rs.next()) {
@@ -45,21 +47,22 @@ public class RetrieveTask {
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from task_relation inner join tasks on task_relation.tid = tasks.tid where task_relation.uid ="+uid);
-            com.databases.users.RetrieveUser uallTask = new com.databases.users.RetrieveUser();
+            RetrieveUser uallTask = new RetrieveUser();
 
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
+                int tid = rs.getInt("tid");
                 jsonObject.put("tname", rs.getString("tname"));
-                jsonObject.put("tid", rs.getInt("tid"));
-                jsonObject.put("users", uallTask.getUserDetailByTid(con, rs.getInt("tid")));
+                jsonObject.put("tid", tid);
+                jsonObject.put("users", uallTask.getUserDetailByTid(con, tid));
                 jsonObject.put("status",rs.getString("status"));
                 jsonObject.put("fromDate", rs.getString("fromdate"));
                 jsonObject.put("toDate", rs.getString("todate"));
                 jsonObject.put("createdBy", rs.getInt("created_by"));
                 jsonObject.put("projectId",rs.getInt("pid"));
                 jsonObject.put("description", rs.getString("description"));
-                jsonObject.put("percentage", taskStatus(con,rs.getInt("tid")));
-                jsonObject.put("isCompleted", isCompleted(con, uid,rs.getInt("tid")));
+                jsonObject.put("percentage", taskStatus(con,tid));
+                jsonObject.put("isCompleted", isCompleted(con, uid,tid));
                 jsonArray.add(jsonObject);
             }
         } 
@@ -80,7 +83,7 @@ public class RetrieveTask {
         boolean result=false;
         try {
             Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from task_relation where tid="+tid+" and uid="+uid);
+            ResultSet rs=stmt.executeQuery("select IsCompleted from task_relation where tid="+tid+" and uid="+uid);
             rs.next();
             if(rs.getString("IsCompleted").equals("true"))
             {
@@ -88,9 +91,7 @@ public class RetrieveTask {
             }
         } catch (Exception e) {
             e.printStackTrace();
-
         }
         return result;
-
     }
 }
