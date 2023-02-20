@@ -23,7 +23,8 @@ let ProfileView = (() => {
         userFirstNameInput : "#edit-profile-first-name-input",
         userLastNameInput : "#edit-profile-last-name-input",
         userEmailIdInput : "#edit-profile-email-name-input",
-        userNickNameInput : "#edit-profile-nick-name-input"
+        userNickNameInput : "#edit-profile-nick-name-input",
+        logOutButton : ".log-out-button"
     }
     let getDomStrings = () => domStrings;
 

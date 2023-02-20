@@ -54,7 +54,9 @@ public class Project {
             resJsObj.put("fromDate", fromdate);
             resJsObj.put("toDate", todate);
             resJsObj.put("createdBy", createdBy);
+            resJsObj.put("percentage", 0);
             resJsObj.put("users", userDetails);
+            
         } 
         catch (Exception e) {
             e.printStackTrace();

@@ -3,23 +3,29 @@ let TaskController = ((view, model) => {
     let addTask = () => validateProjectForm();
 
     let renderPeople = (element, pid) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/ProApp/user/getusers/project?id=" + pid);
-        xhr.send();
-        xhr.onload = () => PeopleAdding.renderPeopleChoosingSection(element, JSON.parse(xhr.response), false);
+        sendGetRequest("/ProApp/user/getusers/project?id=" + pid, function(){
+            PeopleAdding.renderPeopleChoosingSection(element, JSON.parse(this.response), false);
+        })
+        // let xhr = new XMLHttpRequest();
+        // xhr.open("GET", "/ProApp/user/getusers/project?id=" + pid);
+        // xhr.send();
+        // xhr.onload = () => PeopleAdding.renderPeopleChoosingSection(element, JSON.parse(xhr.response), false);
     }
     //This is to remove task works if current user is the one who created that specific task
-    let removeTask = id => {
-        let xhr = new XMLHttpRequest();
-        
-        xhr.open("POST", "task/delete?taskId=" + id);
-        xhr.send();
-        xhr.onload = () => {
+    let removeTask = (id, isDelete) => {
+        let url;
+        if(isDelete){
+            url = "task/delete?taskId=" + id;
+        }
+        else {
+            url = "task/user/delete";
+        }
+        sendPostRequest(url, "", function(){
             model.removeTask(id);
             view.renderTasks(model.getTasks());
             resetProject();
             _(view.getDomStrings().taskOverViewCloseButton).click();
-        }
+        })
     }
     let changeTaskStatus = id => {
         let xhr = new XMLHttpRequest();
@@ -38,23 +44,23 @@ let TaskController = ((view, model) => {
         }
     }
     //This is to exit from a task
-    let exitFromTask = id => {
-        let xhr = new XMLHttpRequest();
-        let obj = {
-            userId : USERID,
-            taskId : id
-        }
-        let formData = new FormData();
-        formData.append("userData", JSON.stringify(obj));
-        xhr.open("POST", "task/user/delete");
-        xhr.send(formData);
-        xhr.onload = () => {
-            model.removeTask(id);
-            view.renderTasks(model.getTasks());
-            resetProject();
-            _(view.getDomStrings().taskOverViewCloseButton).click();
-        }
-    }
+    // let exitFromTask = id => {
+    //     let xhr = new XMLHttpRequest();
+    //     let obj = {
+    //         userId : USERID,
+    //         taskId : id
+    //     }
+    //     let formData = new FormData();
+    //     formData.append("userData", JSON.stringify(obj));
+    //     xhr.open("POST", "task/user/delete");
+    //     xhr.send(formData);
+    //     xhr.onload = () => {
+    //         model.removeTask(id);
+    //         view.renderTasks(model.getTasks());
+    //         resetProject();
+    //         _(view.getDomStrings().taskOverViewCloseButton).click();
+    //     }
+    // }
     //This is to check whether the users are in the selected project
     let isValidUsers = (users, pid, validateFunction) => {
         let outsideFlag = false;

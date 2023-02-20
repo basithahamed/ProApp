@@ -19,10 +19,11 @@ public class UpdateUser {
             String newFirstName = (String) updatedUserData.get("newFirstName");
             String newLastName = (String) updatedUserData.get("newLastName");
             String newEmailId = (String) updatedUserData.get("newEmailId");
+            String newUserName=(String) updatedUserData.get("newUserName");
             Long uid = (Long) updatedUserData.get("uid");
 
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("update users set uname = '" + newFirstName + "', firstname = '" + newFirstName
+            stmt.executeUpdate("update users set uname = '" + newUserName + "', firstname = '" + newFirstName
                     + "', lastname = '" + newLastName + "', emailid = '" + newEmailId + "' where uid = " + uid);
 
             resultObject.put("result", "Success");

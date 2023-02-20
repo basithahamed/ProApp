@@ -25,6 +25,8 @@
     </servlet-mapping>
 
     <!-- login Action -->
+    <!-- PLEASE DONT TOUCH THIS !!IT MAY LOOKS ILLOGICAL BUT NOTHING WORKING WITHOUT  -->
+    
     <servlet>
         <servlet-name>LoginAction</servlet-name>
         <servlet-class>com.servlets.Login</servlet-class>
@@ -32,6 +34,19 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/LoginAction</url-pattern>
+    </servlet-mapping>
+    <!-- DON'T USE YOUR BIG BRAIN OF YOURS -->
+    
+    
+    
+    <!-- login out Action -->
+    <servlet>
+        <servlet-name>LogoutAction</servlet-name>
+        <servlet-class>com.servlets.login.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutAction</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
 

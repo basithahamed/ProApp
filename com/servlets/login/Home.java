@@ -10,6 +10,7 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("assets/html/home/main.html").forward(request, response);
+        response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate,");        
+        request.getRequestDispatcher("assets/html/home/main.html").forward(request, response);
     }
 }

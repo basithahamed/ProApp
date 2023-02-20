@@ -7,10 +7,9 @@ let ProjectController = ((view, model) => {
     }
     //This is to get the users
     let renderPeople = element => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/ProApp/user/getusers?id=all");
-        xhr.send();
-        xhr.onload = () => PeopleAdding.renderPeopleChoosingSection(element, JSON.parse(xhr.response), true);
+        sendGetRequest("/ProApp/user/getusers?id=all", function(){
+            PeopleAdding.renderPeopleChoosingSection(element, JSON.parse(this.response), true);
+        });
     }
     //This is to open the task section
     let openTaskAddingSection = () => {
@@ -18,17 +17,20 @@ let ProjectController = ((view, model) => {
         _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showTaskSection);
     }
     //This is to remove project works if current user is the one who created that specific project
-    let removeProject = id => {
-        let xhr = new XMLHttpRequest();
-        
-        xhr.open("POST", "project/delete?projectId=" + id);
-        xhr.send();
-        xhr.onload = () => {
+    let removeProject = (id, isDelete) => {
+        let url;
+        if(isDelete){
+            url = "project/delete?projectId=" + id;
+        }
+        else {
+            url = "project/user/delete";
+        }
+        sendPostRequest(url, "", function(){
             model.removeProject(id);
             view.renderProjects(model.getProjectsArray());
             resetTasks();
             _(view.getDomStrings().projectOverViewCloseButton).click();
-        }
+        });
     }
     //This is to get selected the users values 
     let getSelectedUsers = optionName => {
@@ -41,24 +43,6 @@ let ProjectController = ((view, model) => {
             }
         });
         return tempArray;
-    }
-    //This is to exit from a project
-    let exitFromProject = id => {
-        let xhr = new XMLHttpRequest();
-        let obj = {
-            userId : USERID,
-            projectId : id
-        }
-        let formData = new FormData();
-        formData.append("userData", JSON.stringify(obj));
-        xhr.open("POST", "project/user/delete");
-        xhr.send(formData);
-        xhr.onload = () => {
-            model.removeProject(id);
-            view.renderProjects(model.getProjectsArray());
-            resetTasks();
-            _(view.getDomStrings().projectOverViewCloseButton).click();
-        }
     }
     //This is to validate the details in project adding section
     let validateProjectForm = () => {   
@@ -167,10 +151,10 @@ let ProjectController = ((view, model) => {
         //This is for project overview exiting button
         _(view.getDomStrings().overViewExitButton).addEventListener("click", () => {
             if(USERID == _(view.getDomStrings().projectOverViewCreatedBy).id){
-                removeProject(_(view.getDomStrings().fullProjectOverView).id);
+                removeProject(_(view.getDomStrings().fullProjectOverView).id, true);
             }
             else {
-                exitFromProject(_(view.getDomStrings().fullProjectOverView).id);
+                removeProject(_(view.getDomStrings().fullProjectOverView).id, false);
             }
         });
     }

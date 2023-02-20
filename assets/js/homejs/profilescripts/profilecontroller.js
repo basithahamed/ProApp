@@ -11,24 +11,25 @@ let ProfileController = (view => {
         formData.append("userImage", file);
         formData.append("uid", USERID);
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "user/changeimage");
-        xhr.send(formData);
-        xhr.onload = () => {
+        sendPostRequest("user/changeimage", formData, function(){
             resetImages();
-            alert(xhr.response);
-        }
+            alert(this.response);
+        });
+    }
+    //This is to logout from the page
+    let logOutAction = () => {
+        sendPostRequest("/ProApp/logout", "", function(){
+            console.log(this.status);
+            location.reload();
+        });
     }
     //sending update data to server
     let sendUpdateData = userDetails => {
         let formData = new FormData();
         formData.append("updatedUserData", JSON.stringify(userDetails));
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "user/update");
-        xhr.send(formData);
-        xhr.onload = () => {
-            let responseFromServer = JSON.parse(xhr.response);
+        sendPostRequest("user/update", formData, function(){
+            let responseFromServer = JSON.parse(this.response);
             if(responseFromServer.result == "Success"){
                 _(view.getDomStrings().editProfileCloseButton).click();
                 resetUpdateForm();
@@ -37,7 +38,7 @@ let ProfileController = (view => {
                 showErrorMessage("Some problem while updating details");
                 playErrorAudio();
             }
-        }
+        });
     }
     //This is to validate the new update details
     let validateForm = () => {
@@ -142,6 +143,9 @@ let ProfileController = (view => {
         _(view.getDomStrings().editProfilePhotoUploadButton).addEventListener("change", event => {
             uploadPhotoToServer(_(view.getDomStrings().editProfilePhotoUploadButton).files[0]);
         });
+
+        //This is for log out button
+        _(view.getDomStrings().logOutButton).addEventListener("click", logOutAction);
     }
     init();
     return {

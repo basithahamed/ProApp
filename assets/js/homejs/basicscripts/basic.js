@@ -25,21 +25,30 @@ let USERID;
 let USERNAME;
 let CURRENTUSERPHOTO;
 
-let getCurrentUserDetails = () => {
+let sendPostRequest = function(url, data, onloadFunction){
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "user/currentuser");
+    xhr.open("POST", url);
+    xhr.send(data);
+    xhr.onload = onloadFunction;
+}
+let sendGetRequest = function(url, onloadFunction){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
     xhr.send();
-    xhr.onload = () => {
-        let temp = JSON.parse(xhr.response);
+    xhr.onload = onloadFunction;
+}
+let getCurrentUserDetails = () => {
+    sendGetRequest("user/currentuser", function(){
+        let temp = JSON.parse(this.response);
         USERID = temp.currentUserId;
         USERNAME = temp.currentUserName;
         CURRENTUSERPHOTO= temp.imagePath;
         _(".mini-photo").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".bottom-icon-profile").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
-    }
+    });
 }
 //This is for getting a task completed page for a task single task.
-let getCompletedDiv = function(id, isProject){
+let getCompletedDiv = function(id, heading, isProject){
     let mainDivTag = document.createElement("div");
     let h1Tag = document.createElement("h1");
     
@@ -48,6 +57,7 @@ let getCompletedDiv = function(id, isProject){
     
     h1Tag.textContent = "Completed";
     mainDivTag.id = id;
+    mainDivTag.append(heading);
 
     if(!isProject){
         let changeButton = document.createElement("button");

@@ -62,6 +62,7 @@ public class Task {
             jsObj.put("description", description);
             jsObj.put("projectId", projectId);
             jsObj.put("users",userDetails);
+            jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
             UpdateProject upj=new UpdateProject();
             upj.changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));

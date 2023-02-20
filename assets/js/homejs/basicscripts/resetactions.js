@@ -4,11 +4,8 @@ let allTasks;
 //Getting all projects data of current user
 let resetProject = () => {
     ProjectModel.resetProject();
-    let projectsXhr = new XMLHttpRequest();
-    projectsXhr.open("GET", "project/getall");
-    projectsXhr.send();
-    projectsXhr.onload = () => {
-        allProjects = JSON.parse(projectsXhr.response);
+    sendGetRequest("project/getall", function(){
+        allProjects = JSON.parse(this.response);
         //Rendering all projects
         allProjects.forEach(elem => {
             ProjectModel.addProject(AddProjectModel.changeServerObject(elem));
@@ -16,29 +13,23 @@ let resetProject = () => {
         ProjectView.renderProjects(ProjectModel.getProjectsArray());
         //Rendering Project option for task adding
         TaskView.renderProjectOption();
-    }
+    });
 }
-
 
 //Getting all tasks data of current user
 let resetTasks = () => {
-    let tasksXhr = new XMLHttpRequest();
-    tasksXhr.open("GET", "task/getall");
-    tasksXhr.send();
-    tasksXhr.onload = () => {
+    sendGetRequest("task/getall", function(){
         TaskModel.resetTasks();
-        let allTasks = JSON.parse(tasksXhr.response);
-        console.log(allTasks);
+        let allTasks = JSON.parse(this.response);
         allTasks.forEach(elem => {
             TaskModel.addTask(TaskModel.changeServerObject(elem, true));
         });
         TaskView.renderTasks(TaskModel.getTasks());
-    }
+    });
 }
 
 let resetImages = () => {
     getCurrentUserDetails();
-    console.log(CURRENTUSERPHOTO);
     _All(ProfileView.getDomStrings().profileImage).forEach(elem => {
         elem.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
     });

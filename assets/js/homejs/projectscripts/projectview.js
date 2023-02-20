@@ -61,12 +61,9 @@ let ProjectView = (() => {
     
     //This is to set name of the created user in overview section
     let getUserById = (id, createdByElement) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", "user/getusers?id=" + id);
-        xhr.send();
-        xhr.onload = () => {
-            createdByElement.innerText = JSON.parse(xhr.response).userName;
-        }
+        sendGetRequest("user/getusers?id=" + id, function(){
+            createdByElement.innerText = JSON.parse(this.response).userName;
+        });
     }
     //To render people in the project
     let renderProjectParticipants = users => {
@@ -209,7 +206,7 @@ let ProjectView = (() => {
                 projectStatusWrapper.append(projectStatusHead, projectStatusValue);
                 
                 nonCompletedDiv.append(projectHeading, projectDescription, percentageWrapper, projectDateWrapper, projectStatusWrapper);
-                mainSection.append(nonCompletedDiv, getCompletedDiv(elem.id, true));
+                mainSection.append(nonCompletedDiv, getCompletedDiv(elem.id, projectHeading.cloneNode(true), true));
                 mainSection.addEventListener("click", showFullProject);
 
                 //This if condition is for making elements rotate  if they are completed.

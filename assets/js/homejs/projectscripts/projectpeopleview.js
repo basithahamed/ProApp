@@ -85,7 +85,9 @@ let PeopleAdding = (() => {
         fullPeopleDisplaySection.innerHTML = "";
         console.log(usersList);
         usersList.forEach((elem) => {
-            fullPeopleDisplaySection.append(getPersonOption(elem.userId, elem.userName, isProject));
+            if(elem.userId != USERID){
+                fullPeopleDisplaySection.append(getPersonOption(elem.userId, elem.userName, isProject));   
+            }
         });
     }
 

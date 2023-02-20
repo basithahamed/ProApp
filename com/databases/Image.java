@@ -1,6 +1,7 @@
 package com.databases;
 import java.io.*;
 import java.sql.*;
+import java.util.Arrays;
 
 import javax.servlet.http.Part;
 /**
@@ -19,7 +20,10 @@ public class Image {
      */
     public boolean updatePhoto(Connection c, Part part, int uid,String imageType, String location) {
         boolean result=false;
+
         try {
+            deletePreviousImage(uid, location);
+
             Statement st = c.createStatement();
 
             InputStream in = part.getInputStream();
@@ -75,5 +79,29 @@ public class Image {
             e.printStackTrace();
         }
     }
-
+    /**
+     * This method is used to delete the previous image
+     * @param id With this user id the image will be deleted
+     * @param location Images in this location will be deleted
+     */
+    private void deletePreviousImage(int id, String location){
+        try{
+            File f = new File(location);
+            if(f.isDirectory()){
+                File[] allFiles = f.listFiles();
+                for(File file : allFiles){
+                    String[] splittedFileName = file.getName().split("\\.");
+                    if(splittedFileName[0].equals(String.valueOf(id))){
+                        file.delete();
+                    } 
+                }
+            }
+            else {
+                System.out.println("Check the location path it is not a directory");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
