@@ -65,7 +65,7 @@ public class Task {
             jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
             
-            new UpdateProject().changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
+            // new UpdateProject().changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
         } catch (Exception e) {
             e.printStackTrace();
         } 

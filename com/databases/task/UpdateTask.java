@@ -61,7 +61,7 @@ public class UpdateTask {
             } else if (j > 0) {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
-            new UpdateProject().changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
+            // new UpdateProject().changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
         } 
         catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,3 @@
-
-
-
-
 //This is model of this page contains htmlelements id and class name .......
 let DomStrings = (function () {
 
@@ -100,7 +96,7 @@ let MainRunner = (function (domStrings, view) {
         //To be changed
         anker.href = "home"
         button.click();
-        
+
     }
     //This method is to send the user data to the server
     let sendDataToVerify = function (emailId, password) {
@@ -110,7 +106,7 @@ let MainRunner = (function (domStrings, view) {
         }
         //Sending the data has JSON object, We want to use MultipartConfig Annotation in servlet
         let formData = new FormData();
-        
+
         formData.append("userData", JSON.stringify(data));
 
         let xhr = new XMLHttpRequest();
@@ -167,4 +163,3 @@ let MainRunner = (function (domStrings, view) {
     document.querySelector(domStrings.getDomStrings().goButton).addEventListener("click", formVerification);
 
 })(DomStrings, View);
-

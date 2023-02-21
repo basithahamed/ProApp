@@ -30,7 +30,7 @@ body {
 }
 
 .background-style-image {
-    background-image: url("/ProApp/assets/images/webView.jpg");
+    background-image: url("/assets/images/bg.png");
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -49,6 +49,8 @@ body {
     flex-wrap: wrap;
     max-width: 1200px;
     width: 95%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: transparent;
 }
 
 .display-section {
@@ -59,8 +61,8 @@ body {
 }
 
 .computer-image {
-    width: 400px;
-    height: 450px;
+    width: 350px;
+    height: 350px;
 }
 
 .about-head {
@@ -69,7 +71,7 @@ body {
 }
 
 .app-icon {
-    width: 100px;
+    width: 80px;
     height: 80px;
     object-fit: cover;
 }
@@ -160,7 +162,7 @@ body {
     padding: 8px 10px;
     margin: 10px;
     font-size: 20px;
-    background-color: #F88D24;
+    background-color:  rgb(64, 142, 238);
     color: white;
     border: none;
     border-radius: 10px;
@@ -173,13 +175,13 @@ body {
 
 .register-link {
     text-decoration: none;
-    color: #F88D24;
+    color:  rgb(64, 142, 238);
     border-bottom: 1px solid white;
     transition: 0.5s;
 }
 
 .register-link:hover {
-    border-bottom: 1px solid #F88D24;
+    border-bottom: 1px solid  rgb(64, 142, 238);
 }
 
 .error {
@@ -212,15 +214,17 @@ body {
 
     .inner-login-page {
         height: 620px;
+        background: transparent;
     }
 
     .background-style-image {
-        background-image: url("/ProApp/assets/images/mobileView.jpg");
+        background-image: url("/assets/images/mobileView.png");
     }
 
     .login-section {
         background-color: transparent;
         border: none;
+        box-shadow: none;
     }
 
     .input-message {
