@@ -69,6 +69,7 @@ public class UpdateProject {
     public boolean updateProjectData(Connection con , JSONObject jsonObject) {
         boolean result = false;
         try {
+            System.out.println("I AM FROM UPDATED");
             String projectName = (String) jsonObject.get("projectName");
             int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId")));
             String fromDate = (String) jsonObject.get("fromDate");
@@ -76,8 +77,9 @@ public class UpdateProject {
             String projectDesc = (String) jsonObject.get("projectDesc");
             String status = (String) jsonObject.get("status");
             JSONArray users = (JSONArray) jsonObject.get("users");
-
-            if(new UpdateTask().updateTaskData(con, jsonObject)){
+            System.out.println("jsonObj:"+jsonObject);
+            if(new UpdateTask().updateTaskUserData(con, jsonObject)){
+                System.out.println("i am from updated Project if");
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("delete from project_relation where pid = "+projectId);          
 
