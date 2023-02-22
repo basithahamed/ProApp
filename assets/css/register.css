@@ -30,7 +30,7 @@ body {
 }
 
 .background-style-image {
-    background-image: url("/assets/images/bg.png");
+    background-image: url("ProApp/assets/images/bg.png");
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -218,7 +218,7 @@ body {
     }
 
     .background-style-image {
-        background-image: url("/assets/images/mobileView.png");
+        background-image: url("ProApp/assets/images/mobileView.png");
     }
 
     .login-section {

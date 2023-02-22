@@ -2,8 +2,6 @@ package com.databases.task;
 
 import org.json.simple.*;
 
-import com.databases.project.UpdateProject;
-
 import java.sql.*;
 
 /**
@@ -65,7 +63,6 @@ public class Task {
             jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
             
-            // new UpdateProject().changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
         } catch (Exception e) {
             e.printStackTrace();
         } 

@@ -2,8 +2,9 @@ package com.databases.task;
 
 import java.sql.*;
 
-import com.databases.project.RetrieveProject;
-import com.databases.project.UpdateProject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 
 /**
  * This class contains the methods to update tasks.
@@ -61,12 +62,12 @@ public class UpdateTask {
             } else if (j > 0) {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
-            // new UpdateProject().changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
         } 
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
     /**
      * This method is used to delete the user from the task
      * @param con Used to connect to the DB
@@ -84,5 +85,31 @@ public class UpdateTask {
             e.printStackTrace();
         }
         return result ;
+    }
+
+    public boolean updateTaskData(Connection con, JSONObject jsonObject) {
+        boolean result = false;
+        try {
+            int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId"))); 
+            JSONArray users = (JSONArray) jsonObject.get("users");
+
+            System.out.println("connection : "+con);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select tasks.tid,uid from tasks inner join task_relation on tasks.tid=task_relation.tid where pid = "+projectId);
+
+            while (rs.next()) {
+                for (Object newUid : users) {
+                    int uid = rs.getInt("uid");
+                    if(Integer.parseInt(String.valueOf(newUid)) != uid){
+                        int tid =rs.getInt("tid");
+                        stmt.executeUpdate("delete from task_relation where tid = "+tid+" and uid = "+uid);
+                    }
+                }    
+            }   
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

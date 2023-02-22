@@ -151,6 +151,16 @@
         <url-pattern>/project/delete</url-pattern>
     </servlet-mapping>
 
+    <!-- project update -->
+    <servlet>
+        <servlet-name>ProjectUpdate</servlet-name>
+        <servlet-class>com.servlets.project.ProjectUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjectUpdate</servlet-name>
+        <url-pattern>/project/update</url-pattern>
+    </servlet-mapping>
+
     <!-- for getting the all project regarding to the user internal api-->
 
     <servlet>

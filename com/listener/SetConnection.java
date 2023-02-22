@@ -13,7 +13,7 @@ public class SetConnection implements ServletContextListener{
     public void contextInitialized(ServletContextEvent event){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.126:3306/proapp", "todoadmins", "todo@111");
+            Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.131:3306/proapp", "Bharath", "NzYwNjc0NT");
             event.getServletContext().setAttribute("Connection", c);
         }
         catch(Exception e){

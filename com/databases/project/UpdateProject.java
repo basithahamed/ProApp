@@ -2,6 +2,11 @@ package com.databases.project;
 
 import java.sql.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.databases.task.UpdateTask;
+
 /**
  * This class contains methods to update project details
  */
@@ -59,5 +64,36 @@ public class UpdateProject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean updateProjectData(Connection con , JSONObject jsonObject) {
+        boolean result = false;
+        try {
+            String projectName = (String) jsonObject.get("projectName");
+            int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId")));
+            String fromDate = (String) jsonObject.get("fromDate");
+            String toDate = (String) jsonObject.get("toDate");
+            String projectDesc = (String) jsonObject.get("projectDesc");
+            String status = (String) jsonObject.get("status");
+            JSONArray users = (JSONArray) jsonObject.get("users");
+
+            if(new UpdateTask().updateTaskData(con, jsonObject)){
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("delete from project_relation where pid = "+projectId);          
+
+                Statement stmt2 = con.createStatement();
+                for (Object uid : users) {
+                    uid = Integer.parseInt(String.valueOf(uid));
+                    stmt2.executeUpdate("insert into project_relation (uid,pid) values ("+uid+","+projectId+")");
+                }
+
+                Statement stmt3 = con.createStatement();
+                stmt3.executeUpdate("update projects set pname = '"+projectName+"' , fromdate = '"+fromDate+"' , todate = '"+toDate+"' , comment = '"+projectDesc+"' , status = '"+status+"' where pid = "+projectId);
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

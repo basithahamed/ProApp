@@ -19,7 +19,7 @@ public class LoginChecker {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://10.52.0.126:3306/proapp", "todoadmins",
+            connection = DriverManager.getConnection("jdbc:mysql://10.52.0.131:3306/proapp", "todoadmins",
                 "todo@111");
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select emailid,password from users");
